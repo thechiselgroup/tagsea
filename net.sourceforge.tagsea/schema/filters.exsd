@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="net.sourceforge.tagsea">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="net.sourceforge.tagsea" id="filters" name="Waypoint Filters"/>
+      </appInfo>
+      <documentation>
+         Used to apply advanced filters to TagSEA views. Exactly one filter can be applied for a waypoint type, and it must be contributed in the same plugin that defined that waypoint type.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="filter"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="filter">
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A class implementing net.sourceforge.tagsea.core.ui.IWaypointFilter. There can only be one waypoint filter per waypoint type, and it must be defined in the same plugin as the waypoint type.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="net.sourceforge.tagsea.core.ui.IWaypointFilter"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="ui" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A class implementing net.sourceforge.tagsea.core.ui.IWaypointFilterUI. There can be only one waypoint filter ui per waypoint type and it must be defined in the same plugin as the waypoint type.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="net.sourceforge.tagsea.core.ui.IWaypointFilterUI"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="waypointType" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully-qualified name of the waypoint type that this filter applies to. There can only be one filter per waypoint type and it must be defined in the same plugin as the waypoint type.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         See net.sourceforge.tagsea.core.ui.IWaypointFilter and net.sourceforge.tagsea.core.ui.IWaypointFilterUI
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>

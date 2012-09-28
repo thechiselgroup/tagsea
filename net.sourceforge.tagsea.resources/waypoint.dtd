@@ -1,0 +1,12 @@
+<!ELEMENT WAYPOINTS (waypoint+)>
+<!ELEMENT waypoint (tag+, message?)>
+<!ELEMENT tag (#PCDATA)>
+<!ELEMENT message (#PCDATA)>
+<!ATTLIST waypoint resource CDATA "">
+<!ATTLIST waypoint lineNumber CDATA "-1">
+<!ATTLIST waypoint charStart CDATA "-1">
+<!ATTLIST waypoint charEnd CDATA "-1">
+<!ATTLIST waypoint date CDATA #IMPLIED>
+<!ATTLIST waypoint author CDATA #IMPLIED>
+<!ATTLIST waypoint stamp CDATA #IMPLIED>
+<!ATTLIST waypoint revisionStamp CDATA #IMPLIED>

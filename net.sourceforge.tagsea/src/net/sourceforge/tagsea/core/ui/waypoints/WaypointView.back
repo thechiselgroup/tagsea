@@ -1,0 +1,1330 @@
+/*******************************************************************************
+ * Copyright (c) 2006 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *     IBM Research
+ *******************************************************************************/
+package net.sourceforge.tagsea.core.ui.waypoints;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.TreeSet;
+
+import net.sourceforge.tagsea.AbstractWaypointDelegate;
+import net.sourceforge.tagsea.TagSEAPlugin;
+import net.sourceforge.tagsea.core.ITag;
+import net.sourceforge.tagsea.core.IWaypoint;
+import net.sourceforge.tagsea.core.IWaypointChangeListener;
+import net.sourceforge.tagsea.core.TagSEAOperation;
+import net.sourceforge.tagsea.core.WaypointDelta;
+import net.sourceforge.tagsea.core.internal.ITagSEAPreferences;
+import net.sourceforge.tagsea.core.ui.ITagSEAImageConstants;
+import net.sourceforge.tagsea.core.ui.IWaypointUIExtension;
+import net.sourceforge.tagsea.core.ui.WaypointTransfer;
+import net.sourceforge.tagsea.core.ui.internal.TagSEAUI;
+import net.sourceforge.tagsea.core.ui.internal.TagSEAUIEvent;
+import net.sourceforge.tagsea.core.ui.internal.views.ExpressionFilter;
+import net.sourceforge.tagsea.core.ui.internal.views.ExpressionFilteredTable;
+import net.sourceforge.tagsea.core.ui.internal.views.ExpressionPatternFilter;
+import net.sourceforge.tagsea.core.ui.internal.views.FilteredTable;
+import net.sourceforge.tagsea.core.ui.internal.views.TagExpressionFilter;
+import net.sourceforge.tagsea.core.ui.internal.waypoints.DateCellEditor;
+import net.sourceforge.tagsea.core.ui.internal.waypoints.DeleteUnusedWaypointsAction;
+import net.sourceforge.tagsea.core.ui.internal.waypoints.TagHyperLinkListener;
+import net.sourceforge.tagsea.core.ui.internal.waypoints.WaypointExtensionsFilter;
+import net.sourceforge.tagsea.core.ui.internal.waypoints.WaypointFilteringDialog;
+import net.sourceforge.tagsea.core.ui.internal.waypoints.WaypointTableDoubleClickListener;
+import net.sourceforge.tagsea.core.ui.internal.waypoints.WaypointTableDragListener;
+import net.sourceforge.tagsea.core.ui.internal.waypoints.WaypointTableViewDropAdapter;
+import net.sourceforge.tagsea.core.ui.tags.TagNameTransfer;
+import net.sourceforge.tagsea.core.ui.tags.TagsView;
+
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IMenuListener;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.ColumnWeightData;
+import org.eclipse.jface.viewers.ICellModifier;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TableLayout;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.custom.TableEditor;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Item;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IMemento;
+import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.IViewSite;
+import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.forms.widgets.FormText;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.part.ViewPart;
+import org.eclipse.ui.progress.IWorkbenchSiteProgressService;
+
+
+
+/**
+ * 
+ * @author mdesmond
+ * @author Del Myers
+ *
+ */
+public class WaypointView extends ViewPart implements ISelectionProvider
+{
+	/**
+	 * 
+	 */
+	private static final String WAYPOINT_TABLE_COLUMNS = "waypointTableColumns";
+	public static final String ID = "net.sourceforge.tagsea.ui.WaypointView";
+	private static final long REFRESH_DELAY = 500; //msecs
+	private final String[] COLUMN_PROPERTIES = {"key", "value"};
+	private FilteredTable fFilteredTable;
+	private SashForm fRoot;
+	private FormToolkit fFormToolkit;
+	private TagHyperLinkListener fTagHyperLinkListener;
+	private Section fPropertiesSection;
+	private Section fTagsSection;
+
+	private Composite fPropertiesComposite;
+	private Timer fRefreshTimer;
+	private boolean fScheduleRefresh;
+	private Composite fTagsSectionComposite;
+	private FormText fTagsFormText;
+	private Action deleteAction;
+	
+	IWaypointChangeListener waypointListener = new WaypointListener();
+	private TagsViewListener tagsViewListener = new TagsViewListener();
+	private PreferenceListener preferenceListener = new PreferenceListener();
+	private TableViewer propertiesViewer;
+	private Label fEmptyPropertiesLabel;
+	private IWaypoint selectedWaypoint;
+	private HashMap<Object, CellEditor> propertyEditorMap;
+	
+	private CellEditor[] editors;
+	private Action toggleLinkAction;
+	private Action openFiltersAction;
+	private DeleteUnusedWaypointsAction deleteUnusedAction;
+	private Button tagEditButton;
+	
+	private LinkedList<ISelectionChangedListener> selectionListeners;
+	private Composite fOverviewComposite;
+	private WaypointExtensionsFilter fWaypointFilter;
+	private ISelectionListener fSelectionFilterListener;
+	private ExpressionFilteredTable fFilteredColumnTable;
+	private Composite fTableStack;
+	private Action tableColumnAction;
+	private Composite fTableColumnComposite;
+	private Composite fTableComposite;
+	private IMemento lastMemento;
+
+
+	private class WaypointListener implements IWaypointChangeListener {
+		/* (non-Javadoc)
+		 * @see net.sourceforge.tagsea.core.IWaypointChangeListener#waypointsChanged(net.sourceforge.tagsea.core.WaypointDelta)
+		 */
+		public void waypointsChanged(final WaypointDelta delta) {
+			Display.getDefault().asyncExec(new Runnable(){
+				public void run() {
+					if (getWaypointTableViewer().getTable().isDisposed()) return;
+					scheduleViewerRefresh();
+				}
+					
+//			check to see if a waypoint that has changed is in the viewer
+
+			});
+		}
+	}
+	
+	private class PropertiesContentProvider implements IStructuredContentProvider {
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
+		 */
+		public Object[] getElements(Object inputElement) {
+			if (inputElement instanceof IWaypoint) {
+				IWaypointUIExtension extension = 
+					TagSEAPlugin.getDefault().getUI().getWaypointUI(((IWaypoint)inputElement).getType());
+				return extension.getVisibleAttributes();
+			}
+			return new Object[0];
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
+		 */
+		public void dispose() {
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+		 */
+		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		}
+		
+	}
+	
+	private class PropertiesLabelProvider implements ITableLabelProvider {
+
+		private IWaypoint waypoint;
+		private IWaypointUIExtension extension;
+		
+		/**
+		 * 
+		 */
+		public PropertiesLabelProvider() {
+			
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnImage(java.lang.Object, int)
+		 */
+		public Image getColumnImage(Object element, int columnIndex) {
+			if (waypoint == null) return null;
+			switch (columnIndex) {
+			case 1:
+				return extension.getValueImage(waypoint, element.toString());
+			}
+			return null;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnText(java.lang.Object, int)
+		 */
+		public String getColumnText(Object element, int columnIndex) {
+			String text = null;
+			if (waypoint == null) return "";
+			switch (columnIndex) {
+			case 0:
+				text = extension.getAttributeLabel(waypoint, element.toString());
+				break;
+			case 1:
+				text = extension.getValueLabel(waypoint, element.toString(), null);
+				break;
+			}
+			return (text != null) ? text : "";
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
+		 */
+		public void addListener(ILabelProviderListener listener) {
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
+		 */
+		public void dispose() {
+			clearImages();
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
+		 */
+		public boolean isLabelProperty(Object element, String property) {
+			return true;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
+		 */
+		public void removeListener(ILabelProviderListener listener) {
+		}
+		
+		public void setWaypoint(IWaypoint waypoint) {
+			clearImages();
+			this.waypoint = waypoint;
+			if (waypoint == null) return;
+			this.extension = TagSEAPlugin.getDefault().getUI().getWaypointUI(waypoint.getType());
+		}
+
+		/**
+		 * 
+		 */
+		private void clearImages() {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	private class CellEditorAdapter extends MouseAdapter {
+		/* (non-Javadoc)
+		 * @see org.eclipse.swt.events.MouseAdapter#mouseDoubleClick(org.eclipse.swt.events.MouseEvent)
+		 */
+		@Override
+		public void mouseDoubleClick(MouseEvent e) {
+			if (e.widget != propertiesViewer.getTable()) return;
+			Table table = propertiesViewer.getTable();
+			TableItem item = table.getItem(new Point(e.x, e.y));
+			openEditorFor(item);
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipse.swt.events.MouseAdapter#mouseDown(org.eclipse.swt.events.MouseEvent)
+		 */
+		@Override
+		public void mouseDown(MouseEvent e) {
+		}
+	}
+	
+	/**
+	 * Modifier for the properties portion of the waypoint editor.
+	 * @author Del Myers
+	 */
+
+	public class WaypointCellModifier implements ICellModifier {
+
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.ICellModifier#canModify(java.lang.Object, java.lang.String)
+		 */
+		public boolean canModify(Object element, String property) {
+			if (!"value".equals(property)) return false;
+			IWaypoint waypoint = getSelectedWaypoint();
+			IWaypointUIExtension ext = TagSEAPlugin.getDefault().getWaypointUI(waypoint.getType());
+			boolean modify = ext.canUIChange(waypoint, element.toString());
+			if (modify) {
+				editors[1] = createEditorForElement(element);
+			}
+			return modify;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.ICellModifier#getValue(java.lang.Object, java.lang.String)
+		 */
+		public Object getValue(Object element, String property) {
+			if ("key".equals(property)) return element;
+			Object value = getSelectedWaypoint().getValue(element.toString());
+			if (!(value instanceof Date)) return value.toString();
+			return value;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.ICellModifier#modify(java.lang.Object, java.lang.String, java.lang.Object)
+		 */
+		public void modify(Object element, String property, Object value) {
+			if (element instanceof Item) {
+				//this is due to a bug in JFace, we get the item instead of the model element.
+				element = ((Item)element).getData();
+			}
+			if ("key".equals(property)) return;
+			AbstractWaypointDelegate delegate = TagSEAPlugin.getDefault().getWaypointDelegate(getSelectedWaypoint().getType());
+			Class<?> type = delegate.getAttributeType(element.toString());
+			if (Boolean.class.equals(type)) {
+				value = Boolean.getBoolean(value.toString());
+			} else if (Integer.class.equals(type)) {
+				value = Integer.parseInt(value.toString());
+			}
+			getSelectedWaypoint().setObjectValue(element.toString(), value);
+			
+		}
+
+	}
+	
+	/**
+	 * Listens to the opening and closing of the tags view, as well as for
+	 * changes in its selections.
+	 * @author Del Myers
+	 */
+	private class TagsViewListener implements ISelectionChangedListener, IPartListener {
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
+		 */
+		public void selectionChanged(SelectionChangedEvent event) {
+			scheduleViewerRefresh();
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.ui.IPartListener#partActivated(org.eclipse.ui.IWorkbenchPart)
+		 */
+		public void partActivated(IWorkbenchPart part) {
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.ui.IPartListener#partBroughtToTop(org.eclipse.ui.IWorkbenchPart)
+		 */
+		public void partBroughtToTop(IWorkbenchPart part) {
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.ui.IPartListener#partClosed(org.eclipse.ui.IWorkbenchPart)
+		 */
+		public void partClosed(IWorkbenchPart part) {
+			if (part instanceof TagsView) {
+				((TagsView)part).removeSelectionChangedListener(this);
+				if (!getWaypointTableViewer().getControl().isDisposed())
+					scheduleViewerRefresh();
+			}
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.ui.IPartListener#partDeactivated(org.eclipse.ui.IWorkbenchPart)
+		 */
+		public void partDeactivated(IWorkbenchPart part) {
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.ui.IPartListener#partOpened(org.eclipse.ui.IWorkbenchPart)
+		 */
+		public void partOpened(IWorkbenchPart part) {
+			if (part instanceof TagsView) {
+				((TagsView)part).addSelectionChangedListener(this);
+				scheduleViewerRefresh();
+			}
+		}
+		
+	}
+	
+	/**
+	 * For listening to when tagsea preferences change that will cause
+	 * an update to this viewer.
+	 * @author Del Myers
+	 */
+	private class PreferenceListener implements IPropertyChangeListener {
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.core.runtime.Preferences.IPropertyChangeListener#propertyChange(org.eclipse.core.runtime.Preferences.PropertyChangeEvent)
+		 */
+		public void propertyChange(PropertyChangeEvent event) {
+			if (ITagSEAPreferences.WAYPOINT_VIEW_LINK_TO_TAGS_VIEW.
+					equals(event.getProperty())) {
+				scheduleViewerRefresh();
+			}
+		}
+	}
+	
+	/**
+	 * Updates the view so that when sections are expanded or contracted, they take up an ideal amount of space.
+	 * @author Del Myers
+	 */
+	private final class SectionExpandListener implements Listener {
+		public void handleEvent(Event event) {
+			int[] weights = new int[2];
+			fRoot.layout();
+			double sizeY = fRoot.getSize().y;
+			
+			double tagY = fTagsSection.computeSize(SWT.DEFAULT, SWT.DEFAULT).y;
+			double percent = 100*(tagY/sizeY);
+			weights[1] = (int) percent;
+			double pY = fPropertiesSection.computeSize(SWT.DEFAULT, SWT.DEFAULT).y;
+			percent = 100*(pY/sizeY);
+			weights[1] += (int) percent;
+
+			if (weights[1] > 90) {
+				weights[1] = 90;
+			}
+			weights[0] = 100-weights[1];
+			fRoot.setWeights(weights);
+			
+		}
+	};
+	
+	/**
+	 * Updates the 
+	 * @author Del Myers
+	 */
+	private final class WorkbenchSelectionListener implements ISelectionListener {
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.ui.ISelectionListener#selectionChanged(org.eclipse.ui.IWorkbenchPart, org.eclipse.jface.viewers.ISelection)
+		 */
+		public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+			updateForSelection(part, selection);			
+		}
+		
+	}
+	
+	public WaypointView() {
+		selectionListeners = new LinkedList<ISelectionChangedListener>();
+	}
+	
+	@Override
+	public void init(IViewSite site, IMemento memento) throws PartInitException {
+		super.init(site, memento);
+		this.lastMemento = memento;
+	}
+	
+	@Override
+	public void saveState(IMemento memento) {
+		super.saveState(memento);
+		memento.putInteger("waypointTableSortColumn", ((WaypointTableColumnSorter)fFilteredColumnTable.getViewer().getComparator()).getColumn());
+	}
+
+
+	@Override
+	public void createPartControl(Composite parent) 
+	{
+		fFormToolkit = new FormToolkit(Display.getCurrent());
+
+		// create the root with a 1 col gridlayout
+		createRootComposite(parent);
+		//create the waypoint viewer
+		fWaypointFilter = new WaypointExtensionsFilter();
+		fTableStack = new Composite(fRoot,SWT.NONE);
+		fTableStack.setLayout(new StackLayout());
+		createWaypointTableViewer(fTableStack);
+		createWaypointTableColumnViewer(fTableStack);
+		if (TagSEAPlugin.getDefault().getPluginPreferences().getBoolean(WAYPOINT_TABLE_COLUMNS)) {
+			((StackLayout)fTableStack.getLayout()).topControl = fTableColumnComposite;
+		} else {
+			((StackLayout)fTableStack.getLayout()).topControl = fTableComposite;
+		}
+		fOverviewComposite = new Composite(fRoot, SWT.NONE);
+		GridLayout layout = new GridLayout();
+		layout.verticalSpacing=0;
+		layout.horizontalSpacing=0;
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
+		fOverviewComposite.setLayout(layout);
+		GridData layoutData = new GridData();
+		layoutData.grabExcessHorizontalSpace = true;
+		layoutData.grabExcessVerticalSpace = false;
+		layoutData.horizontalAlignment = SWT.FILL;
+		layoutData.verticalAlignment = SWT.FILL;
+		fOverviewComposite.setLayoutData(layoutData);
+		fOverviewComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+		//create the collapsable tags box
+		createWaypointTagsSection(fOverviewComposite);
+		//create the collapsable properties box
+		createWaypointPropertiesSection(fOverviewComposite);
+
+		makeActions();
+		clearSelectedWaypoint();
+		hookContextMenu();
+		contributeToActionBars();
+
+//		// refresh the waypoint table whenever a waypoint is added
+//		TagCorePlugin.getDefault().getTagCore().getWaypointModel().addWaypointModelListener(new WaypointCollectionListener()); 
+//
+//		// refresh the waypoint table whenever a tag is selected in the tag view
+//		TagUIPlugin.getDefault().getTagUI().addTagSelectionListener(new TagSelectionListener());
+
+//		addWaypointViewListener(new WaypointViewListener());
+		//add a new listener to update the waypoints.
+		TagSEAPlugin.addWaypointChangeListener(waypointListener);
+		fRefreshTimer = new Timer();
+		
+		fRefreshTimer.schedule(new TimerTask() 
+		{
+			@Override
+			public void run() 
+			{
+				if(fScheduleRefresh)
+				{
+					fScheduleRefresh = false;
+
+					Display.getDefault().asyncExec(new Runnable() 
+					{
+						public void run() 
+						{
+							if(!getFilteredTable().isDisposed())
+								getFilteredTable().refresh();
+							
+							if (!fTagsFormText.isDisposed()) {
+								if (selectedWaypoint != null)
+									setTags(selectedWaypoint.getTags());
+							}
+							if (!propertiesViewer.getTable().isDisposed())
+								propertiesViewer.refresh();
+							
+							IWorkbenchSiteProgressService service = (IWorkbenchSiteProgressService) getSite().getAdapter(IWorkbenchSiteProgressService.class);
+							if (service != null) {
+								service.warnOfContentChange();
+							}
+						}
+					});
+				}
+			}
+
+		},0, REFRESH_DELAY);
+		getSite().getPage().addPartListener(tagsViewListener);
+		tagsViewListener.partOpened(TagSEAPlugin.getDefault().getUI().getTagsView());
+		TagSEAPlugin.getDefault().getPreferenceStore().addPropertyChangeListener(preferenceListener);
+		IWorkbenchSiteProgressService service = (IWorkbenchSiteProgressService) getSite().getAdapter(IWorkbenchSiteProgressService.class);
+		if (service != null) {
+			service.showBusyForFamily(TagSEAPlugin.getDefault());
+		}
+		fSelectionFilterListener = new WorkbenchSelectionListener();
+		getViewSite().getPage().addSelectionListener(fSelectionFilterListener);
+		//remove the reference to save memory.
+		lastMemento = null;
+	}
+
+	private void createWaypointPropertiesSection(Composite parent) 
+	{
+		
+		fPropertiesSection = fFormToolkit.createSection(parent,Section.SHORT_TITLE_BAR |Section.TWISTIE);
+		fPropertiesSection.setText("Properties");
+		fPropertiesSection.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+		fPropertiesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		fPropertiesSection.setLayout(new GridLayout());
+		fPropertiesComposite = fFormToolkit.createComposite(fPropertiesSection);
+		fPropertiesComposite.setLayout(new StackLayout());
+		fPropertiesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		fPropertiesComposite.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+		
+		fEmptyPropertiesLabel = fFormToolkit.createLabel(fPropertiesComposite, "Select a single waypoint to see its properties.");
+		fEmptyPropertiesLabel.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+		
+		//create a table to display the properties
+		Table table = fFormToolkit.createTable(fPropertiesComposite, SWT.FLAT | SWT.FULL_SELECTION | SWT.V_SCROLL);
+		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		propertyEditorMap = new HashMap<Object, CellEditor>();
+		propertiesViewer = new TableViewer(table);
+		table.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+		TableLayout tableLayout = new TableLayout();
+		tableLayout.addColumnData(new ColumnWeightData(100));
+		new TableColumn(table, SWT.FLAT);
+		tableLayout.addColumnData(new ColumnWeightData(100));
+		new TableColumn(table, SWT.FLAT);
+		table.setLinesVisible(true);
+		table.setLayout(tableLayout);
+		propertiesViewer.setContentProvider(new PropertiesContentProvider());
+		propertiesViewer.setLabelProvider(new PropertiesLabelProvider());
+		fPropertiesSection.setClient(fPropertiesComposite);
+		fPropertiesSection.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		fPropertiesSection.setExpanded(false);
+		Listener expandListener = new SectionExpandListener();
+		fPropertiesComposite.addListener(SWT.Show, expandListener);
+		fPropertiesComposite.addListener(SWT.Hide, expandListener);
+		editors = new CellEditor[] {
+			new TextCellEditor(),
+			new TextCellEditor()
+		};
+		propertiesViewer.setCellEditors(editors);
+		propertiesViewer.setColumnProperties(COLUMN_PROPERTIES);
+		propertiesViewer.setCellModifier(new WaypointCellModifier());
+		table.addMouseListener(new CellEditorAdapter());
+		
+	}
+
+	private void createWaypointTagsSection(Composite parent) 
+	{
+		fTagsSection = fFormToolkit.createSection(parent,Section.SHORT_TITLE_BAR |Section.TWISTIE);
+		fTagsSection.setText("Tags");	
+		fTagsSection.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+		
+		fTagsSectionComposite = fFormToolkit.createComposite(fTagsSection,SWT.NONE);
+		fTagsSectionComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		fTagsSectionComposite.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+		
+		GridLayout tagsCompositeLayout = new GridLayout();
+		tagsCompositeLayout.marginWidth = 0;
+		tagsCompositeLayout.marginHeight = 0;
+		tagsCompositeLayout.verticalSpacing = 0;
+		tagsCompositeLayout.marginTop = 0;
+		tagsCompositeLayout.marginBottom = 3;
+		tagsCompositeLayout.marginLeft = 0;
+		tagsCompositeLayout.marginRight = 0;
+		tagsCompositeLayout.horizontalSpacing = 0;
+		tagsCompositeLayout.numColumns = 2;
+		
+		fTagsSectionComposite.setLayout(tagsCompositeLayout);
+
+		fTagsFormText = fFormToolkit.createFormText(fTagsSectionComposite, true);
+		fTagsFormText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		
+		fTagHyperLinkListener = new TagHyperLinkListener();
+		fTagsFormText.addHyperlinkListener(fTagHyperLinkListener);
+		fTagsFormText.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
+		Listener expandListener = new SectionExpandListener();
+		fTagsSectionComposite.addListener(SWT.Show, expandListener);
+		fTagsSectionComposite.addListener(SWT.Hide, expandListener);
+		fTagsSection.setClient(fTagsSectionComposite);
+		GridData tagSectionData = new GridData(GridData.FILL_HORIZONTAL);
+		fTagsSection.setLayoutData(tagSectionData);
+		fTagsSection.setExpanded(true);
+		tagEditButton = new Button(fTagsSectionComposite, SWT.FLAT | SWT.PUSH);
+		tagEditButton.setText("Edit...");
+		tagEditButton.addSelectionListener(new SelectionListener(){
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				widgetSelected(e);
+			}
+			public void widgetSelected(SelectionEvent e) {
+				TagEditDialog dialog = new TagEditDialog(getViewSite().getShell());
+				if (getSelectedWaypoint() != null) {
+					dialog.setInitialTags(getSelectedWaypoint().getTags());
+					final IWaypoint selectedWaypoint = getSelectedWaypoint();
+					int result = dialog.open();
+					if (result == Dialog.OK) {
+						final String[] tagNames = dialog.getTagNames();
+						TagSEAPlugin.run(new TagSEAOperation("Checking Tag Names..."){
+							@Override
+							public IStatus run(IProgressMonitor monitor) throws InvocationTargetException {
+								TreeSet<String> oldTagNames = new TreeSet<String>();
+								TreeSet<String> newTagNames = new TreeSet<String>(Arrays.asList(tagNames));
+								for (ITag tag : selectedWaypoint.getTags()) {
+									oldTagNames.add(tag.getName());
+								}
+								MultiStatus status = new MultiStatus(TagSEAPlugin.PLUGIN_ID, IStatus.OK, "", null);
+								for (String oldName : oldTagNames) {
+									if (!newTagNames.contains(oldName)) {
+										ITag tag = TagSEAPlugin.getTagsModel().getTag(oldName);
+										if (tag != null) {
+											status.merge(selectedWaypoint.removeTag(tag).getStatus());
+										}
+									}
+								}
+								for (String newName : newTagNames) {
+									if (!oldTagNames.contains(newName)) {
+										ITag tag = selectedWaypoint.addTag(newName);
+										if (tag == null) {
+											status.merge(new Status(
+												IStatus.WARNING,
+												TagSEAPlugin.PLUGIN_ID,
+												IStatus.WARNING,
+												"Could not add tag " + newName,
+												null
+											));
+										}
+									}
+								}
+								return status;
+							}}, false);
+					}
+				}
+			}
+			
+		});
+		clearTags();
+	}
+
+	private void createRootComposite(Composite parent) 
+	{
+		fRoot = new SashForm(parent,SWT.VERTICAL | SWT.V_SCROLL);
+		GridLayout layout = new GridLayout();
+		layout.marginWidth = 0;
+		layout.marginHeight = 0;
+		layout.verticalSpacing = 0;
+		layout.marginTop = 0;
+		layout.marginBottom = 0;
+		layout.marginLeft = 0;
+		layout.marginRight = 0;
+		layout.horizontalSpacing = 0;
+		fRoot.setLayout(layout);
+		fRoot.setBackground(parent.getBackground());
+		//fRoot.setBackground(JFaceColors.getBannerBackground(Display.getDefault()));
+	}
+
+	private void createWaypointTableViewer(Composite parent) 
+	{			
+		fTableComposite = new Composite(parent,SWT.NONE);
+		fTableComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
+		//composite.setBackground(JFaceColors.getBannerBackground(Display.getDefault()));
+		GridLayout layout = new GridLayout();
+		layout.marginWidth = 3;
+		layout.marginHeight = 3;
+		layout.verticalSpacing = 0;
+		layout.marginTop = 0;
+		layout.marginBottom = 0;
+		layout.marginLeft = 0;
+		layout.marginRight = 0;
+		layout.horizontalSpacing = 0;
+		fTableComposite.setLayout(layout);
+		ExpressionPatternFilter patternFilter = new ExpressionPatternFilter();
+		patternFilter.addExpressionFilter(new ExpressionFilter());
+		patternFilter.addExpressionFilter(new TagExpressionFilter());
+		fFilteredTable = new ExpressionFilteredTable(fTableComposite,SWT.MULTI | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER, patternFilter);
+		//@tag tagsea.bug.113 remove : used for instrumentation.
+		fFilteredTable.getFilterControl().addModifyListener(new ModifyListener(){
+			public void modifyText(ModifyEvent e) {
+				if (e.widget instanceof Text) {
+					((TagSEAUI)TagSEAPlugin.getDefault().getUI()).getUIEventModel().fireEvent(TagSEAUIEvent.createViewEvent(TagSEAUIEvent.VIEW_FILTERED, ID, ((Text)e.widget).getText()));
+				}
+			}
+		});
+		//fFilteredTable.setBackground(JFaceColors.getBannerBackground(Display.getDefault()));
+		TableViewer tableViewer = fFilteredTable.getViewer();
+		tableViewer.addFilter(fWaypointFilter);
+		tableViewer.setContentProvider(new WaypointTableContentProvider());
+		tableViewer.setLabelProvider(new WaypointTableLabelProvider());
+		tableViewer.setSorter(new WaypointTableSorter());
+		tableViewer.addDragSupport(DND.DROP_MOVE|DND.DROP_COPY, new Transfer[]{WaypointTransfer.getInstance()/*, PluginTransfer.getInstance()*/}, new WaypointTableDragListener(tableViewer));
+		tableViewer.addDropSupport(DND.DROP_COPY, new Transfer[] {TagNameTransfer.getInstance()}, new WaypointTableViewDropAdapter(tableViewer));
+		tableViewer.addSelectionChangedListener(new WaypointTableSelectionChangedListener());
+		tableViewer.addDoubleClickListener(new WaypointTableDoubleClickListener());
+		tableViewer.setSorter(new ViewerSorter());
+		
+		
+		Table table = tableViewer.getTable();
+//		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
+//		fNameColumn = new TableColumn(table,SWT.LEFT,0);
+//		fNameColumn.setMoveable(false);
+//		fNameColumn.setResizable(true);
+//		fNameColumn.setWidth(240);
+		
+//		fDescriptionColumn = new TableColumn(table,SWT.LEFT,1);
+//		fDescriptionColumn.setMoveable(false);
+//		fDescriptionColumn.setWidth(640);
+//		fDescriptionColumn.setResizable(true);
+		
+//		// auto-resize columns on any change to the table
+//		table.addPaintListener(new PaintListener() 
+//		{
+//			public void paintControl(PaintEvent e) 
+//			{
+//				Table table = (Table) e.widget;
+//				Rectangle clientSize = table.getClientArea();
+//				int newWidth = clientSize.width - fNameColumn.getWidth();
+//				
+//				// this check prevents recursion
+//				if ( fDescriptionColumn.getWidth()!=newWidth )
+//					fDescriptionColumn.setWidth(newWidth);
+//			}
+//		});
+		tableViewer.setInput(new Object());
+	}
+
+	
+	private void createWaypointTableColumnViewer(Composite parent) 
+	{			
+		fTableColumnComposite = new Composite(parent,SWT.NONE);
+		fTableColumnComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
+		//composite.setBackground(JFaceColors.getBannerBackground(Display.getDefault()));
+		GridLayout layout = new GridLayout();
+		layout.marginWidth = 3;
+		layout.marginHeight = 3;
+		layout.verticalSpacing = 0;
+		layout.marginTop = 0;
+		layout.marginBottom = 0;
+		layout.marginLeft = 0;
+		layout.marginRight = 0;
+		layout.horizontalSpacing = 0;
+		fTableColumnComposite.setLayout(layout);
+		ExpressionPatternFilter patternFilter = new ExpressionPatternFilter();
+		patternFilter.addExpressionFilter(new ExpressionFilter());
+		patternFilter.addExpressionFilter(new TagExpressionFilter());
+		fFilteredColumnTable = new ExpressionFilteredTable(fTableColumnComposite,SWT.MULTI | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER, patternFilter);
+		//@tag tagsea.bug.113 remove : used for instrumentation.
+		fFilteredColumnTable.getFilterControl().addModifyListener(new ModifyListener(){
+			public void modifyText(ModifyEvent e) {
+				if (e.widget instanceof Text) {
+					((TagSEAUI)TagSEAPlugin.getDefault().getUI()).getUIEventModel().fireEvent(TagSEAUIEvent.createViewEvent(TagSEAUIEvent.VIEW_FILTERED, ID, ((Text)e.widget).getText()));
+				}
+			}
+		});
+		//fFilteredTable.setBackground(JFaceColors.getBannerBackground(Display.getDefault()));
+		TableViewer tableViewer = fFilteredColumnTable.getViewer();
+		tableViewer.addFilter(fWaypointFilter);
+		tableViewer.setContentProvider(new WaypointTableContentProvider());
+		tableViewer.setLabelProvider(new WaypointTableColumnLabelProvider());
+		tableViewer.setComparator(new WaypointTableColumnSorter());
+		tableViewer.addDragSupport(DND.DROP_MOVE|DND.DROP_COPY, new Transfer[]{WaypointTransfer.getInstance()/*, PluginTransfer.getInstance()*/}, new WaypointTableDragListener(tableViewer));
+		tableViewer.addDropSupport(DND.DROP_COPY, new Transfer[] {TagNameTransfer.getInstance()}, new WaypointTableViewDropAdapter(tableViewer));
+		tableViewer.addSelectionChangedListener(new WaypointTableSelectionChangedListener());
+		tableViewer.addDoubleClickListener(new WaypointTableDoubleClickListener());
+
+		
+		
+		Table table = tableViewer.getTable();
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
+		for (int i = 0; i < WaypointTableColumnLabelProvider.COLUMN_LABELS.length; i++) {
+			TableColumn column = new TableColumn(table, SWT.FLAT);
+			final int columnIndex = i;
+			column.setMoveable(true);
+			column.setText(WaypointTableColumnLabelProvider.COLUMN_LABELS[i]);
+			column.setData(WaypointTableColumnLabelProvider.COLUMNS[i]);
+			column.addSelectionListener(new SelectionAdapter(){
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					((WaypointTableColumnSorter)fFilteredColumnTable.getViewer().getComparator()).setColumn(columnIndex);
+					
+					scheduleViewerRefresh();
+				}
+			});
+		}
+		TableLayout tableLayout = new TableLayout();
+		tableLayout.addColumnData(new ColumnWeightData(25));
+		tableLayout.addColumnData(new ColumnWeightData(25));
+		tableLayout.addColumnData(new ColumnWeightData(25));
+		tableLayout.addColumnData(new ColumnWeightData(25));
+		table.setLayout(tableLayout);
+		tableViewer.setInput(new Object());
+		if (lastMemento != null) {
+			Integer sortColumn = lastMemento.getInteger("waypointTableSortColumn");
+			if (sortColumn == null) {
+				return;
+			}
+			((WaypointTableColumnSorter)fFilteredColumnTable.getViewer().getComparator()).setColumn(sortColumn);
+		}
+	}
+	
+	private void makeActions() 
+	{		
+		deleteAction = new Action() 
+		{
+			@Override
+			public void run()
+			{
+				ISelection selection = getWaypointTableViewer().getSelection();
+				if (selection instanceof IStructuredSelection) {
+					IStructuredSelection ss = (IStructuredSelection)selection;
+					final LinkedList<IWaypoint> waypoints = new LinkedList<IWaypoint>();
+					for (Object o : ss.toList()) {
+						
+						IWaypoint wp = (IWaypoint) ((IAdaptable)o).getAdapter(IWaypoint.class);
+						IWaypointUIExtension extension = TagSEAPlugin.getDefault().getUI().getWaypointUI(wp.getType());
+						if (extension.canUIDelete(wp)) {
+							waypoints.add(wp);
+						}
+					}
+
+					TagSEAPlugin.run(new TagSEAOperation("Deleting Waypoints..."){
+						public IStatus run(IProgressMonitor monitor) throws InvocationTargetException {
+							monitor.beginTask("Deleting Waypoints", waypoints.size());
+							MultiStatus status = new MultiStatus(TagSEAPlugin.PLUGIN_ID, IStatus.OK, "", null);
+							for (IWaypoint wp : waypoints) {
+								status.merge(TagSEAPlugin.getWaypointsModel().removeWaypoint(wp).getStatus());
+								monitor.worked(1);
+								if (monitor.isCanceled())
+									return Status.CANCEL_STATUS;
+							}
+							return status;
+						}
+					}, false);
+					
+				}
+			}
+		};
+		deleteAction.setText("Delete");
+		deleteAction.setToolTipText("Delete selected waypoints(s)");
+		deleteAction.setImageDescriptor(TagSEAPlugin.getDefault().getImageRegistry().getDescriptor(ITagSEAImageConstants.IMG_DELETE));
+		getViewSite().getActionBars().setGlobalActionHandler(ActionFactory.DELETE.getId(), deleteAction);
+		deleteUnusedAction = new DeleteUnusedWaypointsAction(getSite().getShell());
+		deleteUnusedAction.setImageDescriptor(TagSEAPlugin.getDefault().getImageRegistry().getDescriptor(ITagSEAImageConstants.IMG_DELETE_UNUSED));
+		deleteUnusedAction.setText("Delete Unused Waypoints");
+		deleteUnusedAction.setToolTipText("Delete unused waypoints");
+		
+		toggleLinkAction = new Action() {
+			/* (non-Javadoc)
+			 * @see org.eclipse.jface.action.Action#run()
+			 */
+			@Override
+			public void run() {
+				IPreferenceStore store =
+					TagSEAPlugin.getDefault().
+					getPreferenceStore();
+				boolean link = !store.
+					getBoolean(ITagSEAPreferences.WAYPOINT_VIEW_LINK_TO_TAGS_VIEW);
+				store.setValue(ITagSEAPreferences.WAYPOINT_VIEW_LINK_TO_TAGS_VIEW, link);
+				if (link) {
+					TagSEAPlugin.getDefault().getUI().showTagsView();
+				}
+				setChecked(link);
+			}
+		};
+		IPreferenceStore store =
+			TagSEAPlugin.getDefault().
+			getPreferenceStore();
+		boolean linked = store.getBoolean(ITagSEAPreferences.WAYPOINT_VIEW_LINK_TO_TAGS_VIEW);
+		toggleLinkAction.setChecked(linked);
+		if (linked) {
+			Display.getCurrent().asyncExec(new Runnable(){
+				public void run() {
+					TagSEAPlugin.getDefault().getUI().showTagsView();
+				}
+			});
+		}
+		toggleLinkAction.setImageDescriptor(TagSEAPlugin.getImageDescriptor("/icons/link.gif"));
+		toggleLinkAction.setText("Link to Tags View");
+		toggleLinkAction.setToolTipText("Linkt to Tags View");
+		openFiltersAction = new Action() {
+			@Override
+			public void run() {
+				WaypointFilteringDialog dialog = new WaypointFilteringDialog(getSite().getShell());
+				dialog.open();
+				if (TagSEAPlugin.getDefault().getPluginPreferences().getBoolean(ITagSEAPreferences.WAYPOINT_VIEW_LINK_TO_TAGS_VIEW)) {
+					TagsView view = TagSEAPlugin.getDefault().getUI().getTagsView();
+					if (view != null)
+						view.scheduleViewerRefresh();
+				}
+				scheduleViewerRefresh();
+			}
+		};
+		openFiltersAction.setImageDescriptor(TagSEAPlugin.getDefault().getImageRegistry().getDescriptor(ITagSEAImageConstants.IMG_FILTER));
+		openFiltersAction.setText("Filters...");
+		tableColumnAction = new Action("View Columns", SWT.CHECK) {
+			@Override
+			public void run() {
+				boolean isTableColumns = TagSEAPlugin.getDefault().getPreferenceStore().getBoolean(WAYPOINT_TABLE_COLUMNS);
+				isTableColumns = !isTableColumns;
+				if (isTableColumns) {
+					((StackLayout)fTableStack.getLayout()).topControl = fTableColumnComposite;
+				} else {
+					((StackLayout)fTableStack.getLayout()).topControl = fTableComposite;
+				}
+				TagSEAPlugin.getDefault().getPreferenceStore().setValue(WAYPOINT_TABLE_COLUMNS, isTableColumns);
+				fTableStack.layout();
+				scheduleViewerRefresh();
+			}
+		};
+		tableColumnAction.setChecked(TagSEAPlugin.getDefault().getPreferenceStore().getBoolean(WAYPOINT_TABLE_COLUMNS));
+		tableColumnAction.setImageDescriptor(TagSEAPlugin.getImageDescriptor("icons/columns.gif"));
+		tableColumnAction.setText("View Columns");
+		
+	}
+
+	private void hookContextMenu() 
+	{
+		MenuManager menuMgr = new MenuManager("#PopupMenu");
+		menuMgr.setRemoveAllWhenShown(true);
+		menuMgr.addMenuListener(new IMenuListener() 
+		{
+			public void menuAboutToShow(IMenuManager manager) 
+			{
+				WaypointView.this.fillContextMenu(manager);
+			}
+		});
+
+		Menu menu = menuMgr.createContextMenu(getWaypointTableViewer().getTable());
+		getWaypointTableViewer().getTable().setMenu(menu);
+		getSite().registerContextMenu(menuMgr, getWaypointTableViewer());
+	}
+
+	private void contributeToActionBars() 
+	{
+		IActionBars bars = getViewSite().getActionBars();
+		fillLocalPullDown(bars.getMenuManager());
+		fillLocalToolBar(bars.getToolBarManager());
+	}
+
+	private void fillLocalPullDown(IMenuManager manager) 
+	{
+		manager.add(deleteAction);
+		manager.add(deleteUnusedAction);
+		manager.add(new Separator());
+		manager.add(openFiltersAction);
+		manager.add(toggleLinkAction);
+		manager.add(tableColumnAction);
+		manager.add(new Separator());
+	}
+
+	private void fillContextMenu(IMenuManager manager) 
+	{
+		manager.add(deleteAction);
+		
+		manager.add(new Separator());
+		// Other plug-ins can contribute there actions here
+		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
+	}
+
+	private void fillLocalToolBar(IToolBarManager manager) 
+	{
+		manager.add(deleteAction);
+		manager.add(deleteUnusedAction);
+		manager.add(openFiltersAction);
+		manager.add(toggleLinkAction);
+		manager.add(tableColumnAction);
+		manager.add(new Separator());
+	}
+
+	@Override
+	public void setFocus() 
+	{
+
+	}
+
+	/**
+	 * Get the tag table viewer
+	 * @return the tag table viewer
+	 */
+	public TableViewer getWaypointTableViewer()
+	{
+		if (TagSEAPlugin.getDefault().getPreferenceStore().getBoolean(WAYPOINT_TABLE_COLUMNS)) {
+			return fFilteredColumnTable.getViewer();
+		}
+		return fFilteredTable.getViewer();
+	}
+	
+	protected FilteredTable getFilteredTable() {
+		if (TagSEAPlugin.getDefault().getPreferenceStore().getBoolean(WAYPOINT_TABLE_COLUMNS)) {
+			return fFilteredColumnTable;
+		}
+		return fFilteredTable;
+	}
+
+	/**
+	 * Set the viewer selection to the given waypoint.
+	 * @param waypoint
+	 */
+	public void setSelectedWaypoint(IWaypoint waypoint) {
+		getWaypointTableViewer().setSelection(new StructuredSelection(waypoint), true);
+	}
+	
+	/**
+	 * @param waypoint
+	 */
+	protected void updateSelectedWaypoint(IWaypoint waypoint) 
+	{
+		this.selectedWaypoint = waypoint;
+		if (waypoint == null) clearSelectedWaypoint();
+		else {
+			tagEditButton.setEnabled(true);
+			((PropertiesLabelProvider)propertiesViewer.getLabelProvider()).setWaypoint(waypoint);
+			propertiesViewer.setInput(waypoint);
+			IWaypointUIExtension ui = TagSEAPlugin.getDefault().getWaypointUI(waypoint.getType());
+			deleteAction.setEnabled(ui.canUIDelete(waypoint));
+			tagEditButton.setEnabled(ui.canUIMove(waypoint));
+		}
+		propertiesViewer.refresh();
+		//setupCellEditors();
+		StackLayout layout = (StackLayout) fPropertiesComposite.getLayout();
+		layout.topControl = propertiesViewer.getTable();
+		fPropertiesComposite.layout();
+		
+	}
+	
+	
+	/**
+	 * 
+	 */
+	private void openEditorFor(TableItem item) {
+		Table table = propertiesViewer.getTable();
+		CellEditor cellEditor = propertyEditorMap.get(item.getData());
+		if (cellEditor != null) {
+			TableEditor editor = new TableEditor(table);
+			editor.grabHorizontal = true;
+			editor.grabVertical = true;
+			editor.setColumn(1);
+			editor.setEditor(cellEditor.getControl(), item, 1);
+			cellEditor.getControl().setVisible(true);
+			
+		}
+	}
+	
+
+
+	
+	private CellEditor createEditorForElement(Object element) {
+		String key = element.toString();
+		IWaypoint selected = getSelectedWaypoint();
+		AbstractWaypointDelegate delegate = TagSEAPlugin.getDefault().getWaypointDelegate(selected.getType());
+		IWaypointUIExtension ext = TagSEAPlugin.getDefault().getWaypointUI(selected.getType());
+		if (!ext.canUIChange(selected, key)) return null;
+		Class<?> type = delegate.getAttributeType(key);
+		if (type == null) return null;
+		if (String.class.equals(type)) {
+			return new TextCellEditor(propertiesViewer.getTable());
+		} else if (Integer.class.equals(type)) {
+			return new TextCellEditor(propertiesViewer.getTable());
+		} else if (Date.class.equals(type)) {
+			return new DateCellEditor(propertiesViewer.getTable());
+		}
+		return null;
+	}
+	/**
+	 * @return the selectedWaypoint
+	 */
+	public IWaypoint getSelectedWaypoint() {
+		return selectedWaypoint;
+	}
+	/**
+	 *
+	 */
+	public void clearSelectedWaypoint() 
+	{
+		this.selectedWaypoint = null;
+		tagEditButton.setEnabled(false);
+		if (((IStructuredSelection)getSelection()).isEmpty())
+			deleteAction.setEnabled(false);
+		((PropertiesLabelProvider)propertiesViewer.getLabelProvider()).setWaypoint(null);
+		StackLayout layout = (StackLayout) fPropertiesComposite.getLayout();
+		layout.topControl = fEmptyPropertiesLabel;
+		fPropertiesComposite.layout();
+	}
+
+	protected void setTags(ITag[] tags)
+	{
+		if(fTagsSection.isExpanded())
+		{
+			StringBuffer buffer = new StringBuffer();
+
+			buffer.append("<form>");
+
+			buffer.append("<p>");
+
+			if(tags.length > 0)
+			{
+				boolean bold = true;
+				
+				for(ITag tag : tags)
+				{
+					buffer.append("<a href=\"" + tag.getName() + "\">" + tag.getName() + "</a>  ");
+					bold = !bold;
+				}
+			}
+			else
+				buffer.append("This waypoint contains no tags. ");
+
+			buffer.append("</p>");
+
+			buffer.append("</form>");
+
+			GridData wrapAround = new GridData(GridData.FILL_HORIZONTAL);
+			wrapAround.widthHint = fTagsSectionComposite.getSize().x;
+
+			fTagsFormText.setLayoutData(wrapAround);
+			fTagsFormText.setText(buffer.toString(), true, true);
+		}
+	}
+	
+	public void clearTags() 
+	{
+		if(fTagsSection.isExpanded())
+			fTagsFormText.setText("Select a waypoint to view its tags.", false, false);
+		
+	}
+
+
+	public void scheduleViewerRefresh()
+	{
+		fScheduleRefresh = true;
+	}
+	
+	protected void refreshSections()
+	{
+		fRoot.layout(true,true);
+		fRoot.redraw();
+	}
+
+	@Override
+	public void dispose() 
+	{
+		getSite().getPage().removePartListener(tagsViewListener);
+		getSite().getPage().removeSelectionListener(fSelectionFilterListener);
+		tagsViewListener.partClosed(TagSEAPlugin.getDefault().getUI().getTagsView());
+		TagSEAPlugin.removeWaypointChangeListener(waypointListener);
+		TagSEAPlugin.getDefault().getPreferenceStore().removePropertyChangeListener(preferenceListener);
+		fRefreshTimer.cancel();
+		super.dispose();
+	}
+
+	public void addSelectionChangedListener(ISelectionChangedListener listener) {
+		if (!selectionListeners.contains(listener)) {
+			selectionListeners.add(listener);
+		}
+	}
+
+	public ISelection getSelection() {
+		ISelection selection = getWaypointTableViewer().getSelection();
+		if (selection instanceof IStructuredSelection) {
+			List<IWaypoint> waypoints = new LinkedList<IWaypoint>();
+			for (Object o : ((IStructuredSelection)selection).toList()) {
+				if (o instanceof IAdaptable) {
+					IWaypoint waypoint = (IWaypoint) ((IAdaptable)o).getAdapter(IWaypoint.class);
+					if (waypoint != null) {
+						waypoints.add(waypoint);
+					}
+				}
+			}
+			return new StructuredSelection(waypoints);
+		}
+		return StructuredSelection.EMPTY;
+	}
+
+	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
+		selectionListeners.remove(listener);
+	}
+
+	public void setSelection(ISelection selection) {
+		if (selection instanceof IStructuredSelection) {
+			List<WaypointWrapper> wrappers = new LinkedList<WaypointWrapper>();
+			for (Object o : ((IStructuredSelection)selection).toList()) {
+				if (o instanceof IAdaptable) {
+					IWaypoint waypoint = (IWaypoint) ((IAdaptable)o).getAdapter(IWaypoint.class);
+					if (waypoint != null) {
+						wrappers.add(new WaypointWrapper(waypoint));
+					}
+				}
+			}
+			getWaypointTableViewer().setSelection(new StructuredSelection(wrappers), true);
+		}
+		
+	}
+	
+	void fireSelection() {
+		ISelection selection = getSelection();
+		ISelectionChangedListener[] listeners = selectionListeners.toArray(new ISelectionChangedListener[selectionListeners.size()]);
+		for (ISelectionChangedListener listener : listeners) {
+			listener.selectionChanged(new SelectionChangedEvent(this, selection));
+		}
+	}
+	
+	/**
+	 * Checks filters and updates the viewer if the selection affects the filters.
+	 * @param part
+	 * @param selection
+	 */
+	private void updateForSelection(IWorkbenchPart part, ISelection selection) {
+		if (fWaypointFilter.isImportantSelection(selection))
+			scheduleViewerRefresh();
+	}
+}

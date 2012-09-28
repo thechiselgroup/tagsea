@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="ca.uvic.chisel.tours.overlayshell.OverlayDrawView"
+            id="ca.uvic.chisel.tours.overlayshell.view"
+            name="Overlay Drawer"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="com.ibm.research.tours.paletteEntry">
+      <tourElementModel
+            class="ca.uvic.chisel.tours.overlayshell.PointerElementProvider"
+            description="Overlays a pointer on the screen to indicate motion or important elements"
+            icon="img/eobj/pointer.png"
+            id="ca.uvic.chisel.tours.overlayshell.pointerOverlayElement"
+            text="Pointer">
+      </tourElementModel>
+   </extension>
+   <extension
+         point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+      <tourElementDoubleClickDelegate
+            class="ca.uvic.chisel.tours.overlayshell.PointerTourElementDoubleClickActionDelegate"
+            objectContribution="ca.uvic.chisel.tours.overlayshell.PointerTourElement">
+      </tourElementDoubleClickDelegate>
+   </extension>
+
+</plugin>

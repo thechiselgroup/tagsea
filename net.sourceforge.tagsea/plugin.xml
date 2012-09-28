@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="waypoint" name="waypoint" schema="schema/waypoint.exsd"/>
+   <extension-point id="filters" name="Waypoint Filters" schema="schema/filters.exsd"/>
+   <extension-point id="startParticipant" name="Start Participant" schema="schema/startParticipant.exsd"/>
+   <extension
+         point="net.sourceforge.tagsea.waypoint">
+      <interface	
+     		name="Base Waypoint"
+            type="base">
+         <attribute
+               label="Message"
+               name="message"
+               type="string"/>
+         <attribute
+               label="Date"
+               name="date"
+               type="date"/>
+         <attribute
+               label="Author"
+               name="author"
+               type="string"/>
+      </interface>
+      <interface
+            name="Text Interface"
+            type="text">
+         <attribute
+               default="-1"
+               label="Start"
+               name="charStart"
+               type="integer"/>
+         <attribute
+               default="-1"
+               label="End"
+               name="charEnd"
+               type="integer"/>
+         <attribute
+               default="-1"
+               label="Line"
+               name="lineNumber"
+               type="integer"/>
+      </interface>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup class="net.sourceforge.tagsea.core.internal.Starter"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="net.sourceforge.tagsea.views"
+            name="TagSEA"/>
+      <view
+            category="net.sourceforge.tagsea.views"
+            class="net.sourceforge.tagsea.core.ui.TagSEAView"
+            icon="icons/tagsea_small.gif"
+            id="net.sourceforge.tagsea.tagseaview"
+            name="TagSEA">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="net.sourceforge.tagsea.core.internal.TagSEAPreferenceInitializer"/>
+   </extension>
+   <extension
+         id="WaypointAdapters"
+         name="Waypoint Adapters"
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="net.sourceforge.tagsea.core.IWaypoint"
+            class="net.sourceforge.tagsea.model.internal.WaypointAdapterFactory">
+         <adapter type="org.eclipse.ui.model.IWorkbenchAdapter"/>
+         <adapter type="org.eclipse.jface.resource.ImageDescriptor"/>
+         <adapter type="java.lang.String"/>
+         <adapter type="org.eclipse.ui.IActionFilter"/>
+      </factory>
+   </extension>
+   <extension
+         id="waypointmarker"
+         name="Waypoint Marker"
+         point="org.eclipse.core.resources.markers">
+      <attribute name="author"/>
+      <attribute name="date"/>
+      <attribute name="text"/>
+      <attribute name="waypointType"/>
+   </extension>
+      <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            class="net.sourceforge.tagsea.core.ui.decorators.WaypointDecorator"
+            icon="icons/smalltag.gif"
+            id="net.sourceforge.tagsea.decorators.WaypointDecorator"
+            label="Waypoint Decorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass name="org.eclipse.core.resources.IResource"/>
+         </enablement>
+      </decorator>
+   </extension>
+
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Open Waypoint Set"
+            visible="true"
+            id="net.sourceforge.tagsea.core.ui.waypoints.actionSet">
+         <action
+               label="Open Waypoint..."
+               icon="icons/tag.gif"
+               class="net.sourceforge.tagsea.core.ui.waypoints.OpenWaypointAction"
+               tooltip="Open Waypoint"
+               menubarPath="navigate/open.ext2"
+               toolbarPath="org.eclipse.search.searchActionSet/Search"
+               definitionId="net.sourceforge.tagsea.core.ui.internal.open.command"
+               id="net.sourceforge.tagsea.core.ui.waypoints.OpenWaypointAction">
+         </action>
+      </actionSet>
+   </extension>
+   
+   <extension
+		point="org.eclipse.ui.commands">
+	    <commandParameterType
+            converter="net.sourceforge.tagsea.core.ui.waypoints.WaypointConverter"
+            id="net.sourceforge.tagsea.core.waypoint"
+            type="net.sourceforge.tagsea.core.IWaypoint"/>
+		<command
+			categoryId="org.eclipse.ui.category.navigate"
+			defaultHandler="net.sourceforge.tagsea.core.ui.waypoints.OpenWaypointAction"
+			description="Open Waypoint"
+			id="net.sourceforge.tagsea.core.ui.internal.open.command"
+			name="Open Waypoint">
+          <commandParameter
+               id="waypoint"
+               name="waypoint"
+               typeId="net.sourceforge.tagsea.core.waypoint"/>
+		</command>
+   </extension>   
+   
+   <extension
+   		 point="org.eclipse.ui.bindings">
+      <key
+            commandId="net.sourceforge.tagsea.core.ui.internal.open.command"
+            sequence="M1+M2+2"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />   
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="net.sourceforge.tagsea.ui.internal.TagSEAPreferencePage"
+            id="net.sourceforge.tagsea.preferences"
+            name="TagSEA"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tours Plug-in
+Bundle-SymbolicName: com.ibm.research.tours; singleton:=true
+Bundle-Version: 0.1.4.qualifier
+Bundle-Activator: com.ibm.research.tours.ToursPlugin
+Bundle-Vendor: IBM
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.core.resources,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.forms
+Bundle-ActivationPolicy: lazy
+DynamicImport-Package: *
+Export-Package: com.ibm.research.tours,
+ com.ibm.research.tours.adapters,
+ com.ibm.research.tours.controls,
+ com.ibm.research.tours.editors,
+ com.ibm.research.tours.runtime,
+ com.ibm.research.tours.wizards

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+   		 id="tagseadrop"
+   		 name="Drop from TagSEA"
+         point="org.eclipse.ui.dropActions">
+      <action
+            class="net.sourceforge.tagsea.mylyn.views.MylynPluginDropAdapter"
+            id="net.sourceforge.tagsea.mylyn.drop">
+      </action>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="net.sourceforge.tagsea.mylyn.tag"
+            objectClass="net.sourceforge.tagsea.core.ui.internal.tags.TagTreeItem">
+         <action
+               class="net.sourceforge.tagsea.mylyn.waypoints.actions.WaypointLocalTask"
+               id="net.sourceforge.tagsea.mylyn.waypoints.localTask"
+               label="Create Local Task"
+               menubarPath="waypointMylyn.menu/group">
+         </action>
+         <action
+               class="net.sourceforge.tagsea.mylyn.waypoints.actions.WaypointRepositoryTask"
+               id="net.sourceforge.tagsea.mylyn.waypoints.repositoryTask"
+               label="Create Repository Task"
+               menubarPath="waypointMylyn.menu/group">
+         </action>
+         <action
+               class="net.sourceforge.tagsea.mylyn.waypoints.actions.WaypointExistingTask"
+               id="net.sourceforge.tagsea.mylyn.waypoints.existing"
+               label="Add to Exisiting Task">
+         </action>
+         <action
+               class="net.sourceforge.tagsea.mylyn.waypoints.actions.WaypointMylynTask"
+               id="net.sourceforge.tagsea.mylyn.waypoints.gotoTask"
+               label="Open Mylyn Tasks">
+         </action>
+         <menu
+               id="wayPointMylyn.menu"
+               label="New MylynTask">
+            <separator
+                  name="group">
+            </separator>
+         </menu>
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="net.sourceforge.tagsea.mylyn.waypoint"
+            objectClass="net.sourceforge.tagsea.core.IWaypoint">
+         <menu
+               id="wayPointMylyn.menu"
+               label="New MylynTask">
+            <separator
+                  name="group">
+            </separator>
+         </menu>
+         <action
+               class="net.sourceforge.tagsea.mylyn.waypoints.actions.WaypointLocalTask"
+               id="net.sourceforge.tagsea.mylyn.waypoints.localTask"
+               label="Create Local Task"
+               menubarPath="waypointMylyn.menu/group">
+         </action>
+         <action
+               class="net.sourceforge.tagsea.mylyn.waypoints.actions.WaypointRepositoryTask"
+               id="net.sourceforge.tagsea.mylyn.waypoints.repositoryTask"
+               label="Create Repository Task"
+               menubarPath="waypointMylyn.menu/group">
+         </action>
+         <action
+               class="net.sourceforge.tagsea.mylyn.waypoints.actions.WaypointExistingTask"
+               id="net.sourceforge.tagsea.mylyn.waypoints.existing"
+               label="Add to Exisiting Task">
+         </action>
+         <action
+               class="net.sourceforge.tagsea.mylyn.waypoints.actions.WaypointMylynTask"
+               id="net.sourceforge.tagsea.mylyn.waypoints.gotoTask"
+               label="Open Mylyn Tasks">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.mylyn.tasks.ui.actions">
+      <dynamicPopupMenu
+            class="net.sourceforge.tagsea.mylyn.waypoints.actions.WaypointMylynSubmenuContributor"
+            menuPath="tasks">
+      </dynamicPopupMenu>
+   </extension>
+   <extension
+         point="org.eclipse.mylyn.tasks.ui.editors">
+      <hyperlinkDetector
+            class="net.sourceforge.tagsea.mylyn.waypoints.WaypointHyperlinkDetector"
+            id="net.sourceforge.tagsea.mylyn.waypointHyperlinks">
+      </hyperlinkDetector>
+   </extension>
+   <extension
+         point="org.eclipse.ui.workbench.texteditor.hyperlinkDetectors">
+      <hyperlinkDetector
+            class="net.sourceforge.tagsea.mylyn.waypoints.WaypointHyperlinkDetector"
+            id="net.sourceforge.tagsea.mylyn.waypoints.waypointHyperlink"
+            name="TagSEA Waypoint"
+            targetId="org.eclipse.mylyn.tasks.ui.TaskEditor">
+      </hyperlinkDetector>
+      <hyperlinkDetector
+            class="net.sourceforge.tagsea.mylyn.waypoints.TagHyperlinkDetector"
+            id="net.sourceforge.tagsea.mylyn.waypoints.tagHyperlink"
+            name="TagSEA Tag"
+            targetId="org.eclipse.mylyn.tasks.ui.TaskEditor">
+      </hyperlinkDetector>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="net.sourceforge.tagsea.mylyn.waypoints.TestingView"
+            id="net.sourceforge.tagsea.mylyn.waypoints.view"
+            name="Integration Testing">
+      </view>
+   </extension>
+
+</plugin>

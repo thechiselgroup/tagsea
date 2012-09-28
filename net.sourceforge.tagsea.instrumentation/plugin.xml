@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sourceforge.tagsea.startParticipant">
+      <participant class="net.sourceforge.tagsea.instrumentation.EarlyStarter"/>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts file="help/context.xml"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="net.sourceforge.tagsea.preferences"
+            class="net.sourceforge.tagsea.instrumentation.network.ui.ResearchPreferencePage"
+            id="net.sourceforge.tagsea.instrumentation.researchpage"
+            name="TagSEA Research"/>
+   </extension>
+
+</plugin>

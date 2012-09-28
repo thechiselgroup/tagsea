@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TagSEA Help Plug-in
+Bundle-SymbolicName: ca.uvic.cs.tagsea.help;singleton:=true
+Bundle-Version: 0.3.1
+Bundle-Activator: ca.uvic.cs.tagsea.help.Activator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Eclipse-LazyStart: true
+Bundle-Vendor: Chisel Group, University of Victoria
+Export-Package: ca.uvic.cs.tagsea.help

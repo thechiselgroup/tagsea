@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TagSEA to Mylyn Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.mylyn.waypoints;singleton:=true
+Bundle-Version: 0.1
+Bundle-Activator: net.sourceforge.tagsea.mylyn.waypoints.WaypointMylynPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ net.sourceforge.tagsea,
+ org.eclipse.ui.forms,
+ org.eclipse.mylyn.tasks.ui,
+ org.eclipse.mylyn.tasks.core,
+ net.sourceforge.tagsea.mylyn.core,
+ org.eclipse.jface.text,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.mylyn.context.core,
+ org.eclipse.mylyn.monitor.core,
+ net.sourceforge.tagsea.parsed,
+ org.eclipse.core.resources,
+ net.sourceforge.tagsea.tasks,
+ org.eclipse.jdt.core,
+ net.sourceforge.tagsea.resources
+Eclipse-LazyStart: true
+Export-Package: net.sourceforge.tagsea.mylyn.waypoints,
+ net.sourceforge.tagsea.mylyn.waypoints.actions

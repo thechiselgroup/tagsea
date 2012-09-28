@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+	<extension point="com.ibm.research.tagging.core.ui.waypointUI">
+       <tagUI
+       	   name="Url waypoint UI"
+       	   id="com.ibm.research.tagging.url.waypoint.ui"
+       	   class="com.ibm.research.tagging.url.UrlWaypointUIExtension"/>
+    </extension>
+
+    <extension
+          point="com.ibm.research.tagging.core.waypointModel">
+       <tagModel
+       	   name="Url waypoint model"
+       	   id="com.ibm.research.tagging.url.waypoint.model"
+       	   class="com.ibm.research.tagging.url.UrlWaypointModelExtension" />
+    </extension>
+    
+    <extension
+          point="org.eclipse.ui.viewActions">
+       <viewContribution
+             id="com.ibm.research.tagging.web.viewcontribution"
+             targetID="com.ibm.research.tagging.core.ui.waypoints.WaypointView">
+          <action
+                class="com.ibm.research.tagging.url.actions.NewUrlWaypointActionDelegate"
+                icon="icons/internal_browser.gif"
+                id="com.ibm.research.tagging.web.addtag"
+                label="Create Url waypoint"
+                menubarPath="additions"
+                style="push"
+                toolbarPath="additions"
+                tooltip="Add Web Waypoint"/>
+       </viewContribution>
+    </extension>
+</plugin>

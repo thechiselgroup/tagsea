@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sourceforge.tagsea.waypoint">
+      <waypoint
+            class="net.sourceforge.tagsea.powerpoint.waypoints.PowerpointWaypointDelegate"
+            name="Powerpoint"
+            type="PowerpointWaypoint"
+            ui="net.sourceforge.tagsea.powerpoint.ui.PowerpointWaypointUI">
+     
+              <attribute
+               name="MarkerID"
+               type="string"/>
+               
+              <attribute
+               name="Slide"
+               type="integer"/>
+               
+              <attribute
+               name="SlideRange"
+               type="string"/>
+      </waypoint>
+   </extension>
+
+   <extension id="PowerpointWaypointMarker" point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.core.resources.problemmarker"/>
+        <persistent value="true"/>
+        <attribute name="net.sourceforge.tagsea.powerpoint.tags"/>
+        <attribute name="net.sourceforge.tagsea.powerpoint.slideStart"/>
+        <attribute name="net.sourceforge.tagsea.powerpoint.slideEnd"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+       <specification
+             annotationType="net.sourceforge.tagsea.powerpoint.PowerpointWayPointAnnotation"
+             colorPreferenceKey="AnnotationColor"
+             colorPreferenceValue="95,238,255"
+             contributesToHeader="false"
+             highlightPreferenceKey="HighLight"
+             highlightPreferenceValue="false"
+             icon="icons/PowerpointSlide.gif"
+             includeOnPreferencePage="true"
+             label="Powerpoint Waypoint Annotation"
+             overviewRulerPreferenceKey="OverviewRuler"
+             overviewRulerPreferenceValue="true"
+             presentationLayer="1"
+             symbolicIcon="info"
+             textPreferenceKey="AnnotationOccurance"
+             textPreferenceValue="false"
+             textStylePreferenceKey="AnnotationTextStyle"
+             textStylePreferenceValue="NONE"
+             verticalRulerPreferenceKey="VerticalRuler"
+             verticalRulerPreferenceValue="true"/>
+   </extension>
+  
+   <!-- the "markerType" *must* be fully qualified - prefix with the plugin name -->
+   <extension point="org.eclipse.ui.editors.annotationTypes">
+       <type 
+       	 	name="net.sourceforge.tagsea.powerpoint.PowerpointWayPointAnnotation"
+	 		markerType="net.sourceforge.tagsea.powerpoint.PowerpointWaypointMarker">
+	   </type>
+   </extension>
+   <!-- End Custom Marker Support -->
+
+   <extension point = "org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tagging.ppt.tagpopup" objectClass="org.eclipse.core.resources.IFile" nameFilter="*.ppt">
+	    <action id="new.sourceforge.tagsea.powerpoint.tagSlidesAction"
+	       label="Tag powerpoint slides..."
+	       icon="icons/PowerpointSlide.gif"
+	       menubarPath="additions"
+	       enablesFor="+"	      
+	       class="net.sourceforge.tagsea.powerpoint.actions.TagSlideActionDelegate">
+	    </action>
+	 </objectContribution> 
+   </extension>
+
+</plugin>

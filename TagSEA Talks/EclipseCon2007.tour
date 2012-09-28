@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tour>
+	<title>EclipseCon 2007</title>
+	<description>long talk for EclipseCon 2007 on Waypoints, Tags, and Tours</description>
+	<author>Li-Te Cheng</author>
+	<time-limit>
+		<minutes>45</minutes>
+		<seconds>0</seconds>
+	</time-limit>
+	<tour-elements>
+		<element type="com.ibm.research.tours.fx.elements.ResetJavaEditorFontTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+		</element>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<url>eclipse:/TagSEA Talks/eclipsecon2007-4.ppt?startSlide=1&amp;endSlide=9</url>
+		</element>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes>limitation - only works for active presentation.  need to make this work for multiple different presentations</notes>
+			<transition>onClick</transition>
+			<url>eclipse:/com.ibm.research.tours.content/src/com/ibm/research/cue/tourist/internal/win32/ppt/PowerpointApplication.java?type=method&amp;signature=PowerpointApplication.isActive(String)boolean</url>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.SetJavaEditorFontTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Courier New</name>
+				<height>12</height>
+			</font>
+			<reset-font>false</reset-font>
+		</element>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes>show existing waypoint; create a new one;  auto-complete, tag meta-data, hiearchical tag</notes>
+			<transition>onClick</transition>
+			<highlight>Global Highlight</highlight>
+			<text-presentation>
+				<effect>Highlighted</effect>
+				<showInText>true</showInText>
+				<color>255,255,128</color>
+			</text-presentation>
+			<url>eclipse:/com.ibm.research.tours.content/src/com/ibm/research/cue/tourist/internal/win32/ppt/PowerpointApplication.java?type=method&amp;signature=PowerpointApplication.isActive(String)boolean</url>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.TextTourElement">
+			<notes>here I will show how to tag source code directly inside the Eclipse editor...</notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Verdana</name>
+				<height>20</height>
+			</font>
+			<text>Java Waypoint, Tags, Content-Assist, Meta-Data, and Hierarchies</text>
+			<location>TopLeft</location>
+			<foreground>0,0,0</foreground>
+			<background>255,255,128</background>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.TextTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Verdana</name>
+				<height>20</height>
+			</font>
+			<text>TODO, FIXME, etc...</text>
+			<location>BottomLeft</location>
+			<foreground>0,0,0</foreground>
+			<background>255,255,128</background>
+		</element>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes>show existing waypoint; create a new one;  auto-complete, tag meta-data, hiearchical tag</notes>
+			<transition>onClick</transition>
+			<highlight>Unhighlight</highlight>
+			<url>eclipse:/com.ibm.research.tours.content/src/com/ibm/research/cue/tourist/internal/win32/ppt/PowerpointApplication.java?type=method&amp;signature=PowerpointApplication.isActive(String)boolean</url>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.ShowViewTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<highlight>Global Highlight</highlight>
+			<view-id>org.eclipse.jdt.ui.PackageExplorer</view-id>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.TextTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Verdana</name>
+				<height>20</height>
+			</font>
+			<text>Decorators</text>
+			<location>TopLeft</location>
+			<foreground>0,0,0</foreground>
+			<background>255,255,128</background>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.ShowViewTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<highlight>Unhighlight</highlight>
+			<view-id>org.eclipse.jdt.ui.PackageExplorer</view-id>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.ShowViewTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<highlight>Global Highlight</highlight>
+			<view-id>net.sourceforge.tagsea.ui.TagsView</view-id>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.TextTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Verdana</name>
+				<height>20</height>
+			</font>
+			<text>Tag View : filters, multi-word, wildcards, hierarchies, delete, rename</text>
+			<location>Left</location>
+			<foreground>0,0,0</foreground>
+			<background>255,255,128</background>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.ShowViewTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<highlight>Global Highlight</highlight>
+			<view-id>net.sourceforge.tagsea.ui.WaypointView</view-id>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.TextTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Verdana</name>
+				<height>20</height>
+			</font>
+			<text>Waypoints View : filters, multi-word, wildcard, properties</text>
+			<location>Right</location>
+			<foreground>0,0,0</foreground>
+			<background>255,255,128</background>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.ShowPerspectiveTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<highlight>Global Highlight</highlight>
+			<perspective-id>org.eclipse.jdt.ui.JavaPerspective</perspective-id>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.TextTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Verdana</name>
+				<height>20</height>
+			</font>
+			<text>Navigation, markers, ctrl+shift+@ (close views), refactoring example</text>
+			<location>TopLeft</location>
+			<foreground>0,0,0</foreground>
+			<background>255,255,128</background>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.TextTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Verdana</name>
+				<height>20</height>
+			</font>
+			<text>Resource waypoints and filtering</text>
+			<location>TopLeft</location>
+			<foreground>0,0,0</foreground>
+			<background>255,255,128</background>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.ShowViewTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<highlight>Unhighlight</highlight>
+			<view-id>org.eclipse.jdt.ui.PackageExplorer</view-id>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.TextTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Verdana</name>
+				<height>20</height>
+			</font>
+			<text>Breakpoint Waypoints, Waypoint Editing</text>
+			<location>TopLeft</location>
+			<foreground>0,0,0</foreground>
+			<background>255,255,128</background>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.TextTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Verdana</name>
+				<height>20</height>
+			</font>
+			<text>URL waypoints, refactoring hierarchies, flatenning</text>
+			<location>TopLeft</location>
+			<foreground>0,0,0</foreground>
+			<background>255,255,128</background>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.ShowPerspectiveTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<highlight>Highlight</highlight>
+			<perspective-id>org.eclipse.jdt.ui.JavaPerspective</perspective-id>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.FadeToBlackTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+		</element>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<url>eclipse:/TagSEA Talks/eclipsecon2007-4.ppt?startSlide=11&amp;endSlide=16</url>
+		</element>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<highlight>Highlight</highlight>
+			<url>eclipse:/TagSEA Talks/EclipseCon2007.tour</url>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.TextTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<font>
+				<name>Verdana</name>
+				<height>22</height>
+			</font>
+			<text>Example: Tour of Extending TagSEA with URL Waypoints</text>
+			<location>TopLeft</location>
+			<foreground>0,0,0</foreground>
+			<background>255,255,128</background>
+		</element>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes>how to save your url waypoint</notes>
+			<transition>onClick</transition>
+			<url>eclipse:/TagSEA Talks/test.tour</url>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.FadeToBlackTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+		</element>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<url>eclipse:/TagSEA Talks/eclipsecon2007-4.ppt?startSlide=17&amp;endSlide=19</url>
+		</element>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes>TagSEA home page</notes>
+			<transition>onClick</transition>
+			<url>http://tagsea.sourceforge.net</url>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.ResetJavaEditorFontTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+		</element>
+	</tour-elements>
+</tour>

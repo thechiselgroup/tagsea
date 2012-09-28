@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui Plug-in
+Bundle-SymbolicName: com.ibm.research.tagging.core.ui; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.ibm.research.tagging.core.ui.TagUIPlugin
+Bundle-Vendor: IBM
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.ibm.research.tagging.core,
+ org.eclipse.ui.forms,
+ org.eclipse.ui.ide
+Eclipse-LazyStart: true
+Export-Package: com.ibm.research.tagging.core.ui,
+ com.ibm.research.tagging.core.ui.actions,
+ com.ibm.research.tagging.core.ui.adapters,
+ com.ibm.research.tagging.core.ui.controls,
+ com.ibm.research.tagging.core.ui.dialogs,
+ com.ibm.research.tagging.core.ui.dnd,
+ com.ibm.research.tagging.core.ui.fieldassist,
+ com.ibm.research.tagging.core.ui.impl,
+ com.ibm.research.tagging.core.ui.tags,
+ com.ibm.research.tagging.core.ui.validation,
+ com.ibm.research.tagging.core.ui.waypoints,
+ com.ibm.research.tagging.core.ui.wizards

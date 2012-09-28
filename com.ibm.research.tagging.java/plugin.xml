@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+    <extension point="com.ibm.research.tagging.core.ui.waypointUI">
+       <tagUI
+       	   name="Java waypoint UI"
+       	   id="com.ibm.research.tagging.java.waypoint.ui"
+       	   class="com.ibm.research.tagging.java.JavaWaypointUIExtension"/>
+    </extension>
+
+    <extension
+          point="com.ibm.research.tagging.core.waypointModel">
+       <tagModel
+       	   name="Java waypoint model"
+       	   id="com.ibm.research.tagging.java.waypoint.model"
+       	   class="com.ibm.research.tagging.java.JavaWaypointModelExtension" />
+    </extension>
+    
+    <!-- start Custom java text Marker Support -->
+    <extension id="waypointmarker" point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.core.resources.textmarker"/>
+        <persistent value="true"/>
+    </extension>
+   
+    <extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+       <specification
+             annotationType="com.ibm.research.tagging.java.waypointannotation"
+             colorPreferenceKey="AnnotationColor"
+             colorPreferenceValue="95,238,255"
+             contributesToHeader="false"
+             highlightPreferenceKey="HighLight"
+             highlightPreferenceValue="false"
+             icon="icons/waypoint.gif"
+             includeOnPreferencePage="true"
+             label="Java Waypoint Annotation"
+             overviewRulerPreferenceKey="OverviewRuler"
+             overviewRulerPreferenceValue="true"
+             presentationLayer="1"
+             symbolicIcon="info"
+             textPreferenceKey="AnnotationOccurance"
+             textPreferenceValue="false"
+             textStylePreferenceKey="AnnotationTextStyle"
+             textStylePreferenceValue="NONE"
+             verticalRulerPreferenceKey="VerticalRuler"
+             verticalRulerPreferenceValue="true"/>
+    </extension>
+  
+    <!-- the "markerType" *must* be fully qualified - prefix with the plugin name -->
+    <extension point="org.eclipse.ui.editors.annotationTypes">
+       <type 
+       	 	name="com.ibm.research.tagging.java.waypointannotation"
+	 		markerType="com.ibm.research.tagging.java.waypointmarker">
+	   </type>
+    </extension>
+    <!-- End Custom Marker Support -->
+    
+   <!-- Start Custom Folding provider  
+   <extension point= "org.eclipse.jdt.ui.foldingStructureProviders">
+		<provider
+        	class="com.ibm.research.tagging.java.folding.WaypointAwareJavaFoldingStructureProvider"
+        	id="com.ibm.research.tagging.java.folding.TagseaJavaFoldingStructureProvider"
+       		name="Java tag aware folding structure provider "
+        	preferencesClass="org.eclipse.jdt.internal.ui.text.folding.DefaultJavaFoldingPreferenceBlock">
+		</provider>
+	</extension>
+	   End Custom Folding provider  -->
+    
+    <!-- Start code completion computer  -->
+    <extension id="TagCompletionProposalComputer"
+   	    point="org.eclipse.jdt.ui.javaCompletionProposalComputer">
+    	<javaCompletionProposalComputer
+    		activate="true"
+    		categoryId="org.eclipse.jdt.ui.defaultProposalCategory"
+    		class="com.ibm.research.tagging.java.autocomplete.WaypointCompletionProposalComputer">
+    		
+    		<partition type="__java_javadoc"/>
+    		<partition type="__java_singleline_comment"/>
+    		<partition type="__java_multiline_comment"/>
+   		</javaCompletionProposalComputer>
+    </extension>
+    <!-- End code completion computer  -->
+    
+    <extension point = "org.eclipse.ui.popupMenus">
+    <objectContribution id="com.ibm.research.tagging.java.tagpopup" objectClass="org.eclipse.jdt.core.IJavaElement">
+	
+	    <!-- TagActionDelegate not implemented in java plugin yet
+	    
+		<action id="com.ibm.research.tagging.java.actions.tagaction"
+	       label="Tag as..."
+	       icon="icons/tag.gif"
+	       menubarPath="additions"
+	       enablesFor="+"	     
+	       class="com.ibm.research.tagging.java.actions.TagActionDelegate">
+	    </action>
+	    
+	    <action id="com.ibm.research.tagging.java.actions.quicktagaction"
+	       label="Quick Tag..."
+	       icon="icons/tag.gif"
+	       menubarPath="additions"
+	       enablesFor="+"	     
+	       class="com.ibm.research.tagging.java.actions.TagActionDelegate">
+	    </action>
+	    
+	      -->
+
+        <!-- do not handle projects and fragments - these are managed by resource plugin -->	    
+	     <visibility>
+	        <and>
+	           <not>
+	              <objectClass name="org.eclipse.jdt.core.IJavaProject"/>
+	           </not>
+	           <not>
+	              <objectClass name="org.eclipse.jdt.core.IPackageFragment"/>
+	           </not>
+	           <not>
+	              <objectClass name="org.eclipse.jdt.core.IPackageFragmentRoot"/>
+	           </not>
+	        </and>
+	     </visibility>
+	    
+	 </objectContribution> 
+   </extension>
+   
+       <extension
+          point="org.eclipse.ui.viewActions">
+       <viewContribution
+             id="com.ibm.research.tagging.java.viewcontribution"
+             targetID="com.ibm.research.tagging.core.ui.waypoints.WaypointView">
+          <action
+                class="com.ibm.research.tagging.java.actions.SynchronizeAction"
+                icon="icons/refresh.gif"
+                id="com.ibm.research.tagging.java.actions.SynchronizeAction"
+                label="Synchronize java waypoints..."
+                menubarPath="additions"
+                style="push"
+                toolbarPath="additions"
+                tooltip="Synchronize java waypoints..."/>
+       </viewContribution>
+    </extension>
+    
+    <extension
+             point="com.ibm.research.tagging.resource.decoratableResource">
+       <resourceContributor
+           id="com.ibm.research.tagging.java"
+           class="com.ibm.research.tagging.java.JavaResourceContributor"/>
+    </extension>
+   
+</plugin>

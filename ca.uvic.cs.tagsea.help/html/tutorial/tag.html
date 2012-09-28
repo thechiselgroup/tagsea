@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+
+<LINK REL=StyleSheet HREF="../book.css" TYPE="text/css" MEDIA=screen>
+<title>Your First Tag</title>
+</head>
+<body>
+
+<center>
+<table border="0" class="underline" cellspacing=0 cellpadding=0>
+<tr>
+<td><img src="../img/at.gif"/></td>
+<td valign="middle" class="title"><center><h1>TagSEA</h1>0.3</center></td>
+<td><img src="../img/at.gif"/></td>
+</tr>
+</table>
+</center>
+<hr>
+
+<center><a href="../index.html">Home</a> | <a href="../features.html">Features</a> | 
+<a href="../usage.html">Usage</a> | <a href="../terminology.html">Terminology</a> | 
+<a href="../download.html">Download</a> | <a href="../research.html">Research</a> |
+<a href="../new/new.html">New</a> |
+<a href="http://sourceforge.net/projects/tagsea" target=top>Project</a>
+</center>
+<hr>
+
+<center>
+<a href="tag.html">Your First Tag</a> |
+<a href="views.html">Managing Your Tags</a>
+</center>
+<hr>
+
+<center>
+<h3>Your First Tag</h3>
+</center>
+
+<p>TagSEA is currently coupled with the Eclipse Java Development Toolkit (JDT).
+There are plans to expand TagSEA to allow tags to be associated with arbitrary data,
+but for now the only way to define a tag is within the eclipse Java editor. To do this,
+simply open a Java file in the Java editor, and use a comment to define a tag:</p>
+
+<p class=Code>//@tag mytag : This is a comment for my tag</p>
+
+<p>Tags can appear within any valid Java comment. These are all equivalent:</p>
+
+<p class=Code>
+//@tag mytag : This is a comment for my tag</p>
+<p class=Code>
+/* <br>
+ * @tag mytag : This is a comment for my tag<br>
+ */
+</p>
+<p class=Code> 
+/**<br>
+ * @tag mytag : This is a comment for my tag<br>
+ */ 
+</p>
+</p>
+
+<p>The format is as follows:<p>
+
+<p class=Note><b>@tag</b> <b>tagname</b> <i>&lt;... more-tag-names&gt; &lt;:  comment text &gt; &lt; [ meta-data ] &gt;</i> </p>
+
+<p>Where <b>bold</b> text is required, and text inside &lt;&gt; is optional.</p>
+
+<p>Technically, this line isn't actually for defining a <i>tag</i>, it defines what is called
+a <i>waypoint</i>. That is, it defines where a specific instance of a tag exists, as well as
+some information for that tag (the comment and the meta-data). However, if a tag with name
+<b>tagname</b> doesn't already exist, this comment will also define a new tag for <b>tagname</b>.
+</p>
+
+<p>To make it easier to organize and visualize tags, a hierarchy of tags is supported. You
+can define the hierarchy within the tag name. This is done by placing child tags within
+parenthesis (()). For example, suppose you have several bugs in a program, and you would
+like to track them using tags. But, you also have two bug tracking mechanisms (say, sourceforge
+and bugzilla). You can tag the problem code using a hierachy:</p>
+<p class=Code>//@tag bug(sourceforge(4353846))</p>
+<p>The above will mark your code with the tag <code>4353846</code> inside the <code>sourceforge</code>
+list of <code>bug</code>s. For bug # 3485 in bugzilla, use:</p>
+<p class=Code>//@tag bug(bugzilla(3485))</p>
+<p>And, as of version 0.3.4, you can also use dot-notation for hierarchies. The following is
+equivalent to the above:</p>
+<p class=Code>//@tag bug.bugzilla.3485</p>
+
+
+<p>Note that it is possible to have multiple tags use the same comment and meta data for a
+waypoint. This tag is perfectly legal:<p>
+
+<p class=Code>//@tag mytag mytagtwo : a comment for two tags</p>
+
+<p>The comment comes after a colon (:) sign, and will be assigned to a waypoint for both 
+<code>mytag</code> and <code>mytagtwo</code>.</p>
+
+<p>If you want to add extra information about the waypoint, you can do so within meta data.
+Meta data is written by placing semi-colon (;) separated key/value pairs
+within square brackets. The meta data elements that are currently supported are the author and
+the date of the waypoint. Here is an example of a waypoint with meta data:</p>
+
+<p class=Code>//@tag mytag : a comment [Author = me;Date = 14/07/06 11:42 AM;]</p>
+
+<p>Again, the comment is entirely optional. The following is also legal:</p>
+
+<p class=Code>//@tag mytag [Author = me;Date = 14/07/06 11:42 AM;]</p>
+
+<p>Meta data can also be split accross multiple lines:</p>
+
+<p class=Code>
+/*<br>
+&nbsp;* @tag mytag [<br>
+&nbsp;* Author = me;<br>
+&nbsp;* Date = 14/07/06 11:42 AM;<br>
+&nbsp;*]<br>
+&nbsp;*/
+</p>
+<p>However, tag names and comments must all be on the first line of the tag/waypoint definition.</p>
+
+<p>Experiment with writing tags, and see how useful they can be. TagSEA offers automatic code completion
+to make the process even smoother. Simply press <code><i>&lt;Ctrl-space&gt;</i></code> after entering
+the <code><b>@tag</b></code> keyword to see the available hints.</p>
+<hr>
+<center><a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=169205&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a></center>
+
+
+</body>
+</html>

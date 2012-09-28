@@ -1,0 +1,14 @@
+<div id="navcontainer">
+<ul id="navlist">
+<li><a href="download.html">Download</a></li>
+<li><a href="new.html">New</a></li>
+<li><a href="doc.html">Support</a></li>
+<li><a href="community.html">Community</a></li>
+<li><a href="research.html">Research</a></li>
+</ul>
+</div>
+
+<p class="title"><a href="index.html">TagSEA 0.6.4</a></p>
+
+<p class="version">Tags for Software Engineering Activities in 
+Eclipse</p>

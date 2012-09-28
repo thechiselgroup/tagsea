@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension-point id="waypointUI" name="waypointUI" schema="schema/waypointUI.exsd"/>
+	
+	<extension point="org.eclipse.ui.views">
+
+			<category id="com.ibm.research.tagging" name="Tagging"/>
+
+            	<view
+           		 allowMultiple="false"
+            	 category="com.ibm.research.tagging"
+            	 class="com.ibm.research.tagging.core.ui.tags.TagView"
+           		 icon="icons/tag.gif"
+           		 id="com.ibm.research.tagging.core.ui.tags.TagView"
+           		 name="Tags"/>
+
+            	<view
+             	 allowMultiple="false"
+            	 category="com.ibm.research.tagging"
+            	 class="com.ibm.research.tagging.core.ui.waypoints.WaypointView"
+            	 icon="icons/waypoint.gif"
+            	 id="com.ibm.research.tagging.core.ui.waypoints.WaypointView"
+            	 name="Waypoints"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+         <view
+               id="com.ibm.research.tagging.core.ui.tags.TagView"
+               ratio="0.5"
+               relationship="bottom"
+               relative="org.eclipse.ui.views.ResourceNavigator"/>
+         <view
+               id="com.ibm.research.tagging.core.ui.waypoints.WaypointView"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.eclipse.ui.views.TaskList"/>
+      </perspectiveExtension>
+      <perspectiveExtension targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="com.ibm.research.tagging.core.ui.tags.TagView"
+               ratio="0.5"
+               relationship="bottom"
+               relative="org.eclipse.jdt.ui.PackageExplorer"/>
+         <view
+               id="com.ibm.research.tagging.core.ui.waypoints.WaypointView"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.eclipse.ui.views.TaskList"/>
+      </perspectiveExtension>
+      <perspectiveExtension targetID="org.eclipse.pde.ui.PDEPerspective">
+         <view
+               id="com.ibm.research.tagging.core.ui.tags.TagView"
+               ratio="0.5"
+               relationship="bottom"
+               relative="org.eclipse.jdt.ui.PackageExplorer"/>
+         <view
+               id="com.ibm.research.tagging.core.ui.waypoints.WaypointView"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.eclipse.ui.views.TaskList"/>
+      </perspectiveExtension>
+      <perspectiveExtension targetID="org.eclipse.debug.ui.DebugPerspective">
+         <view
+               id="com.ibm.research.tagging.core.ui.tags.TagView"
+               ratio="0.25"
+               relationship="left"
+               relative="org.eclipse.ui.views.TaskList"/>
+         <view
+               id="com.ibm.research.tagging.core.ui.waypoints.WaypointView"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.eclipse.ui.views.TaskList"/>
+      </perspectiveExtension>
+   </extension>
+   
+   <extension point = "org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tagging.core.ui.waypointpopup" objectClass="com.ibm.research.tagging.core.IWaypoint">
+	    <action id="com.ibm.research.tagging.core.ui.TagWaypointAction"
+	       label="Add tags..."
+	       icon="icons/tag.gif"
+	       menubarPath="additions"
+	       enablesFor="+"	      
+	       class="com.ibm.research.tagging.core.ui.actions.TagWaypointAction">
+	    </action>
+	 </objectContribution> 
+   </extension>
+   
+   <extension
+      point = "org.eclipse.ui.preferencePages">
+       <page id="com.ibm.research.tagging.core.preferences"
+	    class="com.ibm.research.tagging.core.ui.preferences.TagCorePreferencesPage"
+            name="Tagging">
+       </page>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Open Waypoint Set"
+            visible="true"
+            id="com.ibm.research.tagging.core.ui.openwaypoint">
+         <action
+               label="Open Waypoint..."
+               icon="icons/tag.gif"
+               class="com.ibm.research.tagging.core.ui.actions.OpenWaypointAction"
+               tooltip="Open Waypoint"
+               menubarPath="navigate/open.ext2"
+               toolbarPath="org.eclipse.search.searchActionSet/Search"
+               definitionId="com.ibm.research.tagging.openwaypoint.command"
+               id="com.ibm.research.tagging.core.ui.actions.OpenWaypointAction">
+         </action>
+      </actionSet>
+   </extension>
+   
+   <extension
+		point="org.eclipse.ui.commands">
+	    <commandParameterType
+            converter="com.ibm.research.tagging.core.ui.commands.WaypointConverter"
+            id="com.ibm.research.tagging.waypoint"
+            type="com.ibm.research.tagging.core.IWaypoint"/>
+		<command
+			categoryId="org.eclipse.ui.category.navigate"
+			defaultHandler="com.ibm.research.tagging.core.ui.actions.OpenWaypointAction"
+			description="Open Waypoint"
+			id="com.ibm.research.tagging.openwaypoint.command"
+			name="Open Waypoint">
+          <commandParameter
+               id="waypoint"
+               name="waypoint"
+               typeId="com.ibm.research.tagging.waypoint"/>
+		</command>
+   </extension>   
+   
+   <extension
+   		 point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.ibm.research.tagging.openwaypoint.command"
+            sequence="M1+M2+2"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" />   
+   </extension>   
+   
+</plugin>

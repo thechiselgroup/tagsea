@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Instrumentation Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.instrumentation;singleton:=true
+Bundle-Version: 0.6.5.qualifier
+Bundle-Activator: net.sourceforge.tagsea.instrumentation.TagSEAInstrumentationPlugin
+Bundle-Vendor: University of Victoria
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ net.sourceforge.tagsea,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ net.sourceforge.tagsea.logging.model,
+ org.eclipse.core.resources,
+ org.apache.commons.httpclient,
+ org.eclipse.help,
+ org.eclipse.text,
+ org.eclipse.jface.text,
+ org.eclipse.ui.views,
+ org.eclipse.ui.ide
+Eclipse-LazyStart: true

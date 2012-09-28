@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Video Player Test
+Bundle-SymbolicName: ca.uvic.chisel.videoplayer.test; singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: ca.uvic.chisel.videoplayer.test.TestPlayer
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ ca.uvic.chisel.widgets.video;bundle-version="0.0.1",
+ org.eclipse.core.resources;bundle-version="3.5.2",
+ org.eclipse.ui.ide;bundle-version="3.5.2"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: ca.uvic.chisel.videoplayer.test,
+ ca.uvic.chisel.videoplayer.test.editors,
+ ca.uvic.chisel.videoplayer.test.views

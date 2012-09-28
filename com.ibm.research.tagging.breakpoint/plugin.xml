@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+    <extension point="com.ibm.research.tagging.core.ui.waypointUI">
+       <waypointUI
+       	   name="Breakpoint waypoint UI"
+       	   id="com.ibm.research.tagging.breakpoint.waypoint.ui"
+       	   class="com.ibm.research.tagging.breakpoint.BreakpointWaypointUIExtension"/>
+    </extension>
+
+    <extension
+          point="com.ibm.research.tagging.core.waypointModel">
+       <tagModel
+       	   name="Breakpoint tagging model"
+       	   id="com.ibm.research.tagging.breakpoint.waypoint.model"
+       	   class="com.ibm.research.tagging.breakpoint.BreakpointWaypointModelExtension" />
+    </extension>
+
+ 	<extension point = "org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tagging.dogear.enablepopup" objectClass="com.ibm.research.tagging.breakpoint.BreakpointWaypoint">
+
+	   	<action id="com.ibm.research.tagging.breakpoint.actions.disableall"
+	       label="Disable All"
+	       icon="icons/debug.gif"
+	       menubarPath="additions"
+	       enablesFor="2+"	      
+	       class="com.ibm.research.tagging.breakpoint.actions.DisableAllBreakpointActionDelegate">
+	    </action>
+
+	   	<action id="com.ibm.research.tagging.breakpoint.actions.enableall"
+	       label="Enable All"
+	       icon="icons/debug.gif"
+	       menubarPath="additions"
+	       enablesFor="2+"	      
+	       class="com.ibm.research.tagging.breakpoint.actions.EnableAllBreakpointActionDelegate">
+	    </action>
+	    
+	    <action id="com.ibm.research.tagging.breakpoint.actions.enable"
+	       label="Enabled"
+	       icon="icons/debug.gif"
+	       menubarPath="additions"
+	       enablesFor="1"	      
+	       class="com.ibm.research.tagging.breakpoint.actions.EnableBreakpointActionDelegate">
+	    </action>
+	   
+	 </objectContribution> 
+ 	</extension>
+ 	
+ 	<!-- allow breakpoints to show up in package explorer -->
+    <extension
+        point="com.ibm.research.tagging.resource.decoratableResource">
+       <resourceContributor
+           id="com.ibm.research.tagging.breakpoint"
+           class="com.ibm.research.tagging.breakpoint.BreakpointResourceContributor"/>
+    </extension>
+
+</plugin>

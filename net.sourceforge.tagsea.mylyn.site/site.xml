@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="file:///C:\Documents and Settings\John\My Documents\Work\TagSEA\net.sourceforge.tagsea.mylyn.site">
+      TagSEA - Mylyn Bridge Update Site
+   </description>
+   <feature url="features/net.sourceforge.tagsea.mylyn.feature_0.1.1.jar" id="net.sourceforge.tagsea.mylyn.feature" version="0.1.1">
+      <category name="Features"/>
+   </feature>
+   <feature url="features/net.sourceforge.tagsea.mylyn.task.feature_0.1.1.jar" id="net.sourceforge.tagsea.mylyn.task.feature" version="0.1.1">
+      <category name="Integration"/>
+   </feature>
+   <feature url="features/net.sourceforge.tagsea.mylyn.waypoints.feature_0.1.1.jar" id="net.sourceforge.tagsea.mylyn.waypoints.feature" version="0.1.1">
+      <category name="Integration"/>
+   </feature>
+   <category-def name="Features" label="Features"/>
+   <category-def name="Integration" label="Integration"/>
+</site>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+	<extension-point id="paletteEntry" name="paletteEntry" schema="schema/paletteEntry.exsd"/>
+	<extension-point id="tourElementDropAdapter" name="tourElementDropAdapter" schema="schema/tourElementDropAdapter.exsd"/>	
+   	<extension-point id="tourElementDoubleClickDelegate" name="tourElementDoubleClickDelegate" schema="schema/tourElementDoubleClickDelegate.exsd"/>	
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Tour Editor"
+            extensions="tour"
+            icon="icons/tour.gif"
+            contributorClass="com.ibm.research.tours.editors.TourEditorContributor"
+            class="com.ibm.research.tours.editors.TourEditor"
+            id="com.ibm.research.tours.editors.TourEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Tours"
+            id="com.ibm.research.tours">
+      </category>
+      <wizard
+            name="Tour"
+            icon="icons/tour.gif"
+            category="com.ibm.research.tours"
+            class="com.ibm.research.tours.wizards.NewTourWizard"
+            id="com.ibm.research.tours.wizards.NewTourWizard">
+      </wizard>
+   </extension>
+   
+     <extension point = "org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.runTour" 
+     	objectClass="org.eclipse.core.resources.IFile" nameFilter="*.tour">
+	    <action id="com.ibm.research.tours.runTour"
+	       label="Run tour"
+	       icon="icons/run.gif"
+	       menubarPath="additions"
+	       enablesFor="1"	      
+	       class="com.ibm.research.tours.actions.RunTourActionDelegate">
+	    </action>
+	 </objectContribution> 
+   </extension>
+   
+   <!--
+    <extension point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+       <tourElementDoubleClickDelegate
+       	   objectContribution="com.ibm.research.tours.editors.TourTitle"
+       	   class="com.ibm.research.tours.actions.TitleDoubleClickActionDelegate"/>
+    </extension>
+    -->
+   <!--
+   <extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.transitionPopup" 
+     objectClass="com.ibm.research.tours.ITourElement">	    
+	 	<menu 
+	 		id = "com.ibm.research.tours.transition.submenu"
+	 		label = "Transition"
+	 		path = "additions"
+	 		icon = "icons/transition.gif">
+	 		<seperator name = "group1"/>
+	 	</menu>
+	 	
+		<action id="com.ibm.research.tours.transition.StartAfterPrevious"
+	       label="Start after previous"
+	       menubarPath="com.ibm.research.tours.transition.submenu/group1"
+	       enablesFor="1"	      
+	       class="com.ibm.research.tours.actions.TransitionActionDelegate">
+	    </action>
+	 	
+	 	<action id="com.ibm.research.tours.transition.StartWithPrevious"
+	       label="Start with previous"
+	       menubarPath="com.ibm.research.tours.transition.submenu/group1"
+	       enablesFor="1"	      
+	       class="com.ibm.research.tours.actions.TransitionActionDelegate">
+	    </action>
+
+	 	<action id="com.ibm.research.tours.transition.StartOnClick"
+	       label="Start on click"
+	       menubarPath="com.ibm.research.tours.transition.submenu/group1"
+	       enablesFor="1"	      
+	       class="com.ibm.research.tours.actions.TransitionActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+	-->
+	<!--
+   <extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.TimingPopup" 
+     objectClass="com.ibm.research.tours.ITourElement">	    
+		<action id="com.ibm.research.tours.actions.TimingActionDelegate"
+	       label="Timing..."
+	       menubarPath="additions"
+	       icon="icons/time.gif"
+	       enablesFor="1"	      
+	       class="com.ibm.research.tours.actions.TimingActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+	-->
+	
+	<!--
+	<extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.previewPopup" 
+     objectClass="com.ibm.research.tours.ITourElement">	    
+		<action id="com.ibm.research.tours.actions.PreviewActionDelegate"
+	       label="Preview"
+	       menubarPath="additions"
+	       icon="icons/preview.gif"
+	       enablesFor="+"	      
+	       class="com.ibm.research.tours.actions.PreviewActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+	-->
+	<!--
+	<extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.deleteElementPopup" 
+     objectClass="com.ibm.research.tours.ITourElement">	    
+		<action id="com.ibm.research.tours.actions.DeleteElementsActionDelegate"
+	       label="Delete"
+	       menubarPath="additions"
+	       icon="icons/delete.gif"
+	       enablesFor="+"	      
+	       class="com.ibm.research.tours.actions.DeleteElementsActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+	-->
+	
+	<!--
+	<extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.masterTimingPopup" 
+     objectClass="com.ibm.research.tours.editors.TourElements">	    
+		<action id="com.ibm.research.tours.actions.MasterTimingActionDelegate"
+	       label="Master Timing..."
+	       menubarPath="additions"
+	       icon="icons/time.gif"
+	       enablesFor="+"	      
+	       class="com.ibm.research.tours.actions.MasterTimingActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+	-->
+	<!--
+	<extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.deleteAllElementsPopup" 
+     objectClass="com.ibm.research.tours.editors.TourElements">	    
+		<action id="com.ibm.research.tours.actions.DeleteAllElementsActionDelegate"
+	       label="Delete all"
+	       menubarPath="additions"
+	       icon="icons/delete.gif"
+	       enablesFor="+"	      
+	       class="com.ibm.research.tours.actions.DeleteAllElementsActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+	-->
+</plugin>

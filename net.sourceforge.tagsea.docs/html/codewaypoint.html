@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<link rel="StyleSheet" href="tagsea.css" type="text/css" 
+media="screen"><title>TagSEA Code Waypoints</title></head>
+
+<body>
+
+<div class="frame">
+
+<div id="shadow-container">  
+<div class="shadow1">  
+<div class="shadow2">  
+<div class="shadow3">  
+<div class="container"> 
+
+<div style="border-bottom: dotted #999999 1px;">
+
+<div id="navcontainer">
+<ul id="navlist">
+<li><a href="download.html">Download</a></li>
+<li><a href="features.html">Getting Started</a></li>
+<li><a href="new.html">What's New</a></li>
+<li><a href="community.html">Community</a></li>
+<li><a href="research.html">Research</a></li>
+</ul>
+</div>
+
+<p class="title"><a href="index.html">TagSEA 0.6.6</a></p>
+
+<p class="version">Tags for Software Engineering Activities in 
+Eclipse</p>
+
+</div>
+
+<h3>Tagging directly in the source code (Java, C and C++ code)</h3>
+
+<p>TagSEA allows you to tag locations of interest directly in your source code 
+as you type. The following example shows you how you can waypoint on 
+your source code with a single tag:</p>
+
+<p class="Code">//@tag mytag : This is a comment for my waypoint</p>
+
+<p>Waypoints can appear within any valid Java comment, but only exist on 
+a single line. These are all equivalent:</p>
+
+<p class="Code">
+//@tag mytag : This is a comment for my waypoint</p>
+
+<p class="Code">
+/* <br> * @tag mytag : This is a comment for my waypoint <br> */
+</p>
+
+<p class="Code">
+/** <br> * @tag mytag : This is a comment for my waypoint <br> */ 
+
+</p>
+
+<p></p>
+
+<p>In the above example, the word "@tag" in the comment indicates that 
+this location (or waypoint) has been tagged as interesting.
+The words immediately following this indicator are the <i>tag names</i>, or keywords
+that you can use to return to this location later. The waypoint includes all of the defining features of that place, such
+as the file that contains the tags, the location in that file (both 
+implicitly known by where the text has been
+typed), as well as other meta-data. In this example, the only other data 
+that is included is
+a comment, which is placed after the colon (:) and has the text: "This 
+is a comment for my waypoint".</p>
+
+<p>The format is as follows:</p>
+
+<p class="Note"><b>@tag</b> <b>tagname</b> <i>&lt;... 
+more-tag-names&gt;</i> <i>&lt;... meta-data&gt; &lt;:  comment text 
+
+&gt;</i> </p>
+
+<p>Where <b>bold</b> text is required, and text inside &lt;&gt; is 
+optional.</p>
+
+<h4>Tag Names</h4>
+
+<p>Tag names are descriptive keywords for a location. They can contain any 
+characters except white-space (spaces, tabs, or new-lines), or colons.</p>
+
+<p>Names that have dots (.) in them can be treated as hierarchical in 
+the 
+views. For example, the tag name
+<code>tagsea.bug.12</code> could represent bug number 12 inside the 
+tagsea project, and can be visualized as
+such inside the Tags View.</p>
+
+<p>Older versions of TagSEA used a different syntax in Java tag names to 
+represent hierarchies. They used
+a parenthesis syntax. So, the above tag name would be represented as 
+<code>tagsea(bug(12))</code>. For 
+backward-compatablity, this syntax is still allowed inside the Java 
+waypointing plugin, but it will be translated
+into the standard dot-syntax within the platform. However, since both 
+parentheses and dots have the same interpretation
+in the Java waypointing plugin, it is illegal to have a tag name that 
+contains both dots and parentheses.</p>
+
+<p>Content-assist is supplied for tag names for when the get too long. 
+Press Ctrl-space to get a list of known
+tag names.</p>
+
+<h4>Author metadata</h4>
+
+<p>You can add metadata to identify the author of a tagged location.</p>
+
+<p>For example:</p>
+<p class="Code">//@tag mytag <b>-author=John</b> : This is a comment for 
+my waypoint</p>
+<p>or if the author's name contains a space:</p>
+<p class="Code">//@tag mytag <b>-author="John Doe"</b> : This is a 
+comment for my waypoint</p>
+
+<p>Since the colon character has a special function, 
+attribute values that have colons in them must also be placed in quotes. Attribute values 
+cannot have quotes as part of the value.</p>
+
+<h4>Date metadata</h4>
+
+<p>You can also specify a date. TagSEA supports date 
+formats for different regions of the world. The format for a 
+locale-specific date is:</p>
+		
+<p class="code">-date="<i>languageCOUNTRY</i>:<i>Short-Date</i>"</p>
+
+		<p>Where <code><i>language</i></code> is the two-letter 
+ISO language code, 
+		<code><i>COUNTRY</i></code> is the two-letter ISO 
+country code, and 
+		<code><i>Short-Date</i></code> is the short-date format 
+as defined by the Java standard.</p>
+
+<p>Examples:</p>
+		
+<p>January 15, 2007 in Canada:</p>
+
+<p class="Code">//@tag mytag <b>-date="enCA:15/01/07"</b> : This is a 
+comment for my waypoint</p>
+
+<p>January 15, 2007 in US:</p>
+
+<p class="code">//@tag mytag <b>-date="enUS:01/15/07"</b> : This is a 
+comment for my waypoint</p>
+
+<p>If no locale is specified, the default locale is used.</p>
+
+<h4>Content assist &amp; quick fixes</h4>
+
+<p>All of this can be a lot of stuff to type into a waypoint, so 
+content-assists (<i>Ctrl-space</i>) and
+quick-fixes (<i>Ctrl-1</i>) are contributed to make things smoother. 
+These two features will automatically
+enter the current user as the author, and the current day as the date 
+within your tag comment.</p>
+
+<br>
+<p class="credits">Tags for Software Engineering Activities in Eclipse (TagSEA)<br>is a research collaboration between 
+the University of Victoria's 
+<a href="http://www.thechiselgroup.org">Computer Human Interaction &amp; Software Engineering Lab</a> 
+and the <a href="http://domino.research.ibm.com/cambridge/research.nsf/pages/index.html">IBM Watson Research Centre</a>.</p>
+
+<div class="footer">
+<a href="http://sourceforge.net/"><img 
+src="http://sflogo.sourceforge.net/sflogo.php?group_id=169205&amp;type=2" 
+alt="SourceForge.net Logo" height="37" width="125"></a>
+</div>
+</div></div></div></div></div>
+
+</div>
+
+</body></html>

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Monitor Plug-in
+Bundle-SymbolicName: ca.uvic.cs.tagsea.monitor; singleton:=true
+Bundle-Version: 0.3.5
+Bundle-Activator: ca.uvic.cs.tagsea.monitor.TagSEAMonitorPlugin
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.update.core,
+ org.eclipse.update.ui,
+ ca.uvic.cs.tagsea,
+ org.eclipse.jdt.core
+Eclipse-LazyStart: true
+Bundle-ClassPath: .

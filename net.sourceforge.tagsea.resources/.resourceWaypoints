@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE waypoints SYSTEM "waypoint.dtd">
+<waypoints>
+ <waypoint resource="plugin.xml" lineNumber="35" date="enCA:19/01/07" author="Del Myers">
+  <tag>default</tag>
+  <tag>tagsea.bug.8.fix</tag>
+  <message>Added context menus for the Text editor, Java Editor, and XML editor rulers</message>
+ </waypoint>
+</waypoints>

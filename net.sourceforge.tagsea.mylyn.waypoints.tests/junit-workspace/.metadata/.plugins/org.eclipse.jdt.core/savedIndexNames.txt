@@ -1,0 +1,10 @@
+INDEX VERSION 1.121+C:\Documents and Settings\John\My Documents\Work\TagSEA\net.sourceforge.tagsea.mylyn.waypoints.tests\junit-workspace\.metadata\.plugins\org.eclipse.jdt.core
+520028942.index
+2544026962.index
+222632073.index
+1158055807.index
+2577553063.index
+4113049812.index
+3160980842.index
+559670790.index
+53578191.index

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application  xmlns:mx="http://www.adobe.com/2006/mxml"
+			   width="100%"
+			   height="100%"
+			   paddingTop="0" paddingBottom="0" paddingLeft="0" paddingRight="0"
+			   creationComplete="initApp()">
+	
+	<mx:Script source="main.as"/>
+	<mx:ViewStack id="stack">
+		<mx:Canvas id="videoView" width="100%" height="100%">
+			<mx:VideoDisplay id="myVid" height="158" width="211" autoPlay="false"
+							 playheadUpdate="videoPlayHeadEvent(event)" progress="videoProgressEvent(event)" ready="videoReadyEvent(event)" complete="videoComplete(event)"/>
+		</mx:Canvas>
+		<mx:Canvas id="errorView" width="100%" height="100%">
+			<mx:Text id="errorText" text="No Error"/>
+		</mx:Canvas>
+	</mx:ViewStack>
+</mx:Application>

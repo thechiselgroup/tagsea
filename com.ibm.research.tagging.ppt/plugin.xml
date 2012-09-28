@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="com.ibm.research.tagging.core.waypointModel">
+       <tagModel
+          name="Powerpoint waypoint model"
+          id="com.ibm.research.tagging.ppt.model"
+          class="com.ibm.research.tagging.ppt.PptWaypointModelExtension"
+       />
+   </extension>
+   
+   <extension
+         point="com.ibm.research.tagging.core.ui.waypointUI">
+       <tagUI
+          name="Powerpoint waypoint ui"
+          id="com.ibm.research.tagging.ppt.ui"
+          class="com.ibm.research.tagging.ppt.PptWaypointUIExtension"
+       />
+   </extension>
+   
+   <extension point = "org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tagging.ppt.tagpopup" objectClass="org.eclipse.core.resources.IFile" nameFilter="*.ppt">
+	    <action id="com.ibm.research.tagging.ppt.tagaction"
+	       label="Tag powerpoint slide..."
+	       icon="icons/PowerpointSlide.gif"
+	       menubarPath="additions"
+	       enablesFor="+"	      
+	       class="com.ibm.research.tagging.ppt.actions.NewPptSlideWaypointActionDelegate">
+	    </action>
+	 </objectContribution> 
+   </extension>
+
+   <extension id="pptWaypointMarker" point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.core.resources.problemmarker"/>
+        <persistent value="true"/>
+        <attribute name="com.ibm.research.tagging.ppt.slideStart"/>
+        <attribute name="com.ibm.research.tagging.ppt.slideEnd"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+       <specification
+             annotationType="com.ibm.research.tagging.ppt.pptWayPointAnnotation"
+             colorPreferenceKey="AnnotationColor"
+             colorPreferenceValue="95,238,255"
+             contributesToHeader="false"
+             highlightPreferenceKey="HighLight"
+             highlightPreferenceValue="false"
+             icon="icons/PowerpointSlide.gif"
+             includeOnPreferencePage="true"
+             label="Powerpoint Waypoint Annotation"
+             overviewRulerPreferenceKey="OverviewRuler"
+             overviewRulerPreferenceValue="true"
+             presentationLayer="1"
+             symbolicIcon="info"
+             textPreferenceKey="AnnotationOccurance"
+             textPreferenceValue="false"
+             textStylePreferenceKey="AnnotationTextStyle"
+             textStylePreferenceValue="NONE"
+             verticalRulerPreferenceKey="VerticalRuler"
+             verticalRulerPreferenceValue="true"/>
+   </extension>
+  
+   <!-- the "markerType" *must* be fully qualified - prefix with the plugin name -->
+   <extension point="org.eclipse.ui.editors.annotationTypes">
+       <type 
+       	 	name="com.ibm.research.tagging.ppt.pptWayPointAnnotation"
+	 		markerType="com.ibm.research.tagging.ppt.pptWaypointMarker">
+	   </type>
+   </extension>
+   <!-- End Custom Marker Support -->
+   
+</plugin>

@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Resources Waypoint Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.resources; singleton:=true
+Bundle-Version: 0.6.6.qualifier
+Bundle-Activator: net.sourceforge.tagsea.resources.ResourceWaypointPlugin
+Bundle-Vendor: University of Victoria
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ net.sourceforge.tagsea,
+ org.eclipse.jface.text,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.editors,
+ org.eclipse.jdt.ui,
+ org.eclipse.jdt.core,
+ org.eclipse.core.filesystem
+Eclipse-LazyStart: true
+Export-Package: net.sourceforge.tagsea.resources,
+ net.sourceforge.tagsea.resources.popup.actions,
+ net.sourceforge.tagsea.resources.ui
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

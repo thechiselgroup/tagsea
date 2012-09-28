@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="net.sourceforge.tagsea">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="net.sourceforge.tagsea" id="waypoint" name="waypoint"/>
+      </appInfo>
+      <documentation>
+         Defines a new kind of waypoint for the TagSEA platform. Waypoints will be created as lightweight data carriers in the platform. It is up to the plugin developer to supply a waypoint handler that will understand how to handle requests for navigation, and update important information in the workbench for changes to waypoints.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <choice>
+            <element ref="waypoint" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="interface" minOccurs="0" maxOccurs="unbounded"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="waypoint">
+      <complexType>
+         <sequence>
+            <element ref="attribute" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="parent" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unqualified name for this waypoint type. The fully qualified name will be the name of the contributing plugin, plus a period&apos;.&apos; and this unqualified name.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The human-readable name for this type of waypoint. For use within UI elements.
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="net.sourceforge.tagsea.AbstractWaypointDelegate"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="ui" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="net.sourceforge.tagsea.core.ui.IWaypointUIExtension"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="attribute">
+      <annotation>
+         <documentation>
+            Defines a new attribute for the interface.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of a metadata attribute that can be placed on this waypoint.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" use="required">
+            <annotation>
+               <documentation>
+                  Defines the type that this attribute is to have.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="string">
+                  </enumeration>
+                  <enumeration value="integer">
+                  </enumeration>
+                  <enumeration value="boolean">
+                  </enumeration>
+                  <enumeration value="date">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="label" type="string">
+            <annotation>
+               <documentation>
+                  A translatable, human readable name for this waypoint attribute which does not depend on a particular instance of a waypoint.
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="default" type="string">
+            <annotation>
+               <documentation>
+                  The default value for the given attribute. The value must by translatable into the type given by &quot;type&quot;. That is, for a type of &quot;string&quot;, any string will do. For a type of &quot;integer&quot;, the default must be a string representation of an integer value. For a type of &quot;boolean&quot;, the default must be either &quot;true&quot; or &quot;false&quot;.
+
+If this field is left blank, the defaults will be set to &quot;0&quot; for type integer, &quot;false&quot; for type &quot;boolean&quot; the empty string for types &quot;string&quot;, and January 1, 1970, 00:00:00 GMT for type &quot;date&quot;.
+
+Setting defaults for dates is a difficult challenge as date formats are different in different parts of the world. In order to support multiple formats, the following standard is used for defining dates. First, the two-character lower-case ISO-639 language code is used, then the two-character, upper-case country code is used, folowed by a colon (&apos;:&apos;) and the desired date in the short, locale-specific format. For example, March 28, 1981 in US English would be indicated by:
+
+enUS:3/28/81
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="parent">
+      <annotation>
+         <documentation>
+            Gives all the attributes of the parent to the newly created waypoint.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  They fully-qualified name of the parent type.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="interface">
+      <complexType>
+         <sequence>
+            <element ref="attribute" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unqualified name for this interface type. The fully qualified name will be the name of the contributing plugin, plus a period&apos;.&apos; and this unqualified name.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The human-readable name for this type of waypoint interface.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>

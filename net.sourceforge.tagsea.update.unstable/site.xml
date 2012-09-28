@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/net.sourceforge.tagsea.feature_0.6.3.v20071015-1512.jar" id="net.sourceforge.tagsea.feature" version="0.6.3.v20071015-1512">
+      <category name="TagSEA"/>
+   </feature>
+   <feature url="features/net.sourceforge.tagsea.extras_0.6.3.v20071015-1515.jar" id="net.sourceforge.tagsea.extras" version="0.6.3.v20071015-1515">
+      <category name="Extras"/>
+   </feature>
+   <feature url="features/com.ibm.research.tours.feature_0.1.3.v200711-1030.jar" id="com.ibm.research.tours.feature" version="0.1.3.v200711-1030" os="win32" ws="win32">
+      <category name="Extras"/>
+   </feature>
+   <feature url="features/com.ibm.research.tours.feature_0.1.3.v20080125-1049.jar" id="com.ibm.research.tours.feature" version="0.1.3.v20080125-1049" os="win32" ws="win32">
+      <category name="Extras"/>
+   </feature>
+   <feature url="features/net.sourceforge.tagsea.extras_0.6.5.v20080626-1300.jar" id="net.sourceforge.tagsea.extras" version="0.6.5.v20080626-1300">
+      <category name="Extras"/>
+   </feature>
+   <feature url="features/net.sourceforge.tagsea.feature_0.6.5.v20080626-1339.jar" id="net.sourceforge.tagsea.feature" version="0.6.5.v20080626-1339">
+      <category name="TagSEA"/>
+   </feature>
+   <feature url="features/net.sourceforge.tagsea.feature_0.6.7.v200807291500.jar" id="net.sourceforge.tagsea.feature" version="0.6.7.v200807291500">
+      <category name="TagSEA"/>
+   </feature>
+   <feature url="features/net.sourceforge.tagsea.feature_0.6.7.v200807291700.jar" id="net.sourceforge.tagsea.feature" version="0.6.7.v200807291700">
+      <category name="TagSEA"/>
+   </feature>
+   <category-def name="TagSEA" label="TagSEA"/>
+   <category-def name="Extras" label="Extras"/>
+</site>

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Clouds Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.clouds
+Bundle-Version: 0.6.7.qualifier
+Bundle-Activator: net.sourceforge.tagsea.clouds.CloudsPlugin
+Bundle-Vendor: Unversity of Victoria
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: net.sourceforge.tagsea.clouds,
+ net.sourceforge.tagsea.clouds.viewers,
+ net.sourceforge.tagsea.clouds.widgets

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE waypoints SYSTEM "waypoint.dtd">
+<waypoints>
+ <waypoint resource=".classpath" lineNumber="9" date="enCA:21/02/07" author="Del Myers">
+  <tag>blah</tag>
+  <tag>default</tag>
+  <message>blah blah</message>
+ </waypoint>
+</waypoints>

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Overlay Shell
+Bundle-SymbolicName: ca.uvic.chisel.tours.overlayshell;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: ca.uvic.chisel.tours.overlayshell.OverlayPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.ibm.research.tours;bundle-version="0.1.4"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -1,0 +1,82 @@
+/*******************************************************************************
+ * Copyright (c) 2006 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *     IBM Research
+ *******************************************************************************/
+package net.sourceforge.tagsea.core.ui.waypoints;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import net.sourceforge.tagsea.TagSEAPlugin;
+import net.sourceforge.tagsea.core.ITag;
+import net.sourceforge.tagsea.core.IWaypoint;
+
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+
+
+/**
+ * 
+ * @author mdesmond
+ *
+ */
+/*package*/ class WaypointTableSelectionChangedListener implements ISelectionChangedListener 
+{
+	/*
+	 * (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
+	 */
+	public void selectionChanged(SelectionChangedEvent event) 
+	{
+		IStructuredSelection structuredSelection = (IStructuredSelection)event.getSelection();
+		Object[] selection = structuredSelection.toArray();
+		
+		WaypointView view = TagSEAPlugin.getDefault().getUI().getWaypointView();
+		
+		if(view != null)
+		{
+			// If a single item is selected then populate the collapsable sections
+			if(selection.length > 0)
+			{
+				Set<ITag> tags = new HashSet<ITag>();
+				
+				for(Object selected : selection)
+				{
+					IWaypoint waypoint = (IWaypoint)((IAdaptable)selected).getAdapter(IWaypoint.class);
+					for(ITag tag : waypoint.getTags())
+						tags.add(tag);					
+				}
+				
+				view.setTags(tags.toArray(new ITag[0]));
+				
+				if(selection.length == 1) {
+					Object o = selection[0];
+					IWaypoint wp = (IWaypoint)((IAdaptable)o).getAdapter(IWaypoint.class);
+					if (wp != null)
+						view.updateSelectedWaypoint(wp);
+					else 
+						view.clearSelectedWaypoint();
+				}
+				else
+					view.clearSelectedWaypoint();
+			}
+			else
+			{
+				view.clearTags();
+				view.clearSelectedWaypoint();
+			}
+			
+			view.refreshSections();
+			view.fireSelection();
+		}
+	}
+}

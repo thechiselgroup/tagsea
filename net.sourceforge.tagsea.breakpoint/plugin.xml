@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sourceforge.tagsea.waypoint">
+      <waypoint
+            class="net.sourceforge.tagsea.breakpoint.waypoints.BreakpointWaypointDelegate"
+            name="Breakpoints"
+            type="breakpointWaypoint"
+            ui="net.sourceforge.tagsea.breakpoint.ui.BreakpointWaypointUI">
+     
+              <attribute
+               name="MarkerID"
+               type="string"/>
+               
+              <attribute
+               name="Resource"
+               type="string"/>
+               
+              <attribute
+               name="Enabled"
+               type="boolean"/>
+               
+      </waypoint>
+   </extension>
+   
+   <extension point="org.eclipse.ui.popupMenus"> 
+   <objectContribution
+         adaptable="true"
+         id="breakpointWaypointPopup"
+         objectClass="net.sourceforge.tagsea.core.IWaypoint">
+      
+      <action
+         id="DisableAllBreakpointAction" 
+         label="Disable All"
+         icon="icons/debug.gif"
+         menubarPath="additions" 
+         enablesFor="2+"
+       class="net.sourceforge.tagsea.breakpoint.actions.DisableAllBreakpointActionDelegate"> 
+      </action> 
+      
+      <action
+         id="EnableAllBreakpointAction" 
+         label="Enable All"
+         icon="icons/debug.gif"
+         menubarPath="additions" 
+         enablesFor="2+"
+       class="net.sourceforge.tagsea.breakpoint.actions.EnableAllBreakpointActionDelegate"> 
+      </action> 
+      
+      <action
+         id="DisableBreakpointAction" 
+         label="Disable"
+         icon="icons/debug.gif"
+         menubarPath="additions" 
+         enablesFor="1"
+       class="net.sourceforge.tagsea.breakpoint.actions.DisableBreakpointActionDelegate"> 
+      </action> 
+      
+      <action
+         id="EnableBreakpointAction" 
+         label="Enable"
+         icon="icons/debug.gif"
+         menubarPath="additions" 
+         enablesFor="1"
+       class="net.sourceforge.tagsea.breakpoint.actions.EnableBreakpointActionDelegate"> 
+      </action>
+      <visibility>
+            <objectState
+                  name="TYPE_FILTER_ATTRIBUTE"
+                  value="net.sourceforge.tagsea.breakpoint.breakpointWaypoint"/>
+      </visibility> 
+ 
+   </objectContribution> 
+</extension>
+</plugin>

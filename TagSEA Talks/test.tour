@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tour>
+	<title>test</title>
+	<description></description>
+	<author>Li-Te Cheng</author>
+	<tour-elements>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes>created this proposal in order to generate complete strings for tag names.</notes>
+			<transition>onClick</transition>
+			<url>eclipse:/net.sourceforge.tagsea.java/src/net/sourceforge/tagsea/java/autocomplete/internal/TagCompletionProposal.java?type=type&amp;signature=TagCompletionProposal</url>
+		</element>
+	</tour-elements>
+</tour>

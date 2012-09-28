@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Video"
+            id="ca.uvic.chisel.videoplayer.test">
+      </category>
+      <view
+            name="Video Player"
+            icon="icons/film.png"
+            category="ca.uvic.chisel.videoplayer.test"
+            class="ca.uvic.chisel.videoplayer.test.views.VideoPlayerView"
+            id="ca.uvic.chisel.videoplayer.test.views.VideoPlayerView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="ca.uvic.chisel.videoplayer.test.editors.VideoPlayerEditor"
+            default="true"
+            filenames="*.flv"
+            icon="icons/film.png"
+            id="ca.uvic.chisel.videoplayer.test.videoPlayerEditor"
+            name="Video Player">
+      </editor>
+   </extension>
+
+</plugin>

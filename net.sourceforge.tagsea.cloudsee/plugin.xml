@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<?This plugin is deprecated?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            category="net.sourceforge.tagsea.views"
+            class="net.sourceforge.tagsea.cloudsee.views.CloudSeeView"
+            icon="icons/tag.gif"
+            id="net.sourceforge.tagsea.CloudSeeView"
+            name="CloudSee"/>
+   </extension>
+
+</plugin>

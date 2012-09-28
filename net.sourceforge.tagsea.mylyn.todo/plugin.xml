@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="net.sourceforge.tagsea.mylyn.todo.menu"
+            targetID="org.eclipse.ui.views.TaskList">
+         <action
+               class="net.sourceforge.tagsea.mylyn.task.actions.TaskLocalTask"
+               enablesFor="+"
+               id="net.sourceforge.tagsea.mylyn.todo.localTask"
+               label="Create Local Task"
+               menubarPath="todoMylyn.menu/group">
+         </action>
+         <action
+               class="net.sourceforge.tagsea.mylyn.task.actions.TaskRepositoryTask"
+               enablesFor="+"
+               id="net.sourceforge.tagsea.mylyn.todo.repositoryTask"
+               label="Create Repository Task"
+               menubarPath="todoMylyn.menu/group">
+         </action>
+         <menu
+               id="todoMylyn.menu"
+               label="New MylynTask"
+               >
+            <separator
+                  name="group">
+            </separator>
+         </menu>
+         <action
+               class="net.sourceforge.tagsea.mylyn.task.TaskMylynTask"
+               id="net.sourceforge.tagsea.mylyn.todo.taskGoto"
+               label="Open Mylyn Tasks"
+               menubarPath="todoMylyn.menu">
+         </action>
+         <action
+               class="net.sourceforge.tagsea.mylyn.task.actions.TaskExistingTask"
+               id="net.sourceforge.tagsea.mylyn.task.existing"
+               label="Add to Existing Task"
+               menubarPath="todoMylyn.menu">
+         </action>
+      </viewerContribution>
+   </extension>
+   <extension
+         point="org.eclipse.mylyn.tasks.ui.actions">
+      <dynamicPopupMenu
+            class="net.sourceforge.tagsea.mylyn.task.actions.TaskMylynSubmenuContributor"
+            id="net.sourceforge.tagsea.mylyn.todo.dynamicMenu"
+            menuPath="tasks"
+            name="TODO Tasks">
+      </dynamicPopupMenu>
+   </extension>
+   <extension
+         point="org.eclipse.mylyn.tasks.ui.editors">
+      <hyperlinkDetector
+            class="net.sourceforge.tagsea.mylyn.task.TaskHyperlinkDetector"
+            id="net.sourceforge.tagsea.mylyn.taskHyperlinks">
+      </hyperlinkDetector>
+   </extension>
+   <extension
+         point="org.eclipse.ui.workbench.texteditor.hyperlinkDetectors">
+      <hyperlinkDetector
+            class="net.sourceforge.tagsea.mylyn.task.TaskHyperlinkDetector"
+            id="net.sourceforge.tagsea.mylyn.task.hyperlinkDetector"
+            name="Eclipse Task"
+            targetId="org.eclipse.mylyn.tasks.ui.TaskEditor">
+      </hyperlinkDetector>
+   </extension>
+
+</plugin>

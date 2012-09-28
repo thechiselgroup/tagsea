@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: C Waypoints Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.c;singleton:=true
+Bundle-Version: 0.6.3.qualifier
+Bundle-Activator: net.sourceforge.tagsea.c.CWaypointsPlugin
+Bundle-Vendor: University of Victoria, IBM
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ net.sourceforge.tagsea,
+ org.eclipse.jface.text,
+ org.eclipse.core.filebuffers,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.views,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.ide,
+ net.sourceforge.tagsea.resources,
+ org.eclipse.ui
+Eclipse-LazyStart: true
+Export-Package: net.sourceforge.tagsea.c
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

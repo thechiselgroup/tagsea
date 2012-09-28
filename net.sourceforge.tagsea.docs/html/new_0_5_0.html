@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<LINK REL=StyleSheet HREF="book.css" TYPE="text/css" MEDIA=screen>
+<title>TagSEA 0.5.0 New and Noteworthy</title>
+</head>
+<body>
+<h1>TagSEA 0.5.0 New And Noteworthy</h1>
+<hr>
+<center><a href="index.html">Home</a> | 
+<a href="new.html">New</a> |
+ <a href="terminology.html">Terminology</a> | 
+<a href="usage.html">Usage</a> |
+<a href="javawaypoint.html">Java Waypoints</a> |
+<a href="resourcewaypoint.html">Resource Waypoints</a> |
+<a href="download.html">Download</a> |
+<a href="http://sourceforge.net/projects/tagsea" target=top>Project</a> | 
+<a href="https://secure.cs.uvic.ca/bugzilla/enter_bug.cgi?product=TagSEA">Bugs</a>
+</center>
+<hr>
+<ul>
+	<li><a href="#core">Core</a></li>
+	<li><a href="#ui">Core UI</a></li>
+	<li><a href="#java">Java Waypointing</a></li>
+	<li><a href="#resource">Resource Waypointing</a></li>
+	<li><a href="#routes">Routes</a></li>
+</ul>
+
+<hr>
+<h2><a name="core"></a>Core</h2>
+<hr>
+<table valign="top" cellpadding=10>
+<tr>
+	<td valign="top"><p><b>New plugin architecture</b></p></td>
+	<td valign="top">
+		<p>Waypoint types and user interfaces can be plugged-in.</p>
+		<img src="images/plugin.jpg">
+		<p>There is a new way to plug-in new waypoint types. Extenders can declare the
+		attributes and the "parent" waypoint types for new waypoints. Child types
+		of waypoints only inheret attibutes, not functionality from the parent.</p>
+		<p>Abstract classes and interfaces are supplied to allow extenders to have control
+		over major life-cycle events and changes to the waypoints, as well as waypoint
+		navigation. Extenders can also supply
+		optional ui extensions to the TagSEA core ui.</p>
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>
+	<td valign="top"><p><b>New implementation for hierarchical tags</b></p></td>
+	<td valign="top">
+		<p>Tags are no longer hierachical within the model. Instead, a naming convension
+		is used to treat tags as hierarchies. Dot-separated tag names can be treated as a
+		tree structure, and can be manipulated as such within the core ui.</p>
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>
+	<td valign="top"><p><b>New platform waypoint/tag model management</b></p></td>
+	<td valign="top">
+		<p>Users of TagSEA are now exposed only to an abstract interface of the tags
+		and waypoints model. Extenders and users don't have to worry about managing 
+		references to waypoints and tags as much because most of the work is taken
+		care of in the platform.</p>
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>	
+	<td valign="top"><p><b>New waypoint/tag change managment</b></p></td>
+	<td valign="top">
+		<p>Changes to waypoints and tags can now be done atomically, or as sets within
+		a <code>TagSEAOperation</code> which can be run by the main <code>TagSEAPlugin</code>
+		instance. All changes to the waypoint and tags models are synchronized by the
+		platform so that concurrent changes to the model can't interfere with one another.
+		Changes that occur within a TagSEAOperation are all compressed and combined into a
+		single event that doesn't get posted to listeners until the operation has completed.</p>
+	</td>
+</tr>
+</table>
+
+<hr>
+<h2><a name="ui"></a>Core UI</h2>
+<hr>
+<table valign="top" cellpadding=10>
+<tr>
+	<td valign="top"><p><b>Separated tag/waypoint views</b></p></td>
+	<td valign="top">
+		<p>The Tag and Waypoint views are now separated in order to maximize screen realistate.</p>
+		<img src="images/views.jpg">
+		<p>The Waypoints view can be linked to respond to the selection in the Tags view.</p>
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>
+	<td valign="top"><p><b>Smarter filtering in Tags View</b></p></td>
+	<td valign="top">
+		<p>The filtering in the Tags View now correctly finds matches in parent and child tag
+		names.</p>
+		<img src="images/smartfilter.jpg">
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>
+	<td valign="top"><p><b>Filter highlighting</b></p></td>
+	<td valign="top">
+		<p>When using patterns for filtering in both the Tags View, and the Waypoints View,
+		the portion of the item that matches is highligted so that it is easier to keep
+		track of what is being filtered.</p>
+		<img src="images/filterhighlight.jpg">
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>	
+	<td valign="top"><p><b>Properties (attributes) filtering for waypoints</b></p></td>
+	<td valign="top">
+		<p>Waypoints can be filtered by property values. Available properties can be viewed
+		via a "Ctrl-space" content-assist, and are determined by waypoint plugins.</p>
+		<img src="images/filterattributes.jpg">
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>	
+	<td valign="top"><p><b>Advanced properties tab for waypoints</b></p></td>
+	<td valign="top">
+		<p>All the properties/attributes for a waypoint can now be viewed in the advanced
+		properties tab. The visual representation of the properties can be determined by
+		the waypoint type's defining plugin. Property values may be changed within the 
+		properties tab as well, if the defining plugin will allow the change.</p>
+		<img src="images/properties.jpg">
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>	
+	<td valign="top"><p><b>Fixed and improved tag refactoring</b></p></td>
+	<td valign="top">
+		<p>All previous tag refactorings are still available and have been significantly
+		improved for reliability. There is also a new "Generalize" refactoring that moves
+		all waypoints that are tagged by the "child" tags of the generalized tag into the
+		parent of that tag. This allows users to remove a tag name without removing the entire 
+		tag sub-tree.</p>
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>	
+	<td valign="top"><p><b>Support for viewing tags as hierarchies, and using the flat, raw names</b></p></td>
+	<td valign="top">
+		<p>Hierarchies are now computed solely by a naming convension on the tags. Users
+		can view the tag names both as a hierarchy and using the raw names.</p>
+		<img src="images/flattags.jpg">
+		<p>NOTE: Moving and generalizing of tag names is not allowed when the tags are viewed
+		using their flat names. Also, renaming and deleting tags reacts differently than when
+		done in the hierarchy.</p>
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>	
+	<td valign="top"><p><b>Waypoint markers and annotations</b></p></td>
+	<td valign="top">
+		<p>A new marker type <code>net.sourceforge.tagsea.waypointmarker</code> has been
+		created to make it easy for extenders to add decorations and annotations for
+		waypoints that reference resources in the workspace. Creating markers of this type,
+		or subtypes of it, on resources in the workspace will automatically add decorations
+		and annotations in the IDE.</p>
+		<img src="images/markers.jpg">
+	</td>
+</tr>
+</table>
+<hr>
+<a name="java"></a>
+<h2>Java Waypoints</h2>
+<hr>
+<table valign="top" cellpadding=10>
+
+
+<tr>
+	<td valign="top"><p><b>New waypoint syntax</b></p></td>
+	<td valign="top">
+		<p>Waypoints are found in all comment types, but are only parsed to the end of the line.
+		Metadata is handled differently as well: it is no longer parsed within square-brackets
+		at the end of the waypoint text, but as name-value pairs in the tag portion of the
+		waypoint text. For example:</p>
+		<b>Old Syntax:</b><br>
+			<font color="00AA23"><code>//@tag mytag : This is a comment [Date=Dec 5. 2006, Author=My Name]</code></font>
+			<br>
+		<b>New Syntax:</b><br>
+			<font color="00AA23"><code>//@tag mytag -date=05/12/2006 -author="My Name" : This is a comment</code></font>
+			<br>
+		<p>Metadata values that contain white space or colons must be within double-quotes.
+		the valid metadata for a waypoint is only date and author. Dates can be customized for
+		locales and languages. The format for a locale-specific date is:</p>
+		<code>-date="<i>languageCOUNTRY</i>:<i>Short-Date</i>"</code>
+		<p>Where <code><i>language</i></code> is the two-letter ISO language code, 
+		<code><i>COUNTRY</i></code> is the two-letter ISO country code, and 
+		<code><i>Short-Date</i></code> is the short-date format as defined by the Java standard.
+		
+		Some examples are:</p>
+		January 15, 2007 in Canada:<br>
+		<code>-date="enCA:15/01/07"</code><br><br>
+		January 15, 2007 in US:<br>
+		<code>-date="enUS:01/15/07"</code>
+		<p>If no locale is specified, the default locale is used.</p>
+		</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>
+	<td valign="top"><p><b>Quick-fix for author and date attributes</b></p></td>
+	<td valign="top">
+		<p>A quick-fix is supplied for quickly adding author and date to the waypoint.</p>
+		<img src="images/quickfix.jpg">
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>
+<td valign="top"><p><b>Warnings for bad tag syntax</b></p></td>
+	<td valign="top">
+		<p>Warnings are now supplied when the syntax for a waypoint is bad.</p>
+		<img src="images/warning.jpg">
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>
+<td valign="top"><p><b>Editor saves for waypoint and tag changes</b></p></td>
+	<td valign="top">
+		<p>Users are now given indication that effected dirty editors will be saved when waypoints
+		and tags are changed.</p>
+		<img src="images/saveeditors.jpg">
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>
+<td valign="top"><p><b>More complete code completion</b></p></td>
+	<td valign="top">
+		<p>Ctrl-space code completion for waypoints now gives a more complete list of
+		available tags.</p>
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>
+<td valign="top"><p><b>Automatic synchronization of waypoints and tags</b></p></td>
+	<td valign="top">
+		<p>Waypoints and tags are now automatically synchronized with the Java editors
+		as you type. You don't have to save your files in order to see the changes in the
+		waypoints and tags.</p>
+	</td>
+</tr>
+<tr><td colspan=2><hr></td></tr>
+<tr>
+<td valign="top"><p><b>Waypoint attributes can be changed inside the Waypoints View</b></p></td>
+	<td valign="top">
+		<p>The "author", "date", and "message" attributes on Java waypoints can be changed
+		within the waypoints view. The Java source code is updated when the changes are
+		applied.</p>
+	</td>
+</tr>
+</table>
+<hr>
+<a name="resource"></a>
+<h2>Resource Waypoints</h2>
+<hr>
+<table valign="top" cellpadding=10>
+<tr>
+	<td valign="top"><p><b>New simple resource waypoints</b></p></td>
+	<td valign="top">
+		<p>Any resource in the workspace can now be waypointed on. Simple dialogs are presented
+		via context menus in resource viewers and in text editors. The dialog allows users
+		to enter tag names for the resource in a content-assisting text box, or using a
+		check-box selection dialog. Several attributes such as author, date, message, and
+		line number (for text files) can be edited as well.</p>
+		<img src="images/resource.jpg">
+	</td>
+</tr>
+</table>
+<hr>
+<a name="routes"></a>
+<h2>Routes</h2>
+<hr>
+<table valign="top" cellpadding=10>
+<tr>
+	<td valign="top"><p><b>No more routes view</b></p></td>
+	<td valign="top">
+		<p>Routes are no longer supported. The initial experiments showed them to
+		be too volatile and unreliable in their current form. New methods of implementing
+		routes are currently being explored, and we hope to have a new plugin available soon.</p>
+	</td>
+</tr>
+</table>
+
+<hr>
+<center><a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=169205&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a></center>
+
+
+</body>
+</html>

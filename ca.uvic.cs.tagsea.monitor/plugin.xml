@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="TagSEA Log"
+            icon="icons/waypoint.gif"
+            category="ca.uvic.cs.tagsea"
+            class="ca.uvic.cs.tagsea.monitor.views.TagSEALogView"
+            id="ca.uvic.cs.tagsea.monitor.views.TagSEALogView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.ui.resourcePerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.TaskList"
+               relationship="right"
+               id="ca.uvic.cs.tagsea.monitor.views.TagSEALogView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="ca.uvic.cs.tagsea.monitor">
+      <monitor
+            class="ca.uvic.cs.tagsea.monitor.SimpleLoggingMonitor"
+            name="%monitor.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="ca.uvic.cs.tagsea.monitor.MonitorPreferences"/>
+   </extension>
+
+</plugin>

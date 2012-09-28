@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="http://tagsea.sourceforge.net/update">
+      TagSEA is a robust, extendable framework with exemplary tools used for tagging and waypointing source code, resources, or whatever you would like within Eclipse.
+
+Note: you MUST uninstall all previous versions of TagSEA older than 0.5.0 in order to use this update site. Keeping older versions of tagsea installed will cause conflicts.
+   </description>
+   <feature url="features/net.sourceforge.tagsea.extras_0.6.4.v20071005-1500.jar" id="net.sourceforge.tagsea.extras" version="0.6.4.v20071005-1500">
+      <category name="TagSEA Extras"/>
+   </feature>
+   <feature url="features/com.ibm.research.tours.feature_0.1.2.v20071015-1517.jar" id="com.ibm.research.tours.feature" version="0.1.2.v20071015-1517" os="win32" ws="win32">
+      <category name="TagSEA Extras"/>
+   </feature>
+   <feature url="features/net.sourceforge.tagsea.feature_0.6.4.v20071019-1745.jar" id="net.sourceforge.tagsea.feature" version="0.6.4.v20071019-1745">
+      <category name="TagSEA Core and Help"/>
+   </feature>
+   <feature url="features/net.sourceforge.tagsea.feature_0.6.6.v200807111625.jar" id="net.sourceforge.tagsea.feature" version="0.6.6.v200807111625">
+      <category name="TagSEA Core and Help"/>
+   </feature>
+   <feature url="features/net.sourceforge.tagsea.extras_0.6.6.v200807111625.jar" id="net.sourceforge.tagsea.extras" version="0.6.6.v200807111625">
+      <category name="TagSEA Extras"/>
+   </feature>
+   <category-def name="TagSEA Core and Help" label="TagSEA">
+      <description>
+         The basic elements of TagSEA. Includes the TagSEA platform, documentation, java waypoints, and resource waypoints.
+      </description>
+   </category-def>
+   <category-def name="TagSEA Extras" label="Extras"/>
+</site>

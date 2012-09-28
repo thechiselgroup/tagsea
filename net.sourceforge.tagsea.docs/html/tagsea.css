@@ -1,0 +1,281 @@
+body {
+  margin-top:   1em;
+  margin-left:  1em;
+  background: #ffffff;
+  font-family: sans-serif;
+  background-color: #ffffee;
+  color: #333333;
+}
+
+div.frame{
+  width: 900px;
+}
+
+p.title{
+  font-weight: bold;
+  font-size: 140%;
+margin-left: 1em;
+margin-top: 0.4em;
+margin-bottom: 0em;
+}
+
+p.version{
+  font-size: 70%;
+margin-left: 2em;
+margin-bottom: 1.2em;
+}
+
+#main {
+  margin-top:  -10px;
+  margin-left: -10px;
+  padding:     0em;
+  padding-top: 0em;
+  background: #FFF;
+}
+img {
+  border: 0;
+}
+
+div.mainpoints {
+  float: right;
+  display: inline;
+  position: relative;
+  width: 400px;
+  margin-top: -1em;
+}
+
+ul.mainpoints li{
+  margin-top: 0.5em;
+}
+
+.sidebox {
+  margin-left: 1.5em;
+  margin-right: 1em;
+  margin-top: 0em;
+  float: right;
+  display: inline;
+  position: relative;
+  width: 225px;
+  border: solid 1px #999999;
+  background-color: #f9f9f9;
+}
+
+.newsbox {
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 0.5em;
+  border: solid 1px #999999;
+  background-color: #f9f9f9;
+
+}
+
+.upto{
+  background-color: rgb(252,243,162); 
+}
+
+h5.news {
+  margin: 0.5em; 
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+p.news{
+  margin: 0.5em;
+  font-size: 90%;
+}
+
+
+h2 {
+  margin-left: 1em;
+  margin-right: 1em;
+  padding-bottom: 2px;
+  font-size: 1.2em;
+  color: #333333;
+  border-bottom: 1px solid #999999;
+}
+h3{
+  margin-top:    1.5em;
+  margin-left:   1.2em;
+  margin-right:  1.2em;
+  margin-bottom: 1.0em;
+  border-bottom: 1px dotted #999;
+}
+h4{
+  margin-top:    1.5em;
+  margin-left:   1.2em;
+  margin-right:  1.2em;
+  margin-bottom: 1.0em;
+}
+h5{
+  margin-top:    1.5em;
+  margin-left:   1.5em;
+  margin-right:  1.5em;
+  margin-bottom: 1.0em;
+}
+
+
+p{
+  margin-top:    2px;
+  margin-left:   2em;
+  margin-right:  2em;
+  margin-bottom: 0.5em;
+}
+ul {
+  margin-top:    2px;
+  margin-left:   1em;
+  margin-right:  1em;
+  margin-bottom: 0.5em;
+  padding-left:  2em;
+}
+ol {
+  margin-top:    2px;
+  margin-left:   1.5em;
+  margin-right:  1em;
+  margin-bottom: 0.5em;
+  padding-left:  2em;
+}
+
+ul li {
+  margin: 2px;
+}
+ol li {
+  margin: 2px;
+}
+hr {
+border: 0;
+color: #9E9E9E;
+background-color: #9E9E9E;
+height: 1px;
+width: 92%;
+text-align: left;
+}
+
+a {
+  color:#336699;
+  text-decoration:none;
+  font-weight: bold;
+}
+a:visited {color:#336699;}
+a:hover {background-color:#eee;}
+
+p.credits{
+  font-size: 80%;
+  text-align: center;
+  border-top: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+}
+
+div.footer{
+  margin-top: 1em;
+  margin-right: 1em;
+  text-align: right;
+}
+
+#navlist
+{
+  float: right;
+  display: inline;
+  position: relative;
+  width: 550px;
+  margin-top: 1.6em;
+font-family: arial, helvetica, sans-serif;
+font-size: 90%;
+font-weight: bold;
+text-align: center;
+}
+
+#navlist li
+{
+display: inline;
+padding: 0.2em 0.4em;
+margin-left: 3px;
+text-decoration: none;
+}
+
+li.current
+{
+color: #666666;
+}
+
+P.Code {
+	display: block;
+	white-space: pre;
+	text-align: left;
+	text-indent: 0pt;
+	font-size: 11pt;
+	margin-left:   3em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	color: #009900;
+	vertical-align: baseline;
+	font-family: "Courier New", Courier, monospace;
+}
+H6.CaptionFigColumn {
+	display: block;
+	text-align: left;
+	text-indent: 0pt;
+	margin-top: 3pt;
+	margin-bottom: 11pt;
+	margin-right: 0pt;
+	margin-left: 0pt;
+	font-size: 9pt;
+	font-weight: bold;
+	font-style: Italic;
+	color: #000000;
+	text-decoration: none;
+	vertical-align: baseline;
+	text-transform: none;
+}
+P.Note {
+	display: block;
+	text-align: left;
+	text-indent: 0pt;
+	margin-top: 19.5pt;
+	margin-bottom: 19.5pt;
+	margin-right: 0pt;
+	margin-left: 30pt;
+	font-size: 10pt;
+	font-weight: normal;
+	font-style: normal;
+	color: #000000;
+	text-decoration: none;
+	vertical-align: baseline;
+	text-transform: none;
+}
+
+#shadow-container .shadow2,  
+#shadow-container .shadow3,  
+#shadow-container .container {  
+  position: relative;  
+  left: -1px;  
+  top: -1px;  
+}  
+   
+#shadow-container .shadow1 {  
+  background: #F1F0F1;  
+}  
+   
+#shadow-container .shadow2 {  
+  background: #DBDADB;  
+}  
+   
+#shadow-container .shadow3 {  
+  background: #B8B6B8;  
+}  
+   
+#shadow-container .container {  
+  background: #ffffff;  
+  border: 1px solid #848284;  
+  padding: 10px;  
+}
+
+
+#shadow1 {
+  padding: 6px;
+  border-right:  1px solid #999;
+  border-bottom: 1px solid #999;
+  background: #888;
+}
+#shadow2 {
+  border: 1px solid #aa9;
+}

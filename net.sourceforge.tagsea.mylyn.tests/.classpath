@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/net.sourceforge.tagsea.mylyn.waypoints"/>
+	<classpathentry kind="lib" path="C:/Program Files/Eclipse/Eclipse 3.3/eclipse/plugins/org.eclipse.swt_3.3.2.v3349d.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Eclipse/Eclipse 3.3/eclipse/plugins/org.eclipse.jface.text_3.3.2.r332_20071017-0800.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

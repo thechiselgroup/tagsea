@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="tourEditorExtension" name="Tour Editor Extension" schema="schema/tourEditorExtension.exsd"/>
+
+    <extension point="com.ibm.research.tours.tourElementDropAdapter">
+       <tourElementDropAdapter
+       	   id="com.ibm.research.tours.content.dropadapter.ResourceDropAdapter"
+       	   class="com.ibm.research.tours.content.dropadapter.ResourceDropAdapter"/>
+    </extension>
+
+    <extension point="com.ibm.research.tours.tourElementDropAdapter">
+       <tourElementDropAdapter
+       	   id="com.ibm.research.tours.content.dropadapter.LocalSelectionDropAdapter"
+       	   class="com.ibm.research.tours.content.dropadapter.LocalSelectionDropAdapter"/>
+    </extension>
+    
+	<extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.content.pickTextRegion" 
+     objectClass="org.eclipse.ui.part.FileEditorInput">	    
+		<action id="com.ibm.research.tours.content.actions.PickRegionActionDelegate"
+	       label="Pick text region"
+	       menubarPath="additions"
+	       icon="icons/pick.gif"
+	       enablesFor="*"	      
+	       class="com.ibm.research.tours.content.actions.PickRegionActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+	
+	<extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.content.pickTextRegion" 
+     objectClass="org.eclipse.jdt.internal.ui.javaeditor.IClassFileEditorInput">	    
+		<action id="com.ibm.research.tours.content.actions.PickRegionActionDelegate"
+	       label="Pick up text region"
+	       menubarPath="additions"
+	       icon="icons/pick.gif"
+	       enablesFor="*"	      
+	       class="com.ibm.research.tours.content.actions.PickRegionActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+	
+	<extension point ="org.eclipse.ui.popupMenus">
+       <viewerContribution
+             id="com.ibm.research.tours.content.dropTextregion"
+             targetID="com.ibm.research.tours.editors.TourEditor">
+             
+          <action
+                class="com.ibm.research.tours.content.actions.DropRegionActionDelegate"
+                icon="icons/pick.gif"
+                id="com.ibm.research.tours.content.actions.DropRegionActionDelegate"
+                label="Drop text region"
+                menubarPath="additions"/>
+       </viewerContribution>
+    </extension>
+    
+   <extension point ="org.eclipse.ui.popupMenus">
+       <viewerContribution
+             id="com.ibm.research.tours.content.dropFile"
+             targetID="com.ibm.research.tours.editors.TourEditor">
+             
+          <action
+                class="com.ibm.research.tours.content.actions.DropFileActionDelegate"
+                icon="icons/file.gif"
+                id="com.ibm.research.tours.content.actions.DropFileActionDelegate"
+                label="Drop file"
+                menubarPath="additions"/>
+       </viewerContribution>
+    </extension>
+    
+    <extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.content.pickFile" 
+     objectClass="org.eclipse.jdt.internal.ui.javaeditor.IClassFileEditorInput">	    
+		<action id="com.ibm.research.tours.content.actions.PickFileActionDelegate"
+	       label="Pick up file"
+	       menubarPath="additions"
+	       icon="icons/file.gif"
+	       enablesFor="*"	      
+	       class="com.ibm.research.tours.content.actions.PickFileActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+	
+    <extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.content.pickFile" 
+     objectClass="org.eclipse.ui.part.FileEditorInput">	    
+		<action id="com.ibm.research.tours.content.actions.PickFileActionDelegate"
+	       label="Pick up file"
+	       menubarPath="additions"
+	       icon="icons/file.gif"
+	       enablesFor="*"	      
+	       class="com.ibm.research.tours.content.actions.PickFileActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+    
+    <!-- start Custom java text Marker Support -->
+    <extension id="tourtextmarker" point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.core.resources.textmarker"/>
+        <persistent value="false"/>
+    </extension>
+   
+    <extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+       <specification
+             annotationType="com.ibm.research.tours.content.tourtextannotation"
+             colorPreferenceKey="com.ibm.research.tours.content.tourtextannotation.color"
+             colorPreferenceValue="0,0,0"
+             contributesToHeader="false"
+             highlightPreferenceKey="com.ibm.research.tours.content.tourtextannotation.highlight"
+             highlightPreferenceValue="false"
+             icon="icons/tour.gif"
+             includeOnPreferencePage="true"
+             label="Tour text annotation"
+             overviewRulerPreferenceKey="com.ibm.research.tours.content.tourtextannotation.overviewruler"
+             overviewRulerPreferenceValue="false"
+             presentationLayer="1"
+             symbolicIcon="info"
+             textPreferenceKey="com.ibm.research.tours.content.tourtextannotation.textpreference"
+             textStylePreferenceValue="NONE"
+             textPreferenceValue="false"
+             textStylePreferenceKey="com.ibm.research.tours.content.tourtextannotation.textstyle"
+             verticalRulerPreferenceKey="com.ibm.research.tours.content.tourtextannotation.verticalruler"
+             verticalRulerPreferenceValue="false"/>
+    </extension>
+    
+    <!-- the "markerType" *must* be fully qualified - prefix with the plugin name -->
+    <extension point="org.eclipse.ui.editors.annotationTypes">
+       <type 
+       	 	name="com.ibm.research.tours.content.tourtextannotation"
+	 		markerType="com.ibm.research.tours.content.tourtextmarker">
+	   </type>
+    </extension>
+    <!-- End Custom Marker Support -->
+
+<!--
+	<extension point ="org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tours.content.powerpointPopup" 
+     objectClass="com.ibm.research.tours.content.elements.PowerpointTourElement">	    
+		<action id="com.ibm.research.tours.actions.SelectSlidesActionDelegate"
+	       label="Selected Slide range..."
+	       menubarPath="additions"
+	       icon="icons/powerpoint.gif"
+	       enablesFor="1"	      
+	       class="com.ibm.research.tours.content.actions.SelectSlidesActionDelegate">
+	    </action>
+	 </objectContribution>
+	</extension>
+-->
+
+    <extension point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+       <tourElementDoubleClickDelegate
+       	   objectContribution="com.ibm.research.tours.content.elements.ResourceURLTourElement"
+       	   class="com.ibm.research.tours.content.actions.DoubleClickActionDelegate"/>
+    </extension>
+</plugin>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="net.sourceforge.tagsea.waypoint">
+      <waypoint
+            class="net.sourceforge.tagsea.url.waypoints.URLWaypointDelegate"
+            name="URLs"
+            type="urlwaypoint"
+            ui="net.sourceforge.tagsea.url.ui.URLWaypointUI">
+     
+              <attribute
+               name="URL"
+               type="string"/>
+             
+      </waypoint>
+   </extension>
+
+    <extension
+          point="org.eclipse.ui.viewActions">
+       <viewContribution
+             id="URLWaypointContribution"
+             targetID="net.sourceforge.tagsea.tagseaview">
+          <action
+                class="net.sourceforge.tagsea.url.actions.NewURLWaypointActionDelegate"
+                icon="icons/internal_browser.gif"
+                id="net.sourceforge.tagsea.actions.NewURLWaypointActionDelegate"
+                label="Tag a URL"
+                menubarPath="additions"
+                style="push"
+                toolbarPath="additions"
+                tooltip="Tag a URL"/>
+       </viewContribution>
+    </extension>
+    
+       <extension point="org.eclipse.ui.popupMenus"> 
+   <objectContribution id="breakpointWaypointPopup"
+   objectClass="net.sourceforge.tagsea.core.IWaypoint"
+   adaptable="true">
+   <filter
+         name="TYPE_FILTER_ATTRIBUTE"
+         value="net.sourceforge.tagsea.url.urlwaypoint">
+      </filter>
+      
+      <action
+         id="CopyURLAction" 
+         label="Copy link"
+         menubarPath="additions" 
+         enablesFor="1"
+       class="net.sourceforge.tagsea.url.actions.CopyURLActionDelegate"> 
+      </action> 
+      
+      <action
+         id="OpenExternalAction" 
+         label="Open in external browser"
+         icon="icons/internal_browser.gif"
+         menubarPath="additions" 
+         enablesFor="1"
+       class="net.sourceforge.tagsea.url.actions.OpenInExternalBrowserActionDelegate"> 
+      </action> 
+   </objectContribution>
+</extension>
+
+</plugin>

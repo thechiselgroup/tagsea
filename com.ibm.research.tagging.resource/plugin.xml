@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="decoratableResource" name="Decoratable Resource" schema="schema/decoratableResource.exsd"/>
+
+    <extension point="com.ibm.research.tagging.core.ui.waypointUI">
+       <tagUI
+       	   name="Resource waypoint UI"
+       	   id="com.ibm.research.tagging.resource.waypoint.ui"
+       	   class="com.ibm.research.tagging.resource.ResourceWaypointUIExtension"/>
+    </extension>
+
+    <extension
+          point="com.ibm.research.tagging.core.waypointModel">
+       <tagModel
+       	   name="Resource waypoint model"
+       	   id="com.ibm.research.tagging.resource.waypoint.model"
+       	   class="com.ibm.research.tagging.resource.ResourceWaypointModelExtension" />
+    </extension>
+
+    <!-- start Custom resource Marker Support -->
+    <extension id="resourceWaypointMarker" point="org.eclipse.core.resources.markers">
+        <persistent value="true"/>
+        <attribute name="com.ibm.research.tagging.resource.author"/>
+        <attribute name="com.ibm.research.tagging.resource.description"/>
+        <attribute name="com.ibm.research.tagging.resource.date"/>
+        <attribute name="com.ibm.research.tagging.resource.tags"/>
+    </extension>
+   
+    <extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+       <specification
+             annotationType="com.ibm.research.tagging.resource.resourceWaypointAnnotation"
+             colorPreferenceKey="AnnotationColor"
+             colorPreferenceValue="95,238,255"
+             contributesToHeader="false"
+             highlightPreferenceKey="HighLight"
+             highlightPreferenceValue="false"
+             icon="icons/waypoint.gif"
+             includeOnPreferencePage="true"
+             label="Resource Waypoint Annotation"
+             overviewRulerPreferenceKey="OverviewRuler"
+             overviewRulerPreferenceValue="true"
+             presentationLayer="1"
+             symbolicIcon="info"
+             textPreferenceKey="AnnotationOccurance"
+             textPreferenceValue="false"
+             textStylePreferenceKey="AnnotationTextStyle"
+             textStylePreferenceValue="NONE"
+             verticalRulerPreferenceKey="VerticalRuler"
+             verticalRulerPreferenceValue="true"/>
+    </extension>
+  
+    <!-- the "markerType" *must* be fully qualified - prefix with the plugin name -->
+    <extension point="org.eclipse.ui.editors.annotationTypes">
+       <type 
+       	 	name="com.ibm.research.tagging.resource.resourceWaypointAnnotation"
+	 		markerType="com.ibm.research.tagging.resource.resourceWaypointMarker">
+	   </type>
+    </extension>
+    <!-- End Custom Marker Support -->
+    
+    <!-- Resource tagging -->
+ 	<extension point = "org.eclipse.ui.popupMenus">
+     <objectContribution id="com.ibm.research.tagging.resource.tagpopup" 
+          objectClass="org.eclipse.core.resources.IResource">
+	    
+	    <action id="com.ibm.research.tagging.resource.actions.tag"
+	       label="Tag as..."
+	       icon="icons/tag.gif"
+	       menubarPath="additions"
+	       enablesFor="+"	      
+	       class="com.ibm.research.tagging.resource.actions.TagActionDelegate">
+	    </action>
+
+        <!-- not really that useful - disabling for now	   
+	   	<action id="com.ibm.research.tagging.resource.actions.quicktag"
+	       label="Quick tag..."
+	       icon="icons/tag.gif"
+	       menubarPath="additions"
+	       enablesFor="+"	      
+	       class="com.ibm.research.tagging.resource.actions.QuickTagActionDelegate">
+	    </action>
+	     -->
+	 </objectContribution> 
+	 
+     <objectContribution id="com.ibm.research.tagging.resource.tagpopup" 
+          objectClass="org.eclipse.jdt.core.IJavaElement">
+          
+        <!-- we treat java projects and packages as resources -->	    
+	     <visibility>
+	        <or>
+              <objectClass name="org.eclipse.jdt.core.IJavaProject"/>
+              <objectClass name="org.eclipse.jdt.core.IPackageFragment"/>
+              <objectClass name="org.eclipse.jdt.core.IPackageFragmentRoot"/>
+	        </or>
+	     </visibility>
+	    
+	    <action id="com.ibm.research.tagging.resource.actions.tag"
+	       label="Tag as..."
+	       icon="icons/tag.gif"
+	       menubarPath="additions"
+	       enablesFor="+"	      
+	       class="com.ibm.research.tagging.resource.actions.TagActionDelegate">
+	    </action>
+	   
+	   	<action id="com.ibm.research.tagging.resource.actions.quicktag"
+	       label="Quick tag..."
+	       icon="icons/tag.gif"
+	       menubarPath="additions"
+	       enablesFor="+"	      
+	       class="com.ibm.research.tagging.resource.actions.QuickTagActionDelegate">
+	    </action>
+	 </objectContribution> 
+	 
+	 </extension>
+	 
+    <extension
+          point="org.eclipse.ui.viewActions">
+       <viewContribution
+             id="com.ibm.research.tagging.resource.viewcontribution"
+             targetID="com.ibm.research.tagging.core.ui.waypoints.WaypointView">
+          <action
+                class="com.ibm.research.tagging.resource.actions.LinkResourceWaypointActionDelegate"
+                icon="icons/link.gif"
+                id="com.ibm.research.tagging.resource.link"
+                label="Link to package explorer"
+                menubarPath="additions"
+                style="toggle"
+                toolbarPath="additions"
+                tooltip="Link to package explorer"/>
+       </viewContribution>
+    </extension>
+    
+    <extension
+          point="org.eclipse.ui.decorators">
+       <decorator
+             adaptable="true"
+             class="com.ibm.research.tagging.resource.decorators.ResourceWaypointDecorator"
+             id="com.ibm.research.tagging.resource.decorator"
+             label="Waypoint Resource Decorator"
+             lightweight="true"
+             state="false">
+            <enablement>
+                <or>
+	                <objectClass name="org.eclipse.core.resources.IResource"/> 
+	                <objectClass name="org.eclipse.ui.IWorkingSet"/> 
+	            </or>
+            </enablement>
+        </decorator>
+    </extension>
+    
+    <extension
+          point="com.ibm.research.tagging.resource.decoratableResource">
+       <resourceContributor
+       	  id="com.ibm.research.tagging.resource"
+       	  class="com.ibm.research.tagging.resource.decorators.ResourceWaypointContributor"/>
+    </extension>
+	 
+</plugin>

@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<link rel="StyleSheet" href="tagsea.css" type="text/css" 
+media="screen"><title>TagSEA New and Noteworthy</title></head>
+
+<body>
+
+<div class="frame">
+
+<div id="shadow-container">  
+<div class="shadow1">  
+<div class="shadow2">  
+<div class="shadow3">  
+<div class="container"> 
+
+<div style="border-bottom: dotted #999999 1px;">
+
+<div id="navcontainer">
+<ul id="navlist">
+<li><a href="download.html">Download</a></li>
+<li><a href="features.html">Getting Started</a></li>
+<li><a href="new.html">What's New</a></li>
+<li><a href="community.html">Community</a></li>
+<li><a href="research.html">Research</a></li>
+</ul>
+</div>
+
+<p class="title"><a href="index.html">TagSEA 0.6.6</a></p>
+
+<p class="version">Tags for Software Engineering Activities in 
+Eclipse</p>
+
+</div>
+
+<h3>New and Noteworthy in 0.6.0</h3>
+
+<ul>
+	<li><a href="#core">Core</a></li>
+	<li><a href="#ui">Core UI</a></li>
+
+	<li><a href="#resource">Resource Waypointing</a></li>
+	<li><a href="#extras">Extras</a></li>
+</ul>
+<p><a href="http://tagsea.sourceforge.net/new_0_5_0.html">Previous 
+version...</a></p>
+
+<h2><a name="core"></a>Core</h2>
+
+<table valign="top" cellpadding="10">
+<tbody><tr>
+	<td width="25%" valign="top"><p><b>Improved plugin 
+architecture</b></p></td>
+
+	<td width="75%" valign="top">
+		There are now two ways of describing waypoint types:
+		<ul>
+			<li>Functional Waypoints: These are the 
+waypoints extensions that were introduced
+			 in version 0.6.0. They allow clients to 
+implement waypoints with data attributes
+			 and user interface functionality.</li>
+			 <li>Waypoint Interfaces: Used to define data 
+attributes only. No functionality or
+			 user interface support is supplied for them. 
+They are simply used as "parent types"
+			 for concrete functional waypoints. This way, 
+clients can guarantee that certain
+			 attributes are available on their waypoints 
+without cluttering up the UI or their
+			 code base. Waypoint Interfaces cannot have 
+parents themselves.</li>
+		</ul>
+		Waypoint interfaces are contributed using the 
+<code>net.sourceforge.tagsea.waypoint</code>
+
+		extension point and using the <code>interface</code> 
+element. The platform will automatically
+		create a <code>WaypointInterface</code> object that 
+represents the extension and can be used
+		to query things like attribute names and types for the 
+interface. Both <code>WaypointInterface</code>
+		and <code>AbstractWaypointDelegate</code> now implement 
+the <code>IWaypointType</code> interface
+		and can be retrieved through the new API method 
+
+<code>TagSEAPlugin.getDefault().getWaypointTypes</code>.
+		All previous API still remains.
+	</td>
+</tr>
+<tr><td colspan="2"><hr></td></tr>
+<tr>
+	<td width="25%" valign="top"><p><b>Improved tag/waypoint change 
+support</b></p></td>
+	<td width="75%" valign="top">
+		It is now possible to nest TagSEAOperations inside 
+eachother. Previously, if
+		you ran a TagSEAOperation as a blocking call within 
+another operation, deadlock
+		would occurr. The Platform now handles this case and 
+allows the operation to run.
+		Waypoint and Tag change events are deferred to the end 
+of the top-level operation.
+	</td>
+</tr>
+</tbody></table>
+
+<h2><a name="ui"></a>Core UI</h2>
+
+<table valign="top" cellpadding="10">
+<tbody><tr>
+	<td width="25%" valign="top"><p><b>Improved waypoint 
+filtering</b></p></td>
+	<td width="75%" valign="top">
+		The waypoint viewer can now filter based on waypoint 
+type. Clients also have
+		the option of contributing filtering ui for their 
+waypoints.<br>
+		<div align="center"><img 
+src="images/waypointfilters.jpg"></div>
+		Custom filter options can be added using the 
+
+<code>net.sourceforge.tagsea.filters</code>
+		extension point. The filter must be contributed in the 
+same plugin that defines the waypoint.
+	</td>
+</tr>
+<tr><td colspan="2"><hr></td></tr>
+<tr>
+	<td width="25%" valign="top"><p><b>More extensive tag 
+filtering</b></p></td>
+	<td width="75%" valign="top">
+		<p>It is now possible to link that filtering in the tags 
+view to the waypoints view.</p>
+		<div align="center"><img 
+src="images/tagwaypointfilters.jpg"></div>
+
+		<p>Enabling this preference will make it so that only 
+tags that are referenced by waypoints
+		that pass the contributed waypoints filters will be 
+displayed in the tags viewer.</p>
+	</td>
+</tr>
+<tr><td colspan="2"><hr></td></tr>
+<tr>
+	<td width="25%" valign="top"><p><b>Custom actions in the 
+waypoints view</b></p></td>
+	<td width="75%" valign="top">
+		<p>Custom actions can now be contributed to the 
+waypoints view context menu.</p>
+		<div align="center"><img 
+src="images/waypointactions.jpg"></div>
+
+		<p>The actions are contributed using the normal object 
+contribution method for context menus.
+		The javadoc documentation for the IWaypoint interface 
+describes how to set the enablement and
+		visibility of your actions based on the waypoint 
+type.</p>
+	</td>
+</tr>
+</tbody></table>
+
+<a name="resource"></a>
+<h2>Resource Waypoints</h2>
+
+<table valign="top" cellpadding="10">
+<tbody><tr>
+	<td width="25%" valign="top"><p><b>New method for saving 
+waypoints</b></p></td>
+
+	<td width="75%" valign="top">
+		<p>Resource waypoints can now be persisted inside your 
+workspace projects, or outside of them.</p>
+		<div align="center"><img 
+src="images/resourcepersist.jpg"></div>
+		<p>This preference can be changed globally using the 
+Resource Waypoints preference page, or
+		on a per-project basis using the properties of a 
+project. By default, the waypoints are saved
+		outside of the workspace in order to avoid unwanted 
+conflicts in team projects. We are currently
+		working on methods of synchronizing and sharing 
+waypoints.</p>
+	</td>
+</tr>
+<tr><td colspan="2"><hr></td></tr>
+<tr>
+	<td width="25%" valign="top"><p><b>Resource waypoints filter 
+based on selection</b></p></td>
+
+	<td width="75%" valign="top">
+		<p>You can filter resource waypoints based on the 
+current workbench selection.</p>
+		<div align="center"><img 
+src="images/waypointfilters.jpg"></div>
+		<p>Java waypoints and Java Task waypoints have the same 
+options.</p>
+	</td>
+</tr>
+</tbody></table>
+
+<a name="extras"></a>
+<h2>Extras</h2>
+
+<table valign="top" cellpadding="10">
+<tbody><tr>
+	<td width="25%" valign="top"><p><b>Four new waypoint 
+types</b></p></td>
+	<td width="75%" valign="top">
+		<p>Four new waypoint types: <b>URL</b> waypoints, 
+<b>Java Task</b> waypoints, <b>Breakpoint</b>
+
+		 waypoints, and <b>C/C++</b> waypoints have been added in the "extras" feature which 
+can be downloaded seperately from the 
+		 TagSEA core feature. URL waypoints allow you to 
+"bookmark" any url in Eclipse and open it in the
+		 Eclipse web browser. Java Task waypoints expose your 
+Java TODO's, FIXME's, etc., as TagSEA waypoints.
+		 Breakpoint waypoints do the same for breakpoints. C/C++ waypoints allow you to create tags 
+and waypoints in your C/C++ code.</p>
+	</td>
+</tr>
+</tbody></table>
+
+<br>
+<p class="credits">Tags for Software Engineering Activities in Eclipse (TagSEA)<br>is a research collaboration between 
+the University of Victoria's 
+<a href="http://www.thechiselgroup.org">Computer Human Interaction &amp; Software Engineering Lab</a> 
+and the <a href="http://domino.research.ibm.com/cambridge/research.nsf/pages/index.html">IBM Watson Research Centre</a>.</p>
+
+<div class="footer">
+<a href="http://sourceforge.net/"><img 
+src="http://sflogo.sourceforge.net/sflogo.php?group_id=169205&amp;type=2" 
+alt="SourceForge.net Logo" height="37" width="125"></a>
+</div>
+
+</div></div></div></div></div>
+
+</div>
+
+</body></html>

@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<link rel="StyleSheet" href="tagsea.css" type="text/css" 
+media="screen"><title>TagSEA Getting Started</title></head>
+
+<body>
+
+<div class="frame">
+
+<div id="shadow-container">  
+<div class="shadow1">  
+<div class="shadow2">  
+<div class="shadow3">  
+<div class="container"> 
+
+<div style="border-bottom: dotted #999999 1px;">
+
+<div id="navcontainer">
+<ul id="navlist">
+<li><a href="download.html">Download</a></li>
+<li><a href="features.html">Getting Started</a></li>
+<li><a href="new.html">What's New</a></li>
+<li><a href="community.html">Community</a></li>
+<li><a href="research.html">Research</a></li>
+</ul>
+</div>
+
+<p class="title"><a href="index.html">TagSEA 0.6.6</a></p>
+
+<p class="version">Tags for Software Engineering Activities in 
+Eclipse</p>
+
+</div>
+
+
+<h3>TagSEA Getting Started</h3>
+
+
+<div class="sidebox">
+
+<div class="upto"><b>Download</b></div>
+
+<p class="news"><b>Eclipse Update Site:</b><br>
+tagsea.sourceforge.net/update</p>
+
+<p class="news">See our <a href="download.html">download</a> page for more info.</p>
+
+</div>
+
+<p>This page will guide you through the features of TagSEA to get you started.</p>
+
+<h4>Tagging Code</h4>
+
+<p>TagSEA allows you to tag locations directly in your source code as you type, within any valid Java comment.
+The following examples show you how you can tag your source code:
+
+<div class="sidebox">
+
+<div class="upto"><b>Documentation</b></div>
+
+<p class="news"><a href="codewaypoint.html">Tagging Source Code</a></p>
+
+<p class="news"><a href="resourcewaypoint.html">Tagging Resources</a></p>
+
+<p class="news"><a href="view.html">TagSEA View</a></p>
+
+<p class="news"><a href="tours.html">Presentation Tours</a></p>
+
+</div>
+
+<p><b>Examples:</b></p>
+
+<p class="Code">//@tag chris</p>
+
+<p class="Code">//@tag revisit api : Refactor this code.</p>
+
+<p class="Code">//@tag bugfix -author="Del" -date="enCA:18/01/07" : the assist gets updated as you type.</p>
+
+<p class="Code">//@tag tagsea.bug.3.fix -author="Del Myers" -date="enCA:18/01/07" : performance fix.</p>
+
+<p>The format is as follows:</p>
+
+<p class="Note"><b>@tag</b> <b>tagname</b> <i>&lt;... 
+more-tag-names&gt;</i> <i>&lt;... meta-data&gt; &lt;:  comment text 
+
+&gt;</i> </p>
+
+<p>Find out more about <a href="codewaypoint.html">tagging code</a>.</p>
+
+<h4>Tagging Resources</h4>
+
+<p>TagSEA allows you to tag any resource in your workspace. They are stored in an xml file in your workspace, rather than directly in the code.</p>
+
+<p><b>Options for tagging resources:</b></p>
+<ul>
+<li>right-click on any resource in your workbench.</li> 
+<li>right-click in any text editor, or on a text-editor's vertical ruler to 
+display its context menu (provided that the editor is editing a file in 
+the workspace). In the context menu, select
+
+<i>Tags&gt;Add Waypoint...</i> to open up the waypoint edit dialog:</p>
+</li>
+</ul>
+
+<center><img src="images/waypointDialog.jpg"></center>
+
+<p>Find out more about <a href="resourcewaypoint.html">tagging resources</a>.</p>
+
+<h4>Tasks and Breakpoints</h4>
+
+<p>TagSEA can automatically create waypoints based on your Eclipse tasks (e.g. TODO) and the breakpoints stored in your workspace.</li> 
+
+<h4>TagSEA View</h4>
+
+<!--<center><img src="images/tagseaView.jpg"></center>-->
+
+<p>The TagSEA view is made up of two parts: the Tags pane and the Waypoints pane.</p>
+
+<center><img src="images/tags.jpg" alt="Tags Pane"></center>
+
+<p>The Tags pane shows either a hierarchical or flat layout of all of the tags in your workspace or project.  The number to the
+right of each tag represents the number of occurances of that tag.</p>
+
+<center><img src="images/waypoint_pane.png" alt="Waypoints 
+Pane"></center>
+
+<p>The Waypoint pane provides properties about each tagged location.  This includes: the comment, the location, author, and date.  If this
+information is not present, the fields are left blank.  It's possible to edit some of these properties directly in the view by right clicking
+on a waypoint and choosing "Properties".</p>
+
+<p>At the bottom of this pane, a list of all of the tags on a given waypoint are listed.  These can be edited by selecting the "Edit" button
+on the right.</p>
+
+<p>Find out more about the <a href="view.html">TagSEA view</a>.</p>
+
+<h4>CloudSee</h4>
+
+<center><img src="images/cloudsee.jpg"></center>
+
+<p>CloudSee provides a way to visualize tags using a tag cloud.  To 
+access CloudSee, select the CloudSee Icon on the right side of the TagSEA View.</p>
+
+<p>If you have any hierarchical tags (e.g. bug.fix), these will be displayed with a plus icon (+).
+By double clicking on these tags, you can navigate the hierarchy.  A breadcrumb trail at the top
+of the tag cloud shows your location within the hierarchy.</p>
+
+<h4>Create Presentations of Your Code (TagSEA Tours)</h4>
+
+<p>TagSEA Tours turns your Eclipse workbench into a presentation platform. Files, sourcecode, and 
+waypoints can be organized and intermixed with special effects and animations so that you can present 
+your work in a slideshow directly from your workspace. <i>Tours</i> requires Eclipse 3.3.</p>
+
+<p>For more info, see the <a href="tours.html">Tours</a> page.</p>
+
+
+<br>
+<p class="credits">Tags for Software Engineering Activities in Eclipse (TagSEA)<br>is a research collaboration between 
+the University of Victoria's 
+<a href="http://www.thechiselgroup.org">Computer Human Interaction &amp; Software Engineering Lab</a> 
+and the <a href="http://domino.research.ibm.com/cambridge/research.nsf/pages/index.html">IBM Watson Research Centre</a>.</p>
+
+<div class="footer">
+<a href="http://sourceforge.net/"><img 
+src="http://sflogo.sourceforge.net/sflogo.php?group_id=169205&amp;type=2" 
+alt="SourceForge.net Logo" height="37" width="125"></a>
+</div>
+
+</div></div></div></div></div>
+</div>
+
+</body></html>

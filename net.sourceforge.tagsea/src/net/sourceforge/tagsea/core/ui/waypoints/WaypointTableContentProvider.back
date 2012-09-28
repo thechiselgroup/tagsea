@@ -1,0 +1,90 @@
+/*******************************************************************************
+ * Copyright (c) 2006 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *     IBM Research
+ *******************************************************************************/
+package net.sourceforge.tagsea.core.ui.waypoints;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import net.sourceforge.tagsea.TagSEAPlugin;
+import net.sourceforge.tagsea.core.ITag;
+import net.sourceforge.tagsea.core.IWaypoint;
+import net.sourceforge.tagsea.core.internal.ITagSEAPreferences;
+import net.sourceforge.tagsea.core.ui.adapters.StructuredContentProviderAdapter;
+import net.sourceforge.tagsea.core.ui.tags.TagsView;
+
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.viewers.IStructuredSelection;
+
+
+/**
+ * 
+ * @author mdesmond
+ *
+ */
+public class WaypointTableContentProvider extends StructuredContentProviderAdapter
+{
+	
+	/*
+	 * (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
+	 */
+	public Object[] getElements(Object inputElement) 
+	{	
+		TagsView view = TagSEAPlugin.getDefault().getUI().getTagsView();
+		IPreferenceStore store = TagSEAPlugin.getDefault().getPreferenceStore();
+		
+		if(view != null && store.getBoolean(ITagSEAPreferences.WAYPOINT_VIEW_LINK_TO_TAGS_VIEW))
+		{
+			IStructuredSelection selection = (IStructuredSelection) view.getSelection();
+			Set<IWaypoint> result = new HashSet<IWaypoint>();
+			List<?> tagSelection = selection.toList(); 
+			
+			if(tagSelection.size() == 0)
+				return getAllWaypoints();
+			
+			for(Object o : tagSelection)
+			{
+				ITag tag = (ITag)o;
+				IWaypoint[] waypoints = tag.getWaypoints();
+
+				for(IWaypoint waypoint : waypoints)
+					result.add(waypoint);
+			}
+			WaypointWrapper[] wrapperArray = new WaypointWrapper[result.size()];
+			int i = 0;
+			for (IWaypoint waypoint : result) {
+				wrapperArray[i++] = new WaypointWrapper(waypoint);
+			}
+			return wrapperArray;
+		}
+		else {
+			int i = 0;
+			IWaypoint[] waypoints = getAllWaypoints();
+			WaypointWrapper[] wrapperArray = new WaypointWrapper[waypoints.length];
+			for (IWaypoint waypoint : waypoints) {
+				wrapperArray[i++] = new WaypointWrapper(waypoint);
+			}
+			return wrapperArray;
+		}
+	}
+
+	
+	/**
+	 * Get all waypoints
+	 * @return
+	 */
+	private IWaypoint[] getAllWaypoints()
+	{
+		return TagSEAPlugin.getWaypointsModel().getAllWaypoints();
+	}
+}

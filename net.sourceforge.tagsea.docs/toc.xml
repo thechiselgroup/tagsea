@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="TagSEA" topic="html/index.html">
+<topic label="Research" href="html/research.html"></topic>
+<topic label="New and Noteworthy" href="html/new.html"></topic>
+<topic label="Terminology" href="html/terminology.html"></topic>
+<topic label="Usage" href="html/features.html"></topic>
+<topic label="Source Code Waypoints" href="html/codewaypoint.html"></topic>
+<topic label="Resource Waypoints" href="html/resourcewaypoint.html"></topic>
+<topic label="Extending TagSEA" href="html/extending.html"></topic>
+<topic label="Download" href="html/download.html"></topic>	
+<topic label="Project" href="http://sourceforge.net/projects/tagsea"></topic>
+<topic label="Bugs" href="https://secure.cs.uvic.ca/bugzilla/enter_bug.cgi?product=TagSEA"></topic>
+</toc>

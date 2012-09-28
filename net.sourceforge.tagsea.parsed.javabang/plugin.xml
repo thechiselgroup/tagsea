@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sourceforge.tagsea.parsed.parsedWaypoint">
+      <definition
+            class="net.sourceforge.tagsea.parsed.javabang.BangWaypointDefinition">
+      </definition>
+   </extension>
+
+</plugin>

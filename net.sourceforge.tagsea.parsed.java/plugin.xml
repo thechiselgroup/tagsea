@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sourceforge.tagsea.parsed.standardComment">
+      <definition
+            domainMethod="net.sourceforge.tagsea.parsed.java.JavaElementMethod"
+            fileAssociations="*.java"
+            kind="java"
+            name="Java Tagging"
+            presentation="net.sourceforge.tagsea.parsed.java.JavaWaypointPresentation">
+         <multiline
+               close="*/"
+               open="/*">
+         </multiline>
+         <singleline
+               open="//">
+         </singleline>
+         <exclusion
+               close="&quot;"
+               open="&quot;">
+         </exclusion>
+         <exclusion
+               close="&apos;"
+               open="&apos;">
+         </exclusion>
+      </definition>
+   </extension>
+   <extension
+         id="id1"
+         point="org.eclipse.jdt.ui.javaCompletionProposalComputer">
+      <javaCompletionProposalComputer
+            class="net.sourceforge.tagsea.parsed.java.autocomplete.internal.WaypointCompletionProposalComputer">
+      </javaCompletionProposalComputer>
+   </extension>
+
+</plugin>

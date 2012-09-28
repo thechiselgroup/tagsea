@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Video
+Bundle-SymbolicName: ca.uvic.chisel.tours.video;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: ca.uvic.chisel.tours.video.ToursVideoPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ ca.uvic.chisel.widgets.video;bundle-version="0.0.1",
+ ca.uvic.chisel.videoplayer.test;bundle-version="0.0.1",
+ com.ibm.research.tours;bundle-version="0.1.4",
+ com.ibm.research.tours.content;bundle-version="0.1.0",
+ org.eclipse.core.resources;bundle-version="3.5.2"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

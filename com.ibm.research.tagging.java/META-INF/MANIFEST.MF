@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Java Plug-in
+Bundle-SymbolicName: com.ibm.research.tagging.java; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.ibm.research.tagging.java.JavaWaypointPlugin
+Bundle-Vendor: IBM
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ com.ibm.research.tagging.core,
+ com.ibm.research.tagging.core.ui,
+ org.eclipse.core.filebuffers,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.eclipse.jdt.ui,
+ org.eclipse.jdt.core,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.forms,
+ com.ibm.research.tagging.resource
+Eclipse-LazyStart: true
+Export-Package: com.ibm.research.tagging.java

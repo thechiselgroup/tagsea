@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="verify-v1"
+	content="u2nEm7Uq2BT6uBJQzHSezkQ5KuH2ywYE24hPkqWIqy0=" />
+<link rel="StyleSheet" href="tagsea.css" type="text/css" media="screen">
+<title>Extending | TagSEA: Tags for Software Engineering
+Activities in Eclipse</title>
+</head>
+
+<body>
+
+<div class="frame">
+
+<div id="shadow-container">
+<div class="shadow1">
+<div class="shadow2">
+<div class="shadow3">
+<div class="container">
+
+<div id="header" style="border-bottom: dotted #999999 1px;">
+<div id="navcontainer">
+<ul id="navlist">
+	<li><a href="download.html">Download</a></li>
+	<li><a href="new.html">New</a></li>
+	<li><a href="doc.html">Support</a></li>
+	<li><a href="community.html">Community</a></li>
+	<li><a href="research.html">Research</a></li>
+</ul>
+</div>
+
+<p class="title"><a href="index.html">TagSEA 0.6.6</a></p>
+
+<p class="version">Tags for Software Engineering Activities in
+Eclipse</p>
+</div>
+
+<br>
+<h3><a name="extending"></a>Extending TagSEA</h3>
+<div class="sidebox">
+<div class="upto">Contents</div>
+<ul class="contents">
+	<li><a href="#extending">Extending TagSEA</a></li>
+	<li><a href="#syntax">Standard Waypoint Syntax</a></li>
+	<li><a href="#contributing">Contributing a Standard Parsed Waypoint</a></li>
+	<li><a href="#tweeking">Tweeking a Contribution</a></li>
+	<li><a href="#control">Tweeking a Contribution</a></li>
+</ul>
+</div>
+
+<p>TagSEA was not implemented merely as a tool to support source
+code tagging in Java. It was designed as an extensible framework for
+creating tags within your working environment. Exemplary extensions have
+been created for tagging Java source, web pages, resources, and tasks.</p>
+
+<p>Still, TagSEA was created for software developers concerned with
+being able to find source code. So, new with version 0.6.6, there are
+some features that make it easy for you to extend TagSEA to support the
+reading of standard-formatted waypoints from almost any source language.</p>
+
+<h4><a name=syntax></a>Standard Waypoint Syntax</h4>
+
+<p>From the early days of TagSEA, when only Java was supported, a
+standard syntax was defined as:</p>
+<p class="Code">//@tag <i>tag-names meta-data : message</i></p>
+<p>Where <code><i>tag-names</i></code> is a white-space-separated
+list of tag names to be applied in the code, <code><i>meta-data</i></code>
+is a white-space-separated list of meta data to be applied in the code,
+and <code><i>message</i></code> is a display message for the waypoint in
+the code.</p>
+
+<p>Tag names can be single words, or they can be part of a
+hierarchy. Hierarchies are defined by dot-separation between the tag
+words. For example:</p>
+
+<p class="code">//@tag hack bug.1234</p>
+
+<p>Will create a waypoint that has the tags <code>hack</code> and <code>bug.1234</code>
+where <code>1234</code> is considered a sub-tag of <code>bug</code>.</p>
+
+<p>There are two types of meta-data that can be applied: <i>names</i>
+and <i>dates</i>. Where a name can be specified by <code>-name="<i>name</i>"</code>
+and a date can be specified by <code>-date="<i>date-code</i>"</code>.
+The date-code is a locale-specific date of the format <code><i>languageCOUNTRY:date</i></code>.
+For example, we can add an author and a date to the previous waypoint:</p>
+
+<p class="code">//@tag hack bug.1234 -author="Joe Shmidt"
+-date="enCA:01/01/01"
+<p>This would create a waypoint with an author of Joe Shmidt, and a
+date of January first, 2001 in English speaking Canada.</p>
+
+<h4><a name="contributing"></a>Contributing a Standard Parsed Waypoint</h4>
+
+<p>This standard format for parsed waypoints makes it easy to
+imagine the usage of parsed waypoints in many other languages besides
+Java. Since programming languages are just in plain text, and the text
+that we are considering is standard, the same parsers can be used to
+discover waypoints for all different languages. The only missing part of
+the puzzle is how to discover the areas of text that contain valid
+waypoints. Since waypoints can't be a part of the proper program, the
+natural place to put them is in comments. So, an extension point has
+been defined to allow extenders to contribute their own standard parsed
+waypoints.</p>
+
+<p>Let's consider the Perl programming language. There are really
+only two pieces of information that we need to know about Perl: the
+standard file names that are used to define a Perl program; and the way
+that comments are defined in Perl.</p>
+
+<p>In Eclipse, there is a way to define content types associated
+with files. For example, the JDT defines a content type for files that
+represent java programs. For this example, though, we don't want to
+depend on any third-party Perl IDE plugins, so we will just use the file
+extensions for Perl programs. These file extensions are <code>.pl</code>
+and <code>.pm</code>.</p>
+
+<p>As for defining how the parser finds comments, there are two
+steps. First, we must tell the plugin what characters to look for. For
+Perl, this is straight-forward because Perl only has single-line
+comments. The begin with a hash (<code>#</code>) symbol. But we have to
+be careful. There are certain cases when we don't want the hash-symbol
+to be considered as a comment. For example, within strings or regex's.
+Otherwise, a piece of code such as:</p>
+
+<p class="code">print "#1 : the first number\n";</p>
+
+<p>would be considered a comment. In order to deal with these
+situations, TagSEA provides an "exclusion" mechanism. We will define
+areas within quote-like characters (<code>'</code> and <code>"</code>)
+as areas to be excluded. We also want to ignore regex areas. Perl
+complicates this by allowing the regex syntax to be changed dynamically.
+Since we can't anticipate all possible scenarios, we will simplify the
+problem by just excluding areas between the standard '/' characters. The
+final plugin XML code looks like this:</p>
+
+<pre>
+
+&lt;extension
+    point="net.sourceforge.tagsea.parsed.standardComment"&gt;
+    &lt;definition
+            fileAssociations="*.pl,*.pm"
+            kind="net.sourceforge.tagse.parsed.perl.waypoint"
+            name="Parsed Per Waypoints"&gt;
+         &lt;singleline
+               open="#"&gt;
+         &lt;/singleline&gt;
+         &lt;exclusion
+               close="&apos;"
+               open="&apos;"&gt;
+         &lt;/exclusion&gt;
+         &lt;exclusion
+               close="&amp;quot;"
+               open="&amp;quot;"&gt;
+         &lt;/exclusion&gt;
+         &lt;exclusion
+               close="/"
+               open="/"&gt;
+         &lt;/exclusion&gt;
+    &lt;/definition&gt;
+&lt;/extension&gt;
+</pre>
+
+<p>And that's it. That is all you have to do. The TagSEA platform
+will automatically create the parsers, the markers, the icons, and the
+refactoring support for you. Now, you are ready to start using waypoints
+inside your Perl code.</p>
+
+<h4><a name="tweeking"></a>Tweeking the contribution</h4>
+<p>Though everything you need is now available, and you are ready to
+start using waypoints in your Perl code, it might be nice to tweek it a
+little. For example, it would be nice to have a way of making sure that
+Perl waypoints are distinguishable in the TagSEA ui. There is a simple
+interface for this called <code>IParsedWaypointPresentation</code>. It
+offers a number of methods which provide images and labels for your
+parsed waypoint.</p>
+
+<p>For now, we are only interested in decorating an image to
+indicate that the waypoint is in a Perl file. The standard image for
+Perl is a camel <img src="images/perl.gif" />. So we'll use that. TagSEA
+also offers some decorations for images to indicate that an image is a
+waypoint, and that it is parsed. We'll use those as well to decorate our
+image. The methods of interest in our implementation are <code>getImage(IWaypoint)</code>
+and <code>getImage()</code>. They look like this:</p>
+
+<pre>
+public Image getImage(IWaypoint waypoint) {
+    return getImage();
+}
+public Image getImage() {
+    ImageRegistry registry = PerlWaypointPlugin.getDefault().getImageRegistry();
+    Image image = registry.get("PERL_WAYPOINT_IMAGE");
+    if (image == null) {
+        //construct the image from various adornments.
+        Image base = registry.get("PERL_ICON");
+        ImageDescriptor overlay = 
+            TagSEAPlugin.
+                getDefault().
+                getImageRegistry().
+                getDescriptor(ITagSEAImageConstants.IMG_WAYPOINT_OVERLAY);
+        ImageDescriptor overlay2 = 
+            ParsedWaypointPlugin.
+                getDefault().
+                getImageRegistry().
+                getDescriptor(IParsedWaypointImageConstants.PARSE_OVERLAY);
+        DecorationOverlayIcon icon = 
+            new DecorationOverlayIcon(
+                base, new ImageDescriptor[] {
+                    overlay,  null, null, overlay2, null
+                }
+            );
+        registry.put("PERL_WAYPOINT_IMAGE", icon);
+        image = registry.get("PERL_WAYPOINT_IMAGE");
+    }
+    return image;
+}
+</pre>
+
+<p>This assumes that our plugin object has an icon called "PERL_ICON" in its image registry. That icon is the camel
+image.</p>
+<p>Finally, we have to tell the plugin that the new waypoint kind has a presentation associated with it. This is
+done through the "presentation" attribute in the plugin xml. The final XML looks like this:</p>
+
+<pre>
+&lt;extension
+    point="net.sourceforge.tagsea.parsed.standardComment"&gt;
+    &lt;definition
+            fileAssociations="*.pl,*.pm"
+            kind="net.sourceforge.tagse.parsed.perl.waypoint"
+            name="Parsed Per Waypoints",
+            <b>presentation="net.sourceforge.tagsea.parsed.perl.PerlWaypointPresentation"</b>&gt;
+         &lt;singleline
+               open="#"&gt;
+         &lt;/singleline&gt;
+         &lt;exclusion
+               close="&apos;"
+               open="&apos;"&gt;
+         &lt;/exclusion&gt;
+         &lt;exclusion
+               close="&amp;quot;"
+               open="&amp;quot;"&gt;
+         &lt;/exclusion&gt;
+         &lt;exclusion
+               close="/"
+               open="/"&gt;
+         &lt;/exclusion&gt;
+    &lt;/definition&gt;
+&lt;/extension&gt;
+</pre>
+
+<h3><a name="control"></a>More Control</h3>
+
+<p>It is possible to create all kinds of different waypoints that don't necessarily follow the standard syntax, though
+it is normally better to follow a standard way of writing waypoints. Nonetheless, another extension point--
+<code>net.sourceforge.tagsea.parsed.parsedWaypoint</code> exists for this purpose. It allows you to define your own
+parsers and refactoring support. See the extension point documentation, and the example project
+<code>net.sourceforge.tagsea.parsed.javabang</code> for an example. The "javabang" plugin allows you to add tags in a
+much more light-weight manner: by simply placing a <i>back-tick</i> (`) character in front of the word that you want
+to be a tag. For example:</p>
+
+<p class="code">//this code is a `hack</p>
+
+<p>The above will create a waypoint with the tag <b>hack</b> applied to it, and a message of <i>this code is a hack</i>.
+Other metadata is not supported by this kind of waypoint.</p>
+<p>Note also that parsed waypoint kinds are not allowed to overlap in a file. If you have both Java waypoints and
+"Simple Java" waypoints installed, the following code will cause a conflict:</p>
+
+<p class="code">//@tag `hack : this code is a hack</p>
+
+<p>Because the word <b>`hack</b> is recognized by both parsers.</p>
+
+<p>It is possible to create waypoints for more than just source code, as well. TagSEA comes with several different
+types of waypoints for waypointing on arbitrary resources, Java Task Tags, breakpoints, and URLs. These all use the
+<code>net.sourceforge.tagsea.waypoint</code> extension point. Using this extension point, you can create a new 
+<b>Waypoint Delegate</b>. Waypoint delegates are responsible for the full lifecycle of waypoints, from their creation
+to their death. They are also responsible for reacting to changes to waypoints, and allowing/dissallowing those changes.
+The following plugins make use of the <code>net.sourceforge.tagsea.waypoint</code> extension point:</p> 
+<p><code>net.sourceforge.tagsea.url<br>net.sourceforge.tagsea.parsed<br>net.sourceforge.tagsea.tasks<br>
+net.sourceforge.tagsea.resources<br>net.sourceforge.tagsea.breakpoint</code></p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

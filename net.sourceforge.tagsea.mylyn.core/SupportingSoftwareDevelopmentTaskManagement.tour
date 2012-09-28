@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tour id="SupportingSoftwareDevelopmentTaskManagement.1207602607968">
+	<title>Supporting Software Development Task Management</title>
+	<description></description>
+	<author>John Anvik</author>
+	<tour-elements>
+		<element type="com.ibm.research.tours.content.elements.ResourceURLTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+			<url>eclipse:/net.sourceforge.tagsea.mylyn.core/src/tour/gm-uvic-apr8-08.ppt?startSlide=1&amp;endSlide=3</url>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.MaximizeWorkbenchTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+		</element>
+		<element type="com.ibm.research.tours.fx.elements.SpotlightTourElement">
+			<notes></notes>
+			<transition>onClick</transition>
+		</element>
+	</tour-elements>
+</tour>

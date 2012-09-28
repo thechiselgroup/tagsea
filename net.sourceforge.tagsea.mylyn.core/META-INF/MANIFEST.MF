@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TagSEA-Mylyn Core Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.mylyn.core
+Bundle-Version: 0.1
+Bundle-Activator: net.sourceforge.tagsea.mylyn.core.TagSEAMylynCorePlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.mylyn.tasks.core,
+ org.eclipse.mylyn.tasks.ui,
+ org.eclipse.ui.forms,
+ net.sourceforge.tagsea,
+ org.eclipse.mylyn.context.core,
+ org.eclipse.mylyn.monitor.core,
+ org.eclipse.jdt.core,
+ org.eclipse.jface.text
+Eclipse-LazyStart: true
+Export-Package: net.sourceforge.tagsea.mylyn.core,
+ net.sourceforge.tagsea.mylyn.core.actions;uses:="org.eclipse.jface.action,org.eclipse.ui,org.eclipse.jface.viewers"

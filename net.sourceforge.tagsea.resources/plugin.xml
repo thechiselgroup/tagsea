@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         id="resourcewaypointPopup"
+         name="Resource Waypoint Popu"
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="net.sourceforge.tagsea.resources.waypointContribution"
+            objectClass="org.eclipse.core.resources.IResource">
+         <menu
+               label="Tags"
+               path="additions"
+               id="net.sourceforge.tagsea.resources.tagMenu">
+            <separator
+                  name="tagGroup">
+            </separator>
+         </menu>
+         <action
+               class="net.sourceforge.tagsea.resources.popup.actions.EditTagsAction"
+               icon="icons/waypoint.gif"
+               id="net.sourceforge.tagsea.resources.newAction"
+               label="Tag resource..."
+               menubarPath="net.sourceforge.tagsea.resources.tagMenu/tagGroup">
+         </action>
+         <action
+               class="net.sourceforge.tagsea.resources.popup.actions.ShowWaypointsAction"
+               icon="icons/findwaypoint.gif"
+               id="net.sourceforge.tagsea.resources.showWaypoints"
+               label="Show Tagged Resources"
+               menubarPath="net.sourceforge.tagsea.resources.tagMenu/tagGroup"/>
+      </objectContribution>
+      <viewerContribution
+            id="net.sourceforge.tagsea.resources.viewerContribution"
+            targetID="#TextRulerContext">
+             <menu
+               label="Tags"
+               path="additions"
+               id="net.sourceforge.tagsea.resources.tagMenu">
+            <separator
+                  name="tagGroup">
+            </separator>
+         </menu>
+         <action
+               class="net.sourceforge.tagsea.resources.popup.actions.EditTagsRulerAction"
+               icon="icons/waypoint.gif"
+               id="net.sourceforge.tagsea.resources.newRulerAction"
+               label="Tag resource..."
+               menubarPath="net.sourceforge.tagsea.resources.tagMenu/tagGroup">
+         </action>
+      </viewerContribution>
+       <viewerContribution
+            id="net.sourceforge.tagsea.resources.javaViewerContribution"
+            targetID="#CompilationUnitRulerContext">
+             <menu
+               label="Tags"
+               path="additions"
+               id="net.sourceforge.tagsea.resources.tagMenu">
+            <separator
+                  name="tagGroup">
+            </separator>
+         </menu>
+         <action
+               class="net.sourceforge.tagsea.resources.popup.actions.EditTagsRulerAction"
+               icon="icons/waypoint.gif"
+               id="net.sourceforge.tagsea.resources.newJavaRulerAction"
+               label="Tag resource..."
+               menubarPath="net.sourceforge.tagsea.resources.tagMenu/tagGroup">
+         </action>
+      </viewerContribution>
+       <viewerContribution
+            id="net.sourceforge.tagsea.resources.xmlViewerContribution"
+            targetID="#XMLRulerContext">
+             <menu
+               label="Tags"
+               path="additions"
+               id="net.sourceforge.tagsea.resources.tagMenu">
+            <separator
+                  name="tagGroup">
+            </separator>
+         </menu>
+         <action
+               class="net.sourceforge.tagsea.resources.popup.actions.EditTagsRulerAction"
+               icon="icons/waypoint.gif"
+               id="net.sourceforge.tagsea.resources.newXMLRulerAction"
+               label="Tag resource..."
+               menubarPath="net.sourceforge.tagsea.resources.tagMenu/tagGroup">
+         </action>
+      </viewerContribution>
+   </extension>
+   <extension
+         point="net.sourceforge.tagsea.waypoint">
+      <waypoint
+            class="net.sourceforge.tagsea.resources.waypoints.ResourceWaypointDelegate"
+            name="Resources"
+            type="resourceWaypoint"
+            ui="net.sourceforge.tagsea.resources.ui.ResourceWaypointUI"> 
+                                
+        <attribute
+               name="handleIdentifier"
+               type="string"/>
+        <parent type="net.sourceforge.tagsea.resources.resourceInterface"/>
+        <parent type="net.sourceforge.tagsea.text"/>
+        <attribute
+              name="stamp"
+              type="string"/>
+        <attribute
+              default="-1"
+              name="revisionStamp"
+              type="string"/> 
+      </waypoint>
+      <interface
+            name="Resource Interface"
+            type="resourceInterface">
+            <attribute
+                  label="Resource"
+                  name="resource"
+                  type="string"/>
+      </interface>
+   </extension>
+   
+   <extension id="waypointmarker" point="org.eclipse.core.resources.markers">
+      <persistent value="false"/>
+      <attribute name="tags"/>
+      <attribute name="author"/>
+      <attribute name="date"/>
+      <attribute name="lineNumber"/>
+      <super type="org.eclipse.core.resources.textmarker"/>
+      <super type="net.sourceforge.tagsea.waypointmarker"/>
+   </extension>
+   
+    <!-- the "markerType" *must* be fully qualified - prefix with the plugin name -->
+   <extension point="org.eclipse.ui.editors.annotationTypes">
+      <type 
+      	 	name="net.sourceforge.tagsea.resources.waypointannotation"
+			markerType="net.sourceforge.tagsea.resources.waypointmarker">
+	  </type>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+       <specification
+             annotationImageProvider="net.sourceforge.tagsea.resources.ui.WaypointAnnotationImageProvider"
+             annotationType="net.sourceforge.tagsea.resources.waypointannotation"
+             colorPreferenceKey="ResourceWaypointAnnotationColor"
+             colorPreferenceValue="95,238,255"
+             contributesToHeader="false"
+             highlightPreferenceKey="HighLight"
+             highlightPreferenceValue="false"
+             icon="icons/waypoint.gif"
+             includeOnPreferencePage="true"
+             label="Resource Waypoint Annotation"
+             overviewRulerPreferenceKey="ResourceWaypointOverviewRuler"
+             overviewRulerPreferenceValue="true"
+             presentationLayer="1"
+             symbolicIcon="info"
+             textPreferenceKey="ResourceWaypointAnnotationOccurance"
+             textPreferenceValue="false"
+             textStylePreferenceValue="NONE"
+             verticalRulerPreferenceKey="ResourceWaypointVerticalRuler"
+             verticalRulerPreferenceValue="true"/>
+   </extension>
+
+
+   <extension
+         id="textwaypointPopup"
+         name="Text waypoint popup"
+         point="org.eclipse.ui.popupMenus">
+         
+      <viewerContribution
+            id="net.sourceforge.tagsea.resources.TextViewerContribution"
+            targetID="#TextEditorContext">
+
+         <action
+               class="net.sourceforge.tagsea.resources.popup.actions.TextWaypointActionDelegate"
+               icon="icons/text.gif"
+               id="net.sourceforge.tagsea.resources.resources.popup.TextWaypointActionDelegate"
+               menubarPath="additions" 
+               label="Waypoint selected Text...">
+         </action>
+         
+      </viewerContribution>
+      
+       <viewerContribution
+            id="net.sourceforge.tagsea.resources.JavaTextViewerContribution"
+            targetID="#CompilationUnitEditorContext">
+            
+         <action
+               class="net.sourceforge.tagsea.resources.popup.actions.TextWaypointActionDelegate"
+               icon="icons/text.gif"
+               id="net.sourceforge.tagsea.resources.popup.actions.javaTextWaypointActionDelegate"
+               menubarPath="additions" 
+               label="Waypoint selected Text...">
+         </action>
+         
+      </viewerContribution>
+      
+             <viewerContribution
+            id="net.sourceforge.tagsea.resources.JavaTextViewerContribution"
+            targetID="#ClassFileEditorContext">
+            
+         <action
+               class="net.sourceforge.tagsea.resources.popup.actions.TextWaypointActionDelegate"
+               icon="icons/text.gif"
+               id="net.sourceforge.tagsea.resources.popup.actions.classFileTextWaypointActionDelegate"
+               menubarPath="additions" 
+               label="Waypoint selected Text...">
+         </action>
+         
+      </viewerContribution>
+      
+       <viewerContribution
+            id="net.sourceforge.tagsea.resourcesXmlTextViewerContribution"
+            targetID="#XMLEditorContext">
+            
+         <action
+               class="net.sourceforge.tagsea.resources.popup.actions.TextWaypointActionDelegate"
+               icon="icons/text.gif"
+               id="net.sourceforge.tagsea.resources.popup.actions.XMLTextWaypointActionDelegate"
+               menubarPath="additions" 
+               label="Waypoint selected Text...">
+         </action>
+      </viewerContribution>
+   </extension>
+   <extension
+         point="net.sourceforge.tagsea.filters">
+      <filter
+            class="net.sourceforge.tagsea.resources.ui.WaypointFilter"
+            ui="net.sourceforge.tagsea.resources.ui.WaypointFilterUI"
+            waypointType="net.sourceforge.tagsea.resources.resourceWaypoint"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="net.sourceforge.tagsea.resources.ResourceWaypointPreferences"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <wizard
+            category="net.sourceforge.tagsea.resources.wizard.category"
+            class="net.sourceforge.tagsea.resources.sharing.ui.ResourceWaypointExportWizard"
+            icon="icons/export.gif"
+            id="net.sourceforge.tagsea.resources.export.wizard"
+            name="Resource Waypoints"/>
+      <category
+            id="net.sourceforge.tagsea.resources.wizard.category"
+            name="TagSEA"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="net.sourceforge.tagsea.resources.wizard.category"
+            name="TagSEA"/>
+      <wizard
+            category="net.sourceforge.tagsea.resources.wizard.category"
+            class="net.sourceforge.tagsea.resources.sharing.ui.ResourceWaypointImportWizard"
+            icon="icons/import.gif"
+            id="net.sourceforge.tagsea.resources.importWizard"
+            name="Resource Waypoints"/>
+   </extension>
+   <!--
+   <extension
+         point="org.eclipse.team.ui.synchronizeParticipants">
+      <participant
+            class="net.sourceforge.tagsea.resources.synchronize.ui.WaypointSynchronizeParticipant"
+            icon="icons/waypoint.gif"
+            id="net.sourceforge.tagsea.resources.synchronize.participant"
+            name="Resource Waypoint Synchronizer"
+            persistent="false"/>
+   </extension>
+   <extension
+         point="org.eclipse.team.ui.synchronizeWizards">
+      <wizard
+            class="net.sourceforge.tagsea.resources.synchronize.ui.SyncrhonizedConfigurationWizard"
+            description="Synchronize the resource waypoints in the workspace"
+            icon="icons/waypoint.gif"
+            id="net.sourceforge.tagsea.resources.synchronization.wizard"
+            name="Resource Waypoints Synchronization"/>
+   </extension>
+   !-->
+
+</plugin>

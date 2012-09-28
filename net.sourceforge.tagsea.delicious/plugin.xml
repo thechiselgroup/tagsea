@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="net.sourceforge.tagsea.waypoint">
+      <waypoint
+            class="net.sourceforge.tagsea.delicious.waypoints.DeliciousWaypointDelegate"
+            name="Delicious Waypoint"
+            type="deliciouswaypoint"
+            ui="net.sourceforge.tagsea.delicious.ui.DeliciousWaypointUI">
+     
+              <attribute
+               name="URL"
+               type="string"/>
+             
+      </waypoint>
+   </extension>
+
+   <extension
+      point = "org.eclipse.ui.preferencePages">
+       <page
+             category="net.sourceforge.tagsea.preferences"
+             class="net.sourceforge.tagsea.delicious.preferences.DeliciousPreferencesPage"
+             id="net.sourceforge.tagsea.delicious.preferences"
+             name="Delicious">
+       </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus"> 
+   <objectContribution id="deliciousWaypointPopup"
+   objectClass="net.sourceforge.tagsea.core.IWaypoint"
+   adaptable="true">
+   
+   <filter
+         name="TYPE_FILTER_ATTRIBUTE"
+         value="net.sourceforge.tagsea.delicious.deliciouswaypoint">
+      </filter>
+ 
+      <action
+         id="delicious.CopyURLAction" 
+         label="Copy link"
+         menubarPath="additions" 
+         enablesFor="1"
+       class="net.sourceforge.tagsea.delicious.actions.CopyURLActionDelegate"> 
+      </action> 
+      
+      <action
+         id="delicious.OpenExternalAction" 
+         label="Open in external browser"
+         icon="icons/delicious.gif"
+         menubarPath="additions" 
+         enablesFor="1"
+       class="net.sourceforge.tagsea.delicious.actions.OpenInExternalBrowserActionDelegate"> 
+      </action> 
+   </objectContribution>
+</extension>
+
+   <extension point="org.eclipse.ui.popupMenus"> 
+   <objectContribution id="urldeliciousPopup"
+   objectClass="net.sourceforge.tagsea.core.IWaypoint"
+   adaptable="true">
+   
+   <filter
+         name="TYPE_FILTER_ATTRIBUTE"
+         value="net.sourceforge.tagsea.url.urlwaypoint">
+      </filter>
+ 
+      <action
+         id="delicious.postUrlAction"
+         icon = "icons/delicious.gif" 
+         label="Post to del.icio.us..." 
+         menubarPath="additions" 
+         enablesFor="2+"
+       class="net.sourceforge.tagsea.delicious.actions.PostURLActionDelegate"> 
+      </action> 
+      
+   </objectContribution>
+</extension>
+
+</plugin>

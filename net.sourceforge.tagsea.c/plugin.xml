@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sourceforge.tagsea.waypoint">
+      <waypoint
+            class="net.sourceforge.tagsea.c.waypoints.CWaypointDelegate"
+            name="C/C++ Waypoint"
+            type="cWaypoint"
+            ui="net.sourceforge.tagsea.c.CWaypointUI">
+         <parent type="net.sourceforge.tagsea.resources.resourceInterface"/>
+         <parent type="net.sourceforge.tagsea.text"/>
+      </waypoint>
+   </extension>
+   <extension
+         id="parseProblem"
+         name="C/C++ Markers"
+         point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.core.resources.problemmarker"/>
+   </extension>
+   
+   <extension id="waypointmarker" point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.core.resources.textmarker"/>
+      <persistent value="true"/>
+      <attribute name="tags"/>
+      <attribute name="author"/>
+      <attribute name="date"/>
+      <super type="net.sourceforge.tagsea.waypointmarker"/>
+   </extension>
+   
+        
+
+  
+   <!-- the "markerType" *must* be fully qualified - prefix with the plugin name -->
+   <extension point="org.eclipse.ui.editors.annotationTypes">
+      <type 
+      	 	name="net.sourceforge.tagsea.java.waypointannotation"
+			markerType="net.sourceforge.tagsea.java.waypointmarker">
+	  </type>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+       <specification
+             annotationImageProvider="net.sourceforge.tagsea.c.resources.internal.CWaypointAnnotationImageProvider"
+             annotationType="net.sourceforge.tagsea.c.waypointannotation"
+             colorPreferenceKey="AnnotationColor"
+             colorPreferenceValue="95,238,255"
+             contributesToHeader="false"
+             highlightPreferenceKey="HighLight"
+             highlightPreferenceValue="false"
+             includeOnPreferencePage="true"
+             label="C/C++ Waypoint Annotation"
+             overviewRulerPreferenceKey="OverviewRuler"
+             overviewRulerPreferenceValue="true"
+             presentationLayer="1"
+             symbolicIcon="info"
+             textPreferenceKey="AnnotationOccurance"
+             textPreferenceValue="false"
+             textStylePreferenceKey="AnnotationTextStyle"
+             textStylePreferenceValue="NONE"
+             verticalRulerPreferenceKey="VerticalRuler"
+             verticalRulerPreferenceValue="true"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="net.sourceforge.tagsea.c.resources.internal.DateAuthorQuickFix"
+            markerType="net.sourceforge.tagsea.c.waypointmarker"/>
+   </extension>
+   <extension
+         point="net.sourceforge.tagsea.filters">
+      <filter
+            class="net.sourceforge.tagsea.c.waypoints.WaypointFilter"
+            ui="net.sourceforge.tagsea.c.waypoints.WaypointFilterUI"
+            waypointType="net.sourceforge.tagsea.c.cWaypoint"/>
+   </extension>
+   <!-- End Custom Marker Support -->
+
+</plugin>

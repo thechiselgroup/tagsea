@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/ca.uvic.cs.tagsea_feature_0.3.5.jar" id="ca.uvic.cs.tagsea_feature" version="0.3.5"/>
+   <category-def name="TagSEA Core and Help" label="TagSEA">
+      <description>
+         All of the features required to get TagSEA up-and-running.
+      </description>
+   </category-def>
+</site>

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Task Tests Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.mylyn.task.tests
+Bundle-Version: 1.0.0
+Bundle-Activator: net.sourceforge.tagsea.mylyn.task.tests.TaskTestPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit,
+ net.sourceforge.tagsea.mylyn.core,
+ net.sourceforge.tagsea.mylyn.task,
+ org.eclipse.jface.text
+Eclipse-LazyStart: true

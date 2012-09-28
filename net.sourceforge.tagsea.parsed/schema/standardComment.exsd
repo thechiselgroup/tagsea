@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="net.sourceforge.tagsea.parsed">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="net.sourceforge.tagsea.parsed" id="standardComment" name="Standard Comment Waypoints"/>
+      </appInfo>
+      <documentation>
+         A parser that scans a document for comment regions and retrieves waypoint descriptors based on a standard syntax. The standard syntax is as follows:
+ &lt;code&gt;&amp;amp;tag &lt;i&gt;&amp;lt;tags&amp;gt;&lt;/i&gt; &lt;i&gt;&amp;lt;attributes&amp;gt;&lt;/i&gt; &lt;i&gt;: message&lt;/i&gt;&lt;/code&gt;
+ Where &lt;code&gt;tags&lt;/code&gt; is a list of white-space separated tags. Tag names may be delimited with &apos;.&apos; characters to generate a tag hierarchy. &lt;code&gt;attributes&lt;/code&gt; is a list of attributes in the following format: &lt;code&gt;-name=value&lt;/code&gt; If the value must contain white space or a colon (:), the value may be placed within double quotes (&quot;). Valid names are &lt;code&gt;author&lt;/code&gt; and &lt;code&gt;date&lt;/code&gt;. Date values may specify a country and local. If a country and local are supplied, the following format is used: &lt;code&gt;-date=&quot;languageCOUNTRY:dateValue&quot;&lt;/code&gt; where &lt;code&gt;language&lt;/code&gt; is the two-character ISO language code, and COUNTRY is the two-character ISO country code. If no locale is specified, then the default locale is used to try and parse the date. Date values are always specified in Java DateFormat.SHORT format. For example: &lt;code&gt;-date=&quot;enCA:01/01/01&quot;&lt;/code&gt; would represent January 1st, 2001 in Canadian English.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="definition" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="definition">
+      <complexType>
+         <sequence>
+            <element ref="multiline" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="singleline" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="exclusion" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="contentType" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="fileAssociations" type="string">
+            <annotation>
+               <documentation>
+                  A comma-separated list of file name associations
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="kind" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unqualified kind name for this waypoint definition. The qualified name will have the plugin id prepended to it.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A human-readable name for the waypoint definition.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="presentation" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":net.sourceforge.tagsea.parsed.core.IParsedWaypointPresentation"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="domainMethod" type="string">
+            <annotation>
+               <documentation>
+                  An optional implementation of IDomainMethod which will be used to discover string representations of domain specific elements for the text that is being parsed. Domain specific elements could be things such as Java methods, C++ classes, XML tags, or LaTeX paragraphs.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":net.sourceforge.tagsea.parsed.comments.IDomainMethod"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="multiline">
+      <complexType>
+         <attribute name="open" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="close" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="singleline">
+      <complexType>
+         <attribute name="open" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="exclusion">
+      <annotation>
+         <documentation>
+            Defines beginning/end pairs of strings that should be considered as delimiting areas in which waypoints should not be looked for. For example, string delimiters: &quot;, &apos;. If no exclusions are included, it is assumed that there is nothing that should stop a waypoint from being found.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="open" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="close" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>

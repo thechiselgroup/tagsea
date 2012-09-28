@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sourceforge.tagsea.waypoint">
+      <waypoint
+            class="net.sourceforge.tagsea.tasks.waypoints.TaskWaypointDelegate"
+            name="Java Tasks"
+            type="taskWaypoint"
+            ui="net.sourceforge.tagsea.tasks.waypoints.WaypointUI">
+         <parent type="net.sourceforge.tagsea.resources.resourceWaypoint"/>
+         <attribute
+               default="markerId"
+               label="Marker ID"
+               name="markerId"
+               type="string"/>
+         <parent type="net.sourceforge.tagsea.text"/>
+      </waypoint>
+   </extension>
+   <extension
+         id="waypointmarker"
+         name="Task Waypoint Marker"
+         point="org.eclipse.core.resources.markers">
+      <super type="net.sourceforge.tagsea.waypointmarker"/>
+      <attribute name="taskReference"/>
+      <persistent value="false"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="net.sourceforge.tagsea.tasks.waypoints.JavaTaskGenerator"
+            markerType="org.eclipse.jtd.core.task"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="net.sourceforge.tagsea.tasks.TaskWaypointPreferences"/>
+   </extension>
+   <extension
+         point="net.sourceforge.tagsea.filters">
+      <filter
+            class="net.sourceforge.tagsea.tasks.waypoints.WaypointFilter"
+            ui="net.sourceforge.tagsea.tasks.waypoints.WaypointFilterUI"
+            waypointType="net.sourceforge.tagsea.tasks.taskWaypoint"/>
+   </extension>
+   <extension
+         point="org.eclipse.jdt.ui.quickFixProcessors">
+      <quickFixProcessor
+            class="net.sourceforge.tagsea.tasks.waypoints.JavaQuickFixProcessor"
+            id="net.sourceforge.tagsea.tasks.quickFixProcessor"
+            name="Task-Waypoint Quick Fix"/>
+   </extension>
+
+</plugin>

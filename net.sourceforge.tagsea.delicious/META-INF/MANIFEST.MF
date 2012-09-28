@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Delicious Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.delicious; singleton:=true
+Bundle-Version: 0.6.4.qualifier
+Bundle-Activator: net.sourceforge.tagsea.delicious.DeliciousWaypointPlugin
+Bundle-Vendor: UVic
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.apache.commons.httpclient,
+ net.sourceforge.tagsea
+Eclipse-LazyStart: true
+Bundle-ClassPath: .,
+ lib/delicious-1.14.jar,
+ lib/servlet-2.3.jar
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+
+

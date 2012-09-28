@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Breakpoint Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.breakpoint; singleton:=true
+Bundle-Version: 0.6.6.qualifier
+Bundle-Activator: net.sourceforge.tagsea.breakpoint.BreakpointWaypointPlugin
+Bundle-Vendor: UVic
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ net.sourceforge.tagsea,
+ org.eclipse.debug.core,
+ org.eclipse.core.resources,
+ org.eclipse.ui.editors,
+ org.eclipse.debug.ui,
+ org.eclipse.ui.ide,
+ org.eclipse.jdt.core,
+ org.eclipse.jdt.ui,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.jface.text,
+ org.eclipse.ui
+Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

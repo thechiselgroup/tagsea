@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="net.sourceforge.tagsea.parsed.standardComment">
+      <definition
+            fileAssociations="*.pl,*.pm"
+            kind="net.sourceforge.tagse.parsed.perl.waypoint"
+            name="Parsed Perl Tagging"
+            presentation="net.sourceforge.tagsea.parsed.perl.PerlWaypointPresentation">
+         <singleline
+               open="#">
+         </singleline>
+         <exclusion
+               close="&apos;"
+               open="&apos;">
+         </exclusion>
+         <exclusion
+               close="&quot;"
+               open="&quot;">
+         </exclusion>
+      </definition>
+   </extension>
+
+</plugin>

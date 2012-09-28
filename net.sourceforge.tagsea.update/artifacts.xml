@@ -1,0 +1,1217 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository class='org.eclipse.equinox.internal.p2.artifact.repository.simple.SimpleArtifactRepository' version='1.0.0'?>
+<repository name='file:/C:/Del/workspace-tagsea/net.sourceforge.tagsea.update/ - artifacts' type='org.eclipse.equinox.p2.artifact.repository.simpleRepository' version='1.0.0'>
+  <properties size='2'>
+    <property name='p2.compressed' value='false'/>
+    <property name='p2.timestamp' value='1215819259656'/>
+  </properties>
+  <mappings size='3'>
+    <rule filter='(&amp; (classifier=osgi.bundle))' output='${repoUrl}/plugins/${id}_${version}.jar'/>
+    <rule filter='(&amp; (classifier=binary))' output='${repoUrl}/binary/${id}_${version}'/>
+    <rule filter='(&amp; (classifier=org.eclipse.update.feature))' output='${repoUrl}/features/${id}_${version}.jar'/>
+  </mappings>
+  <artifacts size='175'>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='138686'/>
+        <property name='download.size' value='138686'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.0.200703021755'>
+      <properties size='3'>
+        <property name='artifact.size' value='359847'/>
+        <property name='download.size' value='359847'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='457883'/>
+        <property name='download.size' value='457883'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed.perl' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='3971'/>
+        <property name='download.size' value='3971'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.breakpoint' version='0.6.0.200703021735'>
+      <properties size='3'>
+        <property name='artifact.size' value='22777'/>
+        <property name='download.size' value='22777'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.c' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='4156'/>
+        <property name='download.size' value='4156'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature' version='0.6.4.v20071019-1700'>
+      <properties size='2'>
+        <property name='artifact.size' value='6033'/>
+        <property name='download.size' value='6033'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.ecore.xmi' version='2.2.2.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='171134'/>
+        <property name='download.size' value='171134'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.0.200703021755'>
+      <properties size='3'>
+        <property name='artifact.size' value='142913'/>
+        <property name='download.size' value='142913'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.ibm.research.tours.content' version='0.1.0.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='146499'/>
+        <property name='download.size' value='146499'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.codegen.ecore.ui' version='2.2.1.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='110460'/>
+        <property name='download.size' value='110460'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.ecore.editor' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='76539'/>
+        <property name='download.size' value='76539'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.0.200703021738'>
+      <properties size='3'>
+        <property name='artifact.size' value='142913'/>
+        <property name='download.size' value='142913'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.cloudsee' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='16588'/>
+        <property name='download.size' value='16588'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.codegen' version='2.2.2.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='191909'/>
+        <property name='download.size' value='191909'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.url' version='0.6.0.200703021755'>
+      <properties size='3'>
+        <property name='artifact.size' value='26756'/>
+        <property name='download.size' value='26756'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.c' version='0.6.2.200707271320'>
+      <properties size='3'>
+        <property name='artifact.size' value='117061'/>
+        <property name='download.size' value='117061'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.4.200710191739'>
+      <properties size='3'>
+        <property name='artifact.size' value='457883'/>
+        <property name='download.size' value='457883'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.edit' version='2.2.2.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='225242'/>
+        <property name='download.size' value='225242'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.extras' version='0.6.4.v20071005-1500'>
+      <properties size='2'>
+        <property name='artifact.size' value='5214'/>
+        <property name='download.size' value='5214'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tasks' version='0.6.0.200703021738'>
+      <properties size='3'>
+        <property name='artifact.size' value='31127'/>
+        <property name='download.size' value='31127'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tasks' version='0.6.0.200703021735'>
+      <properties size='3'>
+        <property name='artifact.size' value='31127'/>
+        <property name='download.size' value='31127'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='486349'/>
+        <property name='download.size' value='486349'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='org.eclipse.emf' version='2.2.2.v200702131851'>
+      <properties size='2'>
+        <property name='artifact.size' value='24250'/>
+        <property name='download.size' value='24250'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='89828'/>
+        <property name='download.size' value='89828'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='221514'/>
+        <property name='download.size' value='221514'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.mapping.ui' version='2.2.1.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='131492'/>
+        <property name='download.size' value='131492'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.logging.model' version='0.6.3.200707311636'>
+      <properties size='3'>
+        <property name='artifact.size' value='72017'/>
+        <property name='download.size' value='72017'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='8314'/>
+        <property name='download.size' value='8314'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed.javabang' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='13042'/>
+        <property name='download.size' value='13042'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.3.200707301444'>
+      <properties size='3'>
+        <property name='artifact.size' value='100308'/>
+        <property name='download.size' value='100308'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.3.200707301417'>
+      <properties size='3'>
+        <property name='artifact.size' value='100308'/>
+        <property name='download.size' value='100308'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.mapping.ecore2xml.ui' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='84633'/>
+        <property name='download.size' value='84633'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='1498919'/>
+        <property name='download.size' value='1498919'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.cloudsee' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='16587'/>
+        <property name='download.size' value='16587'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.ant' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='17112'/>
+        <property name='download.size' value='17112'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.c' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='117021'/>
+        <property name='download.size' value='117021'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.logging.feature.patch' version='1.4.0'>
+      <properties size='2'>
+        <property name='artifact.size' value='5352'/>
+        <property name='download.size' value='5352'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature' version='0.6.0'>
+      <properties size='2'>
+        <property name='artifact.size' value='5525'/>
+        <property name='download.size' value='5525'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.2.200707101046'>
+      <properties size='3'>
+        <property name='artifact.size' value='90110'/>
+        <property name='download.size' value='90110'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.ecore.change' version='2.2.1.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='70237'/>
+        <property name='download.size' value='70237'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.0.200703021757'>
+      <properties size='3'>
+        <property name='artifact.size' value='123720'/>
+        <property name='download.size' value='123720'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.breakpoint' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='24560'/>
+        <property name='download.size' value='24560'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='385570'/>
+        <property name='download.size' value='385570'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.ibm.research.tours' version='0.1.0.200705041054'>
+      <properties size='3'>
+        <property name='artifact.size' value='200326'/>
+        <property name='download.size' value='200326'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.url' version='0.6.0.200703021738'>
+      <properties size='3'>
+        <property name='artifact.size' value='26756'/>
+        <property name='download.size' value='26756'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.mapping.ecore2ecore' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='34200'/>
+        <property name='download.size' value='34200'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.breakpoint' version='0.6.0.200703021738'>
+      <properties size='3'>
+        <property name='artifact.size' value='22777'/>
+        <property name='download.size' value='22777'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.3.200707271317'>
+      <properties size='3'>
+        <property name='artifact.size' value='90691'/>
+        <property name='download.size' value='90691'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='24150'/>
+        <property name='download.size' value='24150'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature' version='0.6.2'>
+      <properties size='2'>
+        <property name='artifact.size' value='5727'/>
+        <property name='download.size' value='5727'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='com.ibm.research.tours.feature' version='0.1.0'>
+      <properties size='2'>
+        <property name='artifact.size' value='5113'/>
+        <property name='download.size' value='5113'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.importer.ecore' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='15242'/>
+        <property name='download.size' value='15242'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tours.waypoint' version='0.1.2'>
+      <properties size='3'>
+        <property name='artifact.size' value='8912'/>
+        <property name='download.size' value='8912'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed.javabang' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='12973'/>
+        <property name='download.size' value='12973'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.url' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='26881'/>
+        <property name='download.size' value='26881'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.importer' version='2.2.2.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='63405'/>
+        <property name='download.size' value='63405'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed.javabang' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='13053'/>
+        <property name='download.size' value='13053'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tasks' version='0.6.0.200703021757'>
+      <properties size='3'>
+        <property name='artifact.size' value='31127'/>
+        <property name='download.size' value='31127'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature' version='0.6.4.v20071019-1745'>
+      <properties size='2'>
+        <property name='artifact.size' value='6043'/>
+        <property name='download.size' value='6043'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.ecore' version='2.2.2.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='754226'/>
+        <property name='download.size' value='754226'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.3.200707311000'>
+      <properties size='3'>
+        <property name='artifact.size' value='100329'/>
+        <property name='download.size' value='100329'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.breakpoint' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='24575'/>
+        <property name='download.size' value='24575'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.common' version='2.2.1.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='156934'/>
+        <property name='download.size' value='156934'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tasks' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='34966'/>
+        <property name='download.size' value='34966'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.ibm.research.tours' version='0.1.2.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='201996'/>
+        <property name='download.size' value='201996'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.0.200703021757'>
+      <properties size='3'>
+        <property name='artifact.size' value='1159787'/>
+        <property name='download.size' value='1159787'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.apache.commons.httpclient' version='1.0.0.1'>
+      <properties size='3'>
+        <property name='artifact.size' value='348120'/>
+        <property name='download.size' value='348120'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.edit.ui' version='2.2.1.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='124925'/>
+        <property name='download.size' value='124925'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.breakpoint' version='0.6.0.200703021757'>
+      <properties size='3'>
+        <property name='artifact.size' value='22777'/>
+        <property name='download.size' value='22777'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.extras' version='0.6.0'>
+      <properties size='2'>
+        <property name='artifact.size' value='4817'/>
+        <property name='download.size' value='4817'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.breakpoint' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='26213'/>
+        <property name='download.size' value='26213'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.0.200703021738'>
+      <properties size='3'>
+        <property name='artifact.size' value='359847'/>
+        <property name='download.size' value='359847'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='24138'/>
+        <property name='download.size' value='24138'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.logging.model' version='0.6.3.200707301444'>
+      <properties size='3'>
+        <property name='artifact.size' value='72033'/>
+        <property name='download.size' value='72033'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.logging.feature' version='0.6.2'>
+      <properties size='2'>
+        <property name='artifact.size' value='5386'/>
+        <property name='download.size' value='5386'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.codegen.ui' version='2.1.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='26155'/>
+        <property name='download.size' value='26155'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.0.200703021735'>
+      <properties size='3'>
+        <property name='artifact.size' value='359847'/>
+        <property name='download.size' value='359847'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.clouds' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='23801'/>
+        <property name='download.size' value='23801'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.3.200707301419'>
+      <properties size='3'>
+        <property name='artifact.size' value='100308'/>
+        <property name='download.size' value='100308'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.0.200703021735'>
+      <properties size='3'>
+        <property name='artifact.size' value='142913'/>
+        <property name='download.size' value='142913'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature.patch' version='1.3.0'>
+      <properties size='2'>
+        <property name='artifact.size' value='5350'/>
+        <property name='download.size' value='5350'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.importer.rose' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='94279'/>
+        <property name='download.size' value='94279'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.ibm.research.tours.content' version='0.1.0.200705041054'>
+      <properties size='3'>
+        <property name='artifact.size' value='146473'/>
+        <property name='download.size' value='146473'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='486331'/>
+        <property name='download.size' value='486331'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed.perl' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='3991'/>
+        <property name='download.size' value='3991'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='172357'/>
+        <property name='download.size' value='172357'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.4.200710191744'>
+      <properties size='3'>
+        <property name='artifact.size' value='172271'/>
+        <property name='download.size' value='172271'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='221497'/>
+        <property name='download.size' value='221497'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.0.200703021755'>
+      <properties size='3'>
+        <property name='artifact.size' value='123721'/>
+        <property name='download.size' value='123721'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.logging.model' version='0.6.3.200707301417'>
+      <properties size='3'>
+        <property name='artifact.size' value='72033'/>
+        <property name='download.size' value='72033'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='173531'/>
+        <property name='download.size' value='173531'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature.patch' version='1.2.0'>
+      <properties size='2'>
+        <property name='artifact.size' value='5357'/>
+        <property name='download.size' value='5357'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.ibm.research.tours.fx' version='0.1.0.200705041054'>
+      <properties size='3'>
+        <property name='artifact.size' value='188136'/>
+        <property name='download.size' value='188136'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature.patch' version='1.1.0'>
+      <properties size='2'>
+        <property name='artifact.size' value='5373'/>
+        <property name='download.size' value='5373'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tasks' version='0.6.0.200703021755'>
+      <properties size='3'>
+        <property name='artifact.size' value='31127'/>
+        <property name='download.size' value='31127'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.breakpoint' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='26694'/>
+        <property name='download.size' value='26694'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.logging.model' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='62067'/>
+        <property name='download.size' value='62067'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='1498919'/>
+        <property name='download.size' value='1498919'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.common.ui' version='2.2.1.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='88940'/>
+        <property name='download.size' value='88940'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tasks' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='34904'/>
+        <property name='download.size' value='34904'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.clouds' version='0.6.4.200710191744'>
+      <properties size='3'>
+        <property name='artifact.size' value='23869'/>
+        <property name='download.size' value='23869'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tasks' version='0.6.3.200707311636'>
+      <properties size='3'>
+        <property name='artifact.size' value='34431'/>
+        <property name='download.size' value='34431'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.mapping.ecore2ecore.editor' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='36742'/>
+        <property name='download.size' value='36742'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.breakpoint' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='26214'/>
+        <property name='download.size' value='26214'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.ecore.change.edit' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='23497'/>
+        <property name='download.size' value='23497'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='2061509'/>
+        <property name='download.size' value='2061509'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.c' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='4168'/>
+        <property name='download.size' value='4168'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='385571'/>
+        <property name='download.size' value='385571'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.0.200703021738'>
+      <properties size='3'>
+        <property name='artifact.size' value='123721'/>
+        <property name='download.size' value='123721'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed' version='0.6.4.200710191744'>
+      <properties size='3'>
+        <property name='artifact.size' value='185915'/>
+        <property name='download.size' value='185915'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.extras.patch' version='1.1.0'>
+      <properties size='2'>
+        <property name='artifact.size' value='5311'/>
+        <property name='download.size' value='5311'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.3.200707271319'>
+      <properties size='3'>
+        <property name='artifact.size' value='90692'/>
+        <property name='download.size' value='90692'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.breakpoint' version='0.6.0.200703021755'>
+      <properties size='3'>
+        <property name='artifact.size' value='22777'/>
+        <property name='download.size' value='22777'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.4.200710191744'>
+      <properties size='3'>
+        <property name='artifact.size' value='2059663'/>
+        <property name='download.size' value='2059663'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.4.200710191739'>
+      <properties size='3'>
+        <property name='artifact.size' value='2059664'/>
+        <property name='download.size' value='2059664'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.extras' version='0.6.6.v200807111625'>
+      <properties size='2'>
+        <property name='artifact.size' value='5207'/>
+        <property name='download.size' value='5207'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.c' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='117020'/>
+        <property name='download.size' value='117020'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.converter' version='2.2.1.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='75098'/>
+        <property name='download.size' value='75098'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.mapping.ecore2xml' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='48658'/>
+        <property name='download.size' value='48658'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.0.200703021735'>
+      <properties size='3'>
+        <property name='artifact.size' value='123721'/>
+        <property name='download.size' value='123721'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed' version='0.6.4.200710191739'>
+      <properties size='3'>
+        <property name='artifact.size' value='185915'/>
+        <property name='download.size' value='185915'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.logging.model' version='0.6.3.200707311000'>
+      <properties size='3'>
+        <property name='artifact.size' value='72023'/>
+        <property name='download.size' value='72023'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature' version='0.6.6.v20080711'>
+      <properties size='2'>
+        <property name='artifact.size' value='6027'/>
+        <property name='download.size' value='6027'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tasks' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='33002'/>
+        <property name='download.size' value='33002'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.ibm.research.tours.fx' version='0.1.0.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='188204'/>
+        <property name='download.size' value='188204'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.extras.patch' version='1.2.0'>
+      <properties size='2'>
+        <property name='artifact.size' value='5401'/>
+        <property name='download.size' value='5401'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.logging.model' version='0.6.3.200707301419'>
+      <properties size='3'>
+        <property name='artifact.size' value='72033'/>
+        <property name='download.size' value='72033'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed.perl' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='3958'/>
+        <property name='download.size' value='3958'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='173531'/>
+        <property name='download.size' value='173531'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='89829'/>
+        <property name='download.size' value='89829'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.url' version='0.6.0.200703021757'>
+      <properties size='3'>
+        <property name='artifact.size' value='26756'/>
+        <property name='download.size' value='26756'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.url' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='26909'/>
+        <property name='download.size' value='26909'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature' version='0.6.4.v20071019-1740'>
+      <properties size='2'>
+        <property name='artifact.size' value='6043'/>
+        <property name='download.size' value='6043'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.url' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='65539'/>
+        <property name='download.size' value='65539'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.url' version='0.6.0.200703021735'>
+      <properties size='3'>
+        <property name='artifact.size' value='26756'/>
+        <property name='download.size' value='26756'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.4.200710191744'>
+      <properties size='3'>
+        <property name='artifact.size' value='24174'/>
+        <property name='download.size' value='24174'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.4.200710191739'>
+      <properties size='3'>
+        <property name='artifact.size' value='24174'/>
+        <property name='download.size' value='24174'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.0.200703021738'>
+      <properties size='3'>
+        <property name='artifact.size' value='1159787'/>
+        <property name='download.size' value='1159787'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.0.200703021755'>
+      <properties size='3'>
+        <property name='artifact.size' value='1159787'/>
+        <property name='download.size' value='1159787'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='2061495'/>
+        <property name='download.size' value='2061495'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.codegen.ecore' version='2.2.2.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='774300'/>
+        <property name='download.size' value='774300'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='com.ibm.research.tours.feature' version='0.1.2.v20071015-1517'>
+      <properties size='2'>
+        <property name='artifact.size' value='5382'/>
+        <property name='download.size' value='5382'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='24174'/>
+        <property name='download.size' value='24174'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='2059663'/>
+        <property name='download.size' value='2059663'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.c' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='4190'/>
+        <property name='download.size' value='4190'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.clouds' version='0.6.4.200710191739'>
+      <properties size='3'>
+        <property name='artifact.size' value='23869'/>
+        <property name='download.size' value='23869'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tours.waypoint' version='0.1.0.200705041054'>
+      <properties size='3'>
+        <property name='artifact.size' value='10469'/>
+        <property name='download.size' value='10469'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.4.200710191744'>
+      <properties size='3'>
+        <property name='artifact.size' value='457888'/>
+        <property name='download.size' value='457888'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.clouds' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='23818'/>
+        <property name='download.size' value='23818'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='172271'/>
+        <property name='download.size' value='172271'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.3.200707271115'>
+      <properties size='3'>
+        <property name='artifact.size' value='90692'/>
+        <property name='download.size' value='90692'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.apache.commons.httpclient' version='1.0.0'>
+      <properties size='3'>
+        <property name='artifact.size' value='348064'/>
+        <property name='download.size' value='348064'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature.patch' version='1.0.0'>
+      <properties size='2'>
+        <property name='artifact.size' value='5321'/>
+        <property name='download.size' value='5321'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.url' version='0.6.6.q'>
+      <properties size='3'>
+        <property name='artifact.size' value='65523'/>
+        <property name='download.size' value='65523'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.ecore.edit' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='73946'/>
+        <property name='download.size' value='73946'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea' version='0.6.0.200703021757'>
+      <properties size='3'>
+        <property name='artifact.size' value='359847'/>
+        <property name='download.size' value='359847'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.extras' version='0.6.6.v20080711'>
+      <properties size='2'>
+        <property name='artifact.size' value='5197'/>
+        <property name='download.size' value='5197'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.url' version='0.6.2.200706291658'>
+      <properties size='3'>
+        <property name='artifact.size' value='26909'/>
+        <property name='download.size' value='26909'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.mapping' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='176908'/>
+        <property name='download.size' value='176908'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.4.200710191739'>
+      <properties size='3'>
+        <property name='artifact.size' value='172271'/>
+        <property name='download.size' value='172271'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.extras' version='0.6.2'>
+      <properties size='2'>
+        <property name='artifact.size' value='4874'/>
+        <property name='download.size' value='4874'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tasks' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='34983'/>
+        <property name='download.size' value='34983'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.exporter' version='2.2.0.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='49763'/>
+        <property name='download.size' value='49763'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.resources' version='0.6.6.200807111633'>
+      <properties size='3'>
+        <property name='artifact.size' value='172368'/>
+        <property name='download.size' value='172368'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.instrumentation' version='0.6.3.200707311636'>
+      <properties size='3'>
+        <property name='artifact.size' value='100461'/>
+        <property name='download.size' value='100461'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.logging.model' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='62066'/>
+        <property name='download.size' value='62066'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='138686'/>
+        <property name='download.size' value='138686'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='org.eclipse.update.feature' id='net.sourceforge.tagsea.feature' version='0.6.6.v200807111625'>
+      <properties size='2'>
+        <property name='artifact.size' value='6037'/>
+        <property name='download.size' value='6037'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.c' version='0.6.2.200707311636'>
+      <properties size='3'>
+        <property name='artifact.size' value='117059'/>
+        <property name='download.size' value='117059'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.tasks' version='0.6.2.200706291712'>
+      <properties size='3'>
+        <property name='artifact.size' value='33000'/>
+        <property name='download.size' value='33000'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.docs' version='0.6.0.200703021735'>
+      <properties size='3'>
+        <property name='artifact.size' value='1159787'/>
+        <property name='download.size' value='1159787'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.java' version='0.6.0.200703021757'>
+      <properties size='3'>
+        <property name='artifact.size' value='142914'/>
+        <property name='download.size' value='142914'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='net.sourceforge.tagsea.parsed' version='0.6.4.200710191709'>
+      <properties size='3'>
+        <property name='artifact.size' value='185914'/>
+        <property name='download.size' value='185914'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.eclipse.emf.importer.java' version='2.2.1.v200702131851'>
+      <properties size='3'>
+        <property name='artifact.size' value='34424'/>
+        <property name='download.size' value='34424'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+  </artifacts>
+</repository>

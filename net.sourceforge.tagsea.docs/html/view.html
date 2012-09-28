@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<link rel="StyleSheet" href="tagsea.css" type="text/css" 
+media="screen"><title>TagSEA View</title></head>
+
+<body>
+
+<div class="frame">
+
+<div id="shadow-container">  
+<div class="shadow1">  
+<div class="shadow2">  
+<div class="shadow3">  
+<div class="container"> 
+
+<div style="border-bottom: dotted #999999 1px;">
+
+<div id="navcontainer">
+<ul id="navlist">
+<li><a href="download.html">Download</a></li>
+<li><a href="features.html">Getting Started</a></li>
+<li><a href="new.html">What's New</a></li>
+<li><a href="community.html">Community</a></li>
+<li><a href="research.html">Research</a></li>
+</ul>
+</div>
+
+<p class="title"><a href="index.html">TagSEA 0.6.6</a></p>
+
+<p class="version">Tags for Software Engineering Activities in 
+Eclipse</p>
+
+</div>
+
+<h3>TagSEA View</h3>
+
+<p>The real power of tags, isn't in how they are 
+added, it is in how they can be searched and
+navigated.  The TagSEA View is available for this purpose.</p>
+
+<h3>Tags Pane</h3>
+
+<center><img src="images/tags.jpg" alt="Tags View"></center>
+
+<p>The tags pane gives you a filtered list of all of the tags available 
+in your workspace. You can use the text box
+to enter words that may match tags that you are interested in. The tags 
+that do not match will be filtered out of
+the view, and the visible tags will have their matching regions 
+highlighted. The filtering matches <i>any</i> word
+you enter into the text field.</p>
+<p>TagSEA uses a special naming convention to help you organize your 
+tags. The '.' character has a special meaning
+in TagSEA: it is used to view tags as a hierarchy. When you view your 
+tags as a hierarchy, a number of refactoring
+actions are available. You can rename your tags by double-clicking on 
+the tag name, or by using the <i>Rename</i> action.
+You can re-parent tags by dragging them under a new parent. You can 
+delete tags, and you can "generalize" tags. 
+Generalizing tags allows you to remove a particular segment of a tag 
+name without effecting the sub-tree under that
+segment.</p>
+<p>Note that the hierarchical view is enforced by naming convention 
+only. So, if you would like to add an extra level
+to the sub-tree, you can rename a tag and add an extra '.' to the name. 
+This will refactor all of the tag names
+under that sub-tree.</p>
+
+<p>When you refactor tags, the effective result is to change the name of 
+the tags in some way. Some waypoint types
+may not allow you to change the names of their tags (for example, if the 
+waypoint is created on static, read-only
+data). So, your requested refactoring might not cause a global change. 
+Don't be surprised if you rename a tag, and
+only some waypoints get moved to that new name. Your old tag might 
+remain behind.</p>
+<p>You can also view your tags using their flat, "raw", dot-separated 
+names. When you view them this way, however, 
+only the <i>Rename</i> action is available, and it does not guarantee to 
+keep the hierarchy consistent.</p>
+
+
+<h3>The Waypoints Pane</h3>
+
+<center><img src="images/waypoint_pane.png" alt="Waypoints 
+View"></center>
+
+<p>The waypoints view is your point of interaction for all of your 
+waypoints. It is separated into 2 sections:</p>
+<ol type="A">
+
+<li><b>The Waypoint Table</b>: <p>This is a filtered table of the 
+waypoints that can be found by TagSEA. Each line
+represents one waypoint. It has an icon that indicates the kind of 
+waypoint that is on that line, and some descriptive
+text about the waypoint. The table helps you
+to navigate to where software artifacts have been tagged. 
+Double-clicking on any waypoint will navigate to the 
+location of that waypoint. How this occurrs is dependant on the type of 
+waypoint. For example, java waypoints will
+open up a java editor and select the region that the waypoint is on.</p>
+
+<p>You can filter what is in the view by editing the text box above the 
+table. Entering single words will filter the
+waypoints based on thier label. The portion of the text that matches the 
+filter is highlighted in the label. You can
+also filter based on what tags are on the waypoint: simply type 
+something like "@tag-name" to filter out the waypoints
+that don't have a tag that matches "tag-name". Finally, you can filter 
+based on property values on the waypoint. For
+example, you can use the fomat "author=John" to see all of the waypoints 
+whose author name *starts with* the word
+John. You can also use "date&lt;01/01/01" to get all the waypoints that 
+are dated after January 1st, 2001. The format of
+the date will depend on what locale you are in. Pressing Ctrl-space will 
+give you a list of applicable property names.</p>
+</li>
+
+<li><b>The Tags Section</b>:
+<p>This section lists all of the tags that are on the selected 
+waypoint(s). Clicking on a tag name will open it in
+the Tags Viewer. If only one waypoint is selected, you can use the 
+<b>Edit</b> button to change what tags are on the
+selected waypoint</p>
+</li>
+</ol>
+
+
+<h4>The Properties Dialog</h4>:
+
+<center><img src="images/properties_dialog.jpg" alt="Properties Dialog"></center>
+
+<p>To find out more detailed properties about a tagged location, you can right click on the waypoint and select 'properties'. 
+Some of these properties can be edited, depending on the type of 
+waypoint you created. When you edit a property here, the
+contributed waypoint type has the responsibility to make sure that the 
+platform is updated appropriately. For example,
+if you change the value of "Author" for a java waypoint, the java source 
+for that waypoint will be automatically updated.
+</p>
+</li>
+
+
+<p>If you do not specify a tag for a given waypoint, it will be assigned the "default" tag.  Those tags that have <i>only</i> the
+default filter will be displayed as grey in the waypoint table. In 
+tagsea, these are often considered to be "unused" waypoints because they haven't been tagged with any "useful" tag names. 
+There is a convenience action to automatically delete all of these waypoints. Be careful though: some of the waypoints 
+may actually be useful. You will be presented with a dialog before the deletion so that you can select specifically 
+which waypoints to delete.</p>
+
+
+<br>
+<p class="credits">Tags for Software Engineering Activities in Eclipse (TagSEA)<br>is a research collaboration between 
+the University of Victoria's 
+<a href="http://www.thechiselgroup.org">Computer Human Interaction &amp; Software Engineering Lab</a> 
+and the <a href="http://domino.research.ibm.com/cambridge/research.nsf/pages/index.html">IBM Watson Research Centre</a>.</p>
+
+<div class="footer">
+<a href="http://sourceforge.net/"><img 
+src="http://sflogo.sourceforge.net/sflogo.php?group_id=169205&amp;type=2" 
+alt="SourceForge.net Logo" height="37" width="125"></a>
+</div>
+
+</div></div></div></div></div>
+
+</div>
+
+</body></html>
+

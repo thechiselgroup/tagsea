@@ -1,0 +1,6 @@
+String text = "TODO Auto-generated catch block /net.sourceforge.tagsea/src/net/sourceforge/tagsea/core/ui/internal/actions/TagDeleteAction.java:80";
+java.util.regex.Pattern pathRegEx = java.util.regex.Pattern.compile("(.*)\\s(/.*/(.*\\..*)):\\d+");
+java.util.regex.Matcher m = pathRegEx.matcher(text);
+if(m.find()){
+	System.err.println("Found");	System.err.println("Text: " + m.group(1));	System.err.println("Path: " + m.group(2));	System.err.println("File: " + m.group(3));
+}else{	System.err.println("Not found");}

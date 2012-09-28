@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Todo to Mylyn Bridge
+Bundle-SymbolicName: net.sourceforge.tagsea.mylyn.task;singleton:=true
+Bundle-Version: 0.1
+Bundle-Activator: net.sourceforge.tagsea.mylyn.task.TaskMylynPlugin
+Bundle-Vendor: University of Victoria - CHISEL Lab
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui.forms,
+ org.eclipse.mylyn.tasks.ui,
+ org.eclipse.mylyn.tasks.core,
+ org.eclipse.ui.ide,
+ net.sourceforge.tagsea.mylyn.core,
+ org.eclipse.mylyn.context.core,
+ org.eclipse.mylyn.monitor.core,
+ org.eclipse.jdt.core,
+ org.eclipse.jface.text,
+ org.eclipse.ui.workbench.texteditor
+Eclipse-LazyStart: true
+Export-Package: net.sourceforge.tagsea.mylyn.task,
+ net.sourceforge.tagsea.mylyn.task.actions

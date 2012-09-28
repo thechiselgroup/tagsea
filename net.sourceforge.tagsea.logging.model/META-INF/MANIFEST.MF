@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: net.sourceforge.tagsea.logging.model; singleton:=true
+Bundle-Version: 0.6.3.qualifier
+Bundle-ClassPath: net.sourceforge.tagsea.logging.model.jar
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: net.sourceforge.tagsea.logging,
+ net.sourceforge.tagsea.logging.impl,
+ net.sourceforge.tagsea.logging.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
+Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

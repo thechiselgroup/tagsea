@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Waypoint Test Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.mylyn.waypoints.tests
+Bundle-Version: 1.0.0
+Bundle-Activator: net.sourceforge.tagsea.mylyn.waypoints.tests.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.mylyn.tasks.core,
+ net.sourceforge.tagsea.mylyn.waypoints,
+ net.sourceforge.tagsea,
+ org.eclipse.jface.text,
+ net.sourceforge.tagsea.mylyn.core,
+ org.junit4,
+ net.sourceforge.tagsea.parsed
+Eclipse-LazyStart: true

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="monitor" name="TagSEA Monitors" schema="schema/monitor.exsd"/>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="ca.uvic.cs.tagsea"
+            name="TagSEA"/>
+      <view
+            allowMultiple="false"
+            category="ca.uvic.cs.tagsea"
+            class="ca.uvic.cs.tagsea.ui.views.TagsView"
+            icon="icons/waypoint.gif"
+            id="ca.uvic.cs.tagsea.views.TagsView"
+            name="Tags Viewer"/>
+            
+            <view
+            allowMultiple="false"
+            category="ca.uvic.cs.tagsea"
+            class="ca.uvic.cs.tagsea.ui.views.RoutesView"
+            icon="icons/route.gif"
+            id="ca.uvic.cs.tagsea.views.RoutesView"
+            name="Routes Viewer"/>
+            
+      <!-- document overview view -->
+      <view
+            category="ca.uvic.cs.tagsea"
+            class="ca.uvic.cs.tagsea.ui.views.overview.DocumentVisualizationView2"
+            icon="icons/waypoint.gif"
+            id="ca.uvic.cs.tagsea.ui.views.overview.DocumentVisualizationView2"
+            name="Tag Visualization"/>
+      <view
+            category="ca.uvic.cs.tagsea"
+            class="ca.uvic.cs.tagsea.ui.views.cloudsee.CloudSeeView"
+            icon="icons/waypoint.gif"
+            id="ca.uvic.cs.tagsea.views.CloudSeeView"
+            name="CloudSee"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+         <view
+               id="ca.uvic.cs.tagsea.views.TagsView"
+               ratio="0.5"
+               relationship="bottom"
+               relative="org.eclipse.ui.views.TaskList"/>
+      </perspectiveExtension>
+      <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+         <view
+               id="ca.uvic.cs.tagsea.views.CloudSeeView"
+               ratio="0.5"
+               relationship="right"
+               relative="org.eclipse.ui.views.TaskList"/>
+      </perspectiveExtension>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="ca.uvic.cs.tagsea.preferences.TagSEAPreferencePage"
+            id="ca.uvic.cs.tagsea.preferences.TagSEAPreferencePage"
+            name="TagSEA"/>
+      <page
+            category="ca.uvic.cs.tagsea.preferences.TagSEAPreferencePage"
+            class="ca.uvic.cs.tagsea.monitoring.internal.ui.MonitoringPreferencePage"
+            id="ca.uvic.cs.tagsea.monitoring.preferences"
+            name="Monitoring"/>
+   </extension>
+   <extension
+         name="TagSEA"
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="ca.uvic.cs.tagsea.preferences.PreferenceInitializer"/>
+   </extension>
+   
+   
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup class="ca.uvic.cs.tagsea.core.startup.TagseaStartup"/>
+   </extension>
+   
+    <!-- start Custom Marker Support -->
+    <extension id="waypointmarker" point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.core.resources.textmarker"/>
+        <persistent value="true"/>
+        <attribute name="ca.uvic.cs.tagsea.lineNumber"/>
+    </extension>
+   
+    <extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+       <specification
+             annotationType="ca.uvic.cs.tagsea.waypointannotation"
+             colorPreferenceKey="tagseaAannotationColor"
+             colorPreferenceValue="95,238,255"
+             contributesToHeader="false"
+             highlightPreferenceKey="tagseaHighLight"
+             highlightPreferenceValue="false"
+             icon="icons/waypoint.gif"
+             includeOnPreferencePage="true"
+             label="Tagsea Tag Annotation"
+             overviewRulerPreferenceKey="tagseaOverviewRuler"
+             overviewRulerPreferenceValue="true"
+             presentationLayer="1"
+             symbolicIcon="info"
+             textPreferenceKey="tagseaAnnotationOccurance"
+             textPreferenceValue="false"
+             textStylePreferenceKey="tagseaAnnotationTextStyle"
+             textStylePreferenceValue="NONE"
+             verticalRulerPreferenceKey="tagseaVerticalRuler"
+             verticalRulerPreferenceValue="true"/>
+    </extension>
+  
+    <!-- the "markerType" *must* be fully qualified - prefix with the plugin name -->
+    <extension point="org.eclipse.ui.editors.annotationTypes">
+       <type 
+       	 	name="ca.uvic.cs.tagsea.waypointannotation"
+	 		markerType="ca.uvic.cs.tagsea.waypointmarker">
+	   </type>
+    </extension>
+    <!-- End Custom Marker Support -->
+   
+   <!-- Start Custom Folding provider  -->
+   <extension point= "org.eclipse.jdt.ui.foldingStructureProviders">
+		<provider
+        	class="ca.uvic.cs.tagsea.folding.TagseaJavaFoldingStructureProvider"
+        	id="ca.uvic.tagsea.folding.FoldingProvider"
+       		name="TagseaFoldingStructureProvider"
+        	preferencesClass="org.eclipse.jdt.internal.ui.text.folding.DefaultJavaFoldingPreferenceBlock">
+		</provider>
+	</extension>
+	<!-- End Custom Folding provider  -->
+   
+    <!-- Start code completion computer  -->
+    <extension id="TagCompletionProposalComputer"
+   	    point="org.eclipse.jdt.ui.javaCompletionProposalComputer">
+    	<javaCompletionProposalComputer
+    		activate="true"
+    		categoryId="org.eclipse.jdt.ui.defaultProposalCategory"
+    		class="ca.uvic.cs.tagsea.autocomplete.TagCompletionProposalComputer">
+    		<!-- Giggidy -->
+    		<partition type="__java_javadoc"/>
+    		<partition type="__java_singleline_comment"/>
+    		<partition type="__java_multiline_comment"/>
+   		</javaCompletionProposalComputer>
+    </extension>
+    <extension
+          point="org.eclipse.ui.exportWizards">
+       <category
+             id="ca.uvic.cs.tagsea.export.tags"
+             name="TagSEA"/>
+       <wizard
+             category="ca.uvic.cs.tagsea.export.tags"
+             class="ca.uvic.cs.tagsea.wizards.TagExportWizard"
+             icon="icons/at_tag.gif"
+             id="ca.uvic.cs.tagsea.wizard.tags"
+             name="Tags Export"/>
+    </extension>
+    <!-- End code completion computer  -->
+</plugin>

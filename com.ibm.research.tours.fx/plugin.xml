@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="highlightEffect" name="Highlight Effect" schema="schema/highlightEffect.exsd"/>
+
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Fade to black"
+       	   description = "Fade the screen to black" 
+       	   id="com.ibm.research.tours.fx.providers.FadeToBlackTourElementProvider"
+       	   icon = "icons/effect.gif"
+       	   class="com.ibm.research.tours.fx.providers.FadeToBlackTourElementProvider"/>
+    </extension>
+
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Highlight toolbar"
+       	   description = "Highlight the workbench toolbar" 
+       	   id="com.ibm.research.tours.fx.providers.HighlightToolbarTourElementProvider"
+       	   icon = "icons/effect.gif"
+       	   class="com.ibm.research.tours.fx.providers.HighlightToolbarTourElementProvider"/>
+    </extension>
+
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Highlight status bar"
+       	   description = "Highlight the workbench status bar" 
+       	   id="com.ibm.research.tours.fx.providers.HighlightStatusbarTourElementProvider"
+       	   icon = "icons/effect.gif"
+       	   class="com.ibm.research.tours.fx.providers.HighlightStatusbarTourElementProvider"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Spotlight the workbench"
+       	   description = "Spotlight the workbench" 
+       	   id="com.ibm.research.tours.fx.providers.SpotlightTourElementProvider"
+       	   icon = "icons/effect.gif"
+       	   class="com.ibm.research.tours.fx.providers.SpotlightTourElementProvider"/>
+    </extension>    
+
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Fade out"
+       	   description = "Fade the screen out from black" 
+       	   id="com.ibm.research.tours.fx.providers.FadeOutTourElementProvider"
+       	   icon = "icons/effect.gif"
+       	   class="com.ibm.research.tours.fx.providers.FadeOutTourElementProvider"/>
+    </extension>
+
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Maximize Workbench"
+       	   description = "Maximize the eclipse workbench" 
+       	   id="com.ibm.research.tours.fx.providers.MaximizeWorkbenchTourElementProvider"
+       	   icon = "icons/sample.gif"
+       	   class="com.ibm.research.tours.fx.providers.MaximizeWorkbenchTourElementProvider"/>
+    </extension>
+
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Minimize Workbenck"
+       	   description = "Minimize the eclipse workbench" 
+       	   id="com.ibm.research.tours.fx.providers.MinimizeWorkbenchTourElementProvider"
+       	   icon = "icons/sample.gif"
+       	   class="com.ibm.research.tours.fx.providers.MinimizeWorkbenchTourElementProvider"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Text Area"
+       	   description = "Display text at an arbitrary point on the workbench" 
+       	   id="com.ibm.research.tours.fx.providers.TextTourElementProvider"
+       	   icon = "icons/text.gif"
+       	   class="com.ibm.research.tours.fx.providers.TextTourElementProvider"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Show perspective"
+       	   description = "Show a perspective" 
+       	   id="com.ibm.research.tours.fx.providers.ShowPerspectiveTourElementProvider"
+       	   icon = "icons/perspective.gif"
+       	   class="com.ibm.research.tours.fx.providers.ShowPerspectiveTourElementProvider"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Show view"
+       	   description = "Show a view" 
+       	   id="com.ibm.research.tours.fx.providers.ShowViewTourElementProvider"
+       	   icon = "icons/view.gif"
+       	   class="com.ibm.research.tours.fx.providers.ShowViewTourElementProvider"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Reset current perspective"
+       	   description = "Reset a specified perspective" 
+       	   id="com.ibm.research.tours.fx.providers.ResetPerspectiveTourElementProvider"
+       	   icon = "icons/reset.gif"
+       	   class="com.ibm.research.tours.fx.providers.ResetPerspectiveTourElementProvider"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Set text editor font"
+       	   description = "Custom set the editor font." 
+       	   id="com.ibm.research.tours.fx.providers.SetEditorFontTourElementProvider"
+       	   icon = "icons/font.gif"
+       	   class="com.ibm.research.tours.fx.providers.SetTextEditorFontTourElementProvider"/>
+    </extension>
+    
+     <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Reset text editor font"
+       	   description = "Reset the editor font to its default." 
+       	   id="com.ibm.research.tours.fx.providers.ResetEditorFontTourElementProvider"
+       	   icon = "icons/reset.gif"
+       	   class="com.ibm.research.tours.fx.providers.ResetTextEditorFontTourElementProvider"/>
+    </extension>
+
+     <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Reset global highlighting"
+       	   description = "Reset global cummulative highlight effect." 
+       	   id="com.ibm.research.tours.fx.providers.ResetGlobalHighlightTourElementProvider"
+       	   icon = "icons/reset.gif"
+       	   class="com.ibm.research.tours.fx.providers.ResetGlobalHighlightTourElementProvider"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Set console font"
+       	   description = "Custom set the console font." 
+       	   id="com.ibm.research.tours.fx.providers.SetConsoleFontTourElementProvider"
+       	   icon = "icons/font.gif"
+       	   class="com.ibm.research.tours.fx.providers.SetConsoleFontTourElementProvider"/>
+    </extension>
+    
+     <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Reset console font"
+       	   description = "Reset the console font to its default." 
+       	   id="com.ibm.research.tours.fx.providers.ResetConsoleFontTourElementProvider"
+       	   icon = "icons/reset.gif"
+       	   class="com.ibm.research.tours.fx.providers.ResetConsoleFontTourElementProvider"/>
+    </extension>
+
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Set preference-controlled font"
+       	   description = "Set font that can be controlled by preference" 
+       	   id="com.ibm.research.tours.fx.providers.SetPreferenceFontTourElementProvider"
+       	   icon = "icons/font.gif"
+       	   class="com.ibm.research.tours.fx.providers.SetPreferenceFontTourElementProvider"/>
+    </extension>
+
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Reset preference-controlled font"
+       	   description = "Reset font that can be controlled by preference" 
+       	   id="com.ibm.research.tours.fx.providers.ResetPreferenceFontTourElementProvider"
+       	   icon = "icons/reset.gif"
+       	   class="com.ibm.research.tours.fx.providers.ResetPreferenceFontTourElementProvider"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Set java editor font"
+       	   description = "Custom set the java editor font." 
+       	   id="com.ibm.research.tours.fx.providers.SetJavaEditorFontTourElementProvider"
+       	   icon = "icons/java_editor.gif"
+       	   class="com.ibm.research.tours.fx.providers.SetJavaEditorFontTourElementProvider"/>
+    </extension>
+    
+     <extension point="com.ibm.research.tours.paletteEntry">
+       <tourElementModel
+       	   text="Reset java editor font"
+       	   description = "Reset the java editor font to its default." 
+       	   id="com.ibm.research.tours.fx.providers.ResetJavaEditorFontTourElementProvider"
+       	   icon = "icons/reset.gif"
+       	   class="com.ibm.research.tours.fx.providers.ResetJavaEditorFontTourElementProvider"/>
+    </extension>
+
+     <extension point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+       <tourElementDoubleClickDelegate
+       	   objectContribution="com.ibm.research.tours.fx.elements.ShowViewTourElement"
+       	   class="com.ibm.research.tours.fx.actions.ShowViewDoubleClickActionDelegate"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+       <tourElementDoubleClickDelegate
+       	   objectContribution="com.ibm.research.tours.fx.elements.ShowPerspectiveTourElement"
+       	   class="com.ibm.research.tours.fx.actions.ShowPerspectiveDoubleClickActionDelegate"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+       <tourElementDoubleClickDelegate
+       	   objectContribution="com.ibm.research.tours.fx.elements.SetConsoleFontTourElement"
+       	   class="com.ibm.research.tours.fx.actions.SelectFontDoubleClickActionDelegate"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+       <tourElementDoubleClickDelegate
+       	   objectContribution="com.ibm.research.tours.fx.elements.SetTextEditorFontTourElement"
+       	   class="com.ibm.research.tours.fx.actions.SelectFontDoubleClickActionDelegate"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+       <tourElementDoubleClickDelegate
+       	   objectContribution="com.ibm.research.tours.fx.elements.SetJavaEditorFontTourElement"
+       	   class="com.ibm.research.tours.fx.actions.SelectFontDoubleClickActionDelegate"/>
+    </extension>
+    
+    <extension point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+       <tourElementDoubleClickDelegate
+       	   objectContribution="com.ibm.research.tours.fx.elements.TextTourElement"
+       	   class="com.ibm.research.tours.fx.actions.TextDoubleClickActionDelegate"/>
+    </extension>
+
+    <extension point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+       <tourElementDoubleClickDelegate
+       	   objectContribution="com.ibm.research.tours.fx.elements.SetPreferenceFontTourElement"
+       	   class="com.ibm.research.tours.fx.actions.SelectPreferenceFontDoubleClickActionDelegate"/>
+    </extension>
+
+    <extension point="com.ibm.research.tours.tourElementDoubleClickDelegate">
+       <tourElementDoubleClickDelegate
+       	   objectContribution="com.ibm.research.tours.fx.elements.ResetPreferenceFontTourElement"
+       	   class="com.ibm.research.tours.fx.actions.SelectResetPreferenceFontDoubleClickActionDelegate"/>
+    </extension>
+    
+    <extension
+          point="com.ibm.research.tours.fx.highlightEffect">
+       <effect class="com.ibm.research.tours.fx.DefaultHighlightEffect"/>
+       <effect class="com.ibm.research.tours.fx.LetterboxEffect"/>
+       <effect class="com.ibm.research.tours.fx.UnhighlightEffect"/>
+       <effect class="com.ibm.research.tours.fx.GlobalHighlightEffect"/>
+    </extension>
+    
+       <extension point = "org.eclipse.ui.preferencePages">
+   
+       <page id="com.ibm.research.tours.fx.preferences"
+	    class="com.ibm.research.tours.fx.preferences.FXPreferencesPage"
+            name="Tours FX">
+       </page>
+
+   </extension>
+
+</plugin>

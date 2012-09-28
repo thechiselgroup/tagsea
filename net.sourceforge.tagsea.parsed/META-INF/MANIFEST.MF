@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Parsed Waypoint Plug-in
+Bundle-SymbolicName: net.sourceforge.tagsea.parsed;singleton:=true
+Bundle-Version: 0.6.5.qualifier
+Bundle-Activator: net.sourceforge.tagsea.parsed.ParsedWaypointPlugin
+Bundle-Vendor: University of Victoria
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.filebuffers,
+ net.sourceforge.tagsea,
+ org.eclipse.jface.text,
+ org.eclipse.core.resources,
+ net.sourceforge.tagsea.resources,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.editors,
+ org.eclipse.ltk.core.refactoring
+Eclipse-LazyStart: true
+Export-Package: net.sourceforge.tagsea.parsed;
+  uses:="net.sourceforge.tagsea.parsed.core,
+   org.eclipse.ui.plugin,
+   org.osgi.framework,
+   net.sourceforge.tagsea.core,
+   net.sourceforge.tagsea.resources",
+ net.sourceforge.tagsea.parsed.comments;uses:="org.eclipse.jface.text,net.sourceforge.tagsea.parsed.parser",
+ net.sourceforge.tagsea.parsed.core;
+  uses:="org.eclipse.core.resources,
+   org.eclipse.swt.graphics,
+   net.sourceforge.tagsea.core,
+   net.sourceforge.tagsea.parsed.parser",
+ net.sourceforge.tagsea.parsed.parser;uses:="org.eclipse.jface.text"
